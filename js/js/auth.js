@@ -1,180 +1,482 @@
-const SUPABASE_URL =
-  "https://vrhaagzkeyzlblgjgidg.supabase.co";
+// =====================================
+// FINDMYPET INDIA - LOGIN AUTH
+// =====================================
 
-const SUPABASE_ANON_KEY =
-  "sb_publishable_6qEYBNFz3SddtxvOxiCLGg__NAMfQS1";
+document.addEventListener("DOMContentLoaded", function () {
 
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
+  // =====================================
+  // HTML ELEMENTS
+  // =====================================
 
+  const loginForm = document.getElementById("loginForm");
+  const loginEmail = document.getElementById("loginEmail");
+  const loginPassword = document.getElementById("loginPassword");
+  const loginButton = document.getElementById("loginButton");
+  const loginMessage = document.getElementById("loginMessage");
 
-// HTML ELEMENTS
+  const showPasswordButton =
+    document.getElementById("showPasswordButton");
 
-const loginForm = document.getElementById("loginForm");
-const loginEmail = document.getElementById("loginEmail");
-const loginPassword = document.getElementById("loginPassword");
-const loginButton = document.getElementById("loginButton");
-const loginMessage = document.getElementById("loginMessage");
-
-const showPasswordButton =
-  document.getElementById("showPasswordButton");
-
-const forgotPasswordButton =
-  document.getElementById("forgotPasswordButton");
+  const forgotPasswordButton =
+    document.getElementById("forgotPasswordButton");
 
 
-// MESSAGE
+  // =====================================
+  // MESSAGE FUNCTION
+  // =====================================
 
-function showMessage(message, type = "error") {
-  if (!loginMessage) return;
+  function showMessage(message, type = "error") {
+    if (!loginMessage) return;
 
-  loginMessage.textContent = message;
-  loginMessage.className = `message ${type}`;
-}
-
-
-// SHOW / HIDE PASSWORD
-
-if (showPasswordButton && loginPassword) {
-  showPasswordButton.addEventListener("click", function () {
-    if (loginPassword.type === "password") {
-      loginPassword.type = "text";
-      showPasswordButton.textContent = "Hide";
-    } else {
-      loginPassword.type = "password";
-      showPasswordButton.textContent = "Show";
-    }
-  });
-}
+    loginMessage.textContent = message;
+    loginMessage.className = `message ${type}`;
+  }
 
 
-// LOGIN
+  function clearMessage() {
+    if (!loginMessage) return;
 
-if (loginForm) {
-  loginForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const email = loginEmail.value.trim();
-    const password = loginPassword.value;
-
-    if (!email || !password) {
-      showMessage(
-        "Please enter your email and password.",
-        "error"
-      );
-      return;
-    }
-
-    loginButton.disabled = true;
-    loginButton.textContent = "Logging in...";
-
-    try {
-      const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-          email: email,
-          password: password
-        });
-
-      if (error) {
-        throw error;
-      }
-
-      if (!data.session) {
-        throw new Error(
-          "Login session could not be created."
-        );
-      }
-
-      showMessage(
-  "Login successful! Opening website...",
-  "success"
-);
-
-setTimeout(function () {
-  window.location.replace("/");
-}, 700);
-    } catch (error) {
-      console.error("Login error:", error);
-
-      let message =
-        error.message || "Login failed.";
-
-      if (
-        message
-          .toLowerCase()
-          .includes("invalid login credentials")
-      ) {
-        message = "Email or password is incorrect.";
-      }
-
-      if (
-        message
-          .toLowerCase()
-          .includes("email not confirmed")
-      ) {
-        message =
-          "Please confirm your email before logging in.";
-      }
-
-      showMessage(message, "error");
-
-      loginButton.disabled = false;
-      loginButton.textContent = "Log In";
-    }
-  });
-}
+    loginMessage.textContent = "";
+    loginMessage.className = "message";
+  }
 
 
-// FORGOT PASSWORD
+  // =====================================
+  // SHOW / HIDE PASSWORD
+  // Supabase fail hone par bhi chalega
+  // =====================================
 
-if (forgotPasswordButton) {
-  forgotPasswordButton.addEventListener(
-    "click",
-    async function () {
-      const email = loginEmail.value.trim();
+  if (showPasswordButton && loginPassword) {
 
-      if (!email) {
-        showMessage(
-          "Pehle apna email address enter karo.",
-          "error"
-        );
+    showPasswordButton.addEventListener(
+      "click",
+      function () {
 
-        loginEmail.focus();
-        return;
-      }
+        const passwordIsHidden =
+          loginPassword.type === "password";
 
-      try {
-        forgotPasswordButton.disabled = true;
-        forgotPasswordButton.textContent = "Sending...";
-
-        const { error } =
-          await supabaseClient.auth.resetPasswordForEmail(
-            email,
-            {
-              redirectTo:
-                "http://127.0.0.1:5500/pages/reset-password.html"
-            }
-          );
-
-        if (error) {
-          throw error;
+        if (passwordIsHidden) {
+          loginPassword.type = "text";
+          showPasswordButton.textContent = "Hide";
+        } else {
+          loginPassword.type = "password";
+          showPasswordButton.textContent = "Show";
         }
 
-        showMessage(
-          "Password reset link email par bhej diya gaya hai.",
-          "success"
+      }
+    );
+
+  }
+
+
+  // =====================================
+  // SUPABASE CONFIGURATION
+  // =====================================
+
+  const SUPABASE_URL =
+    "https://vrhaagzkeyzlblgjgidg.supabase.co";
+
+  const SUPABASE_ANON_KEY =
+    "sb_publishable_6qEYBNFz3SddtxvOxiCLGg__NAMfQS1";
+
+
+  let supabaseClient = null;
+
+
+  function initializeSupabase() {
+
+    if (
+      !window.supabase ||
+      typeof window.supabase.createClient !== "function"
+    ) {
+      console.error(
+        "Supabase library could not be loaded."
+      );
+
+      return false;
+    }
+
+    try {
+
+      supabaseClient =
+        window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_ANON_KEY
         );
 
-      } catch (error) {
-        showMessage(error.message, "error");
+      console.log(
+        "Supabase login service initialized."
+      );
 
-      } finally {
-        forgotPasswordButton.disabled = false;
-        forgotPasswordButton.textContent =
-          "Forgot Password?";
-      }
+      return true;
+
+    } catch (error) {
+
+      console.error(
+        "Supabase initialization error:",
+        error
+      );
+
+      return false;
+
     }
-  );
-}
+
+  }
+
+
+  // Supabase ko initialize karo
+
+  initializeSupabase();
+
+
+  // =====================================
+  // LOGIN
+  // =====================================
+
+  if (loginForm) {
+
+    loginForm.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+        clearMessage();
+
+
+        // Supabase dobara check karo
+
+        if (!supabaseClient) {
+
+          const initialized =
+            initializeSupabase();
+
+          if (!initialized) {
+
+            showMessage(
+              "Login service load nahi hui. Internet check karke page refresh karein.",
+              "error"
+            );
+
+            return;
+
+          }
+
+        }
+
+
+        const email =
+          loginEmail
+            ? loginEmail.value.trim()
+            : "";
+
+        const password =
+          loginPassword
+            ? loginPassword.value
+            : "";
+
+
+        // Empty field validation
+
+        if (!email || !password) {
+
+          showMessage(
+            "Please enter your email and password.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        // Button loading state
+
+        if (loginButton) {
+          loginButton.disabled = true;
+          loginButton.textContent = "Logging in...";
+        }
+
+
+        try {
+
+          const loginPromise =
+            supabaseClient.auth.signInWithPassword({
+              email: email,
+              password: password
+            });
+
+
+          // 25 second timeout
+
+          const timeoutPromise =
+            new Promise(function (_, reject) {
+
+              setTimeout(function () {
+
+                reject(
+                  new Error(
+                    "Login request timed out. Please try again."
+                  )
+                );
+
+              }, 25000);
+
+            });
+
+
+          const result =
+            await Promise.race([
+              loginPromise,
+              timeoutPromise
+            ]);
+
+
+          const data = result.data;
+          const error = result.error;
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          if (
+            !data ||
+            !data.session ||
+            !data.user
+          ) {
+
+            throw new Error(
+              "Login session could not be created."
+            );
+
+          }
+
+
+          showMessage(
+            "Login successful! Opening website...",
+            "success"
+          );
+
+
+          // Localhost aur Vercel dono par kaam karega
+
+          setTimeout(function () {
+
+            window.location.replace(
+              `${window.location.origin}/index.html`
+            );
+
+          }, 800);
+
+
+        } catch (error) {
+
+          console.error(
+            "Login error:",
+            error
+          );
+
+
+          let message =
+            error && error.message
+              ? error.message
+              : "Login failed. Please try again.";
+
+
+          const lowerMessage =
+            message.toLowerCase();
+
+
+          if (
+            lowerMessage.includes(
+              "invalid login credentials"
+            )
+          ) {
+
+            message =
+              "Email or password is incorrect.";
+
+          } else if (
+            lowerMessage.includes(
+              "email not confirmed"
+            )
+          ) {
+
+            message =
+              "Please confirm your email before logging in.";
+
+          } else if (
+            lowerMessage.includes(
+              "failed to fetch"
+            )
+          ) {
+
+            message =
+              "Login server se connection nahi ho pa raha. Internet check karke dobara try karein.";
+
+          } else if (
+            lowerMessage.includes(
+              "timed out"
+            )
+          ) {
+
+            message =
+              "Login request mein zyada time lag raha hai. Dobara try karein.";
+
+          }
+
+
+          showMessage(
+            message,
+            "error"
+          );
+
+
+          if (loginButton) {
+            loginButton.disabled = false;
+            loginButton.textContent = "Log In";
+          }
+
+        }
+
+      }
+    );
+
+  }
+
+
+  // =====================================
+  // FORGOT PASSWORD
+  // =====================================
+
+  if (forgotPasswordButton) {
+
+    forgotPasswordButton.addEventListener(
+      "click",
+      async function () {
+
+        clearMessage();
+
+
+        const email =
+          loginEmail
+            ? loginEmail.value.trim()
+            : "";
+
+
+        if (!email) {
+
+          showMessage(
+            "Pehle apna email address enter karo.",
+            "error"
+          );
+
+          if (loginEmail) {
+            loginEmail.focus();
+          }
+
+          return;
+
+        }
+
+
+        if (!supabaseClient) {
+
+          const initialized =
+            initializeSupabase();
+
+          if (!initialized) {
+
+            showMessage(
+              "Password reset service load nahi hui. Page refresh karein.",
+              "error"
+            );
+
+            return;
+
+          }
+
+        }
+
+
+        try {
+
+          forgotPasswordButton.disabled = true;
+          forgotPasswordButton.textContent =
+            "Sending...";
+
+
+          const resetRedirectURL =
+            `${window.location.origin}/pages/reset-password.html`;
+
+
+          const { error } =
+            await supabaseClient.auth
+              .resetPasswordForEmail(
+                email,
+                {
+                  redirectTo:
+                    resetRedirectURL
+                }
+              );
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          showMessage(
+            "Password reset link aapke email par bhej diya gaya hai.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Password reset error:",
+            error
+          );
+
+
+          let message =
+            error && error.message
+              ? error.message
+              : "Password reset link send nahi ho saka.";
+
+
+          if (
+            message
+              .toLowerCase()
+              .includes("failed to fetch")
+          ) {
+
+            message =
+              "Server se connection nahi ho pa raha. Internet check karke dobara try karein.";
+
+          }
+
+
+          showMessage(
+            message,
+            "error"
+          );
+
+
+        } finally {
+
+          forgotPasswordButton.disabled = false;
+          forgotPasswordButton.textContent =
+            "Forgot Password?";
+
+        }
+
+      }
+    );
+
+  }
+
+});ssss
