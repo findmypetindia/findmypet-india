@@ -3577,3 +3577,111 @@ textarea {
     transform: scale(0.9);
   }
 }
+/* =========================================
+   MOBILE NAVBAR - KEEP EVERYTHING ONE LINE
+========================================= */
+
+@media screen and (max-width: 1050px) {
+
+  .navbar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100%;
+    gap: 12px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    padding: 12px 14px;
+  }
+
+  .navbar::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  .navbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+    margin-right: 8px;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex: 0 0 auto;
+
+    width: auto !important;
+
+    order: initial !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    gap: 18px;
+
+    overflow: visible !important;
+  }
+
+  .nav-links li {
+    flex: 0 0 auto;
+  }
+
+  .nav-actions {
+    display: flex !important;
+    flex: 0 0 auto;
+
+    width: auto !important;
+
+    margin-left: auto !important;
+
+    gap: 8px;
+  }
+
+  .nav-actions .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+
+/* Smaller mobile */
+@media screen and (max-width: 650px) {
+
+  .navbar {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .logo-icon {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .nav-actions .btn {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+}
