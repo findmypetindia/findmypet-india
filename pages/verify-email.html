@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Verify Email | FindMyPet India</title>
+
+  <link rel="stylesheet" href="../css/login.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+  <main class="login-page">
+
+    <section class="left-section">
+
+      <div class="logo">
+        <span class="logo-icon">🐾</span>
+        <span>FindMyPet India</span>
+      </div>
+
+      <div class="left-content">
+
+        <div class="pet-design">
+
+          <div class="small-card card-one">
+            <span>🐶</span>
+            <p>Report Lost Pets</p>
+          </div>
+
+          <div class="small-card card-two">
+            <span>🐱</span>
+            <p>Report Found Pets</p>
+          </div>
+
+          <div class="main-pet">
+            ✉️
+          </div>
+
+          <div class="small-card card-three">
+            <span>🤖</span>
+            <p>AI Smart Matching</p>
+          </div>
+
+        </div>
+
+        <h1>
+          Check Your Email.
+          <span>Verify Your Account.</span>
+        </h1>
+
+        <p class="tagline">
+          Verify your email to access Lost Pet reports,
+          Found Pet reports, AI matching and real-time alerts.
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="right-section">
+
+      <div class="login-box">
+
+        <div class="verify-icon">📩</div>
+
+        <h2>Welcome to FindMyPet India!</h2>
+
+        <p class="subtitle verify-text">
+          We have sent a verification link to:
+        </p>
+
+        <p id="verificationEmail" class="verification-email">
+          your email address
+        </p>
+
+        <div class="verification-info">
+          <p>
+            Please open your inbox and click the
+            <strong>Confirm your email address</strong>
+            link to activate your account.
+          </p>
+
+          <p>
+            Also check your Spam or Promotions folder
+            if you cannot find the email.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          id="resendButton"
+          class="login-button"
+        >
+          Resend Verification Email
+        </button>
+
+        <p id="verifyMessage" class="message"></p>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <a
+          href="login.html"
+          class="create-account-button"
+        >
+          Go to Login
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../js/js/verify-email.js"></script>
+
+</body>
+</html>

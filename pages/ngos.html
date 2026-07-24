@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Animal NGOs | FindMyPet India</title>
+
+  <link
+    rel="stylesheet"
+    href="../css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/ngos.css"
+  >
+</head>
+
+<body>
+
+  <header id="siteHeader"></header>
+
+
+  <main class="ngo-page">
+
+    <!-- HERO -->
+
+    <section class="ngo-hero">
+
+      <span class="ngo-chip">
+        🐾 Animal Help Network
+      </span>
+
+      <h1>
+        Find Animal NGOs Near You
+      </h1>
+
+      <p>
+        Connect with animal shelters, rescue groups and emergency
+        veterinary support organisations across India.
+      </p>
+
+    </section>
+
+
+    <!-- SEARCH AND FILTER -->
+
+    <section class="ngo-filter-section">
+
+      <div class="ngo-search-box">
+
+        <span>🔍</span>
+
+        <input
+          type="text"
+          id="ngoSearchInput"
+          placeholder="Search NGO by name, city or service..."
+        >
+
+      </div>
+
+
+      <select id="ngoCityFilter">
+
+        <option value="">
+          All Cities
+        </option>
+
+        <option value="Ajmer">
+          Ajmer
+        </option>
+
+        <option value="Jaipur">
+          Jaipur
+        </option>
+
+        <option value="Delhi">
+          Delhi
+        </option>
+
+        <option value="Mumbai">
+          Mumbai
+        </option>
+
+        <option value="Bengaluru">
+          Bengaluru
+        </option>
+
+      </select>
+
+    </section>
+
+
+    <!-- EMERGENCY HELP -->
+
+    <section class="emergency-help">
+
+      <div>
+
+        <span class="emergency-icon">
+          🚑
+        </span>
+
+        <div>
+
+          <h2>
+            Animal Emergency?
+          </h2>
+
+          <p>
+            Injured or distressed animal ke liye nearest rescue
+            organisation se turant contact karein.
+          </p>
+
+        </div>
+
+      </div>
+
+      <a
+        href="tel:1962"
+        class="emergency-call-button"
+      >
+        Call Animal Helpline
+      </a>
+
+    </section>
+
+
+    <!-- NGO LIST -->
+
+    <section class="ngo-list-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <h2>
+            Verified Animal Organisations
+          </h2>
+
+          <p>
+            Rescue, shelter, medical support and adoption services.
+          </p>
+
+        </div>
+
+        <span id="ngoResultCount">
+          0 organisations
+        </span>
+
+      </div>
+
+
+      <div
+        id="ngoGrid"
+        class="ngo-grid"
+      >
+
+        <div class="ngo-loading">
+          Loading organisations...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- REGISTER NGO -->
+
+    <section class="register-ngo-section">
+
+      <div>
+
+        <span>
+          🏥
+        </span>
+
+        <div>
+
+          <h2>
+            Are you an Animal NGO?
+          </h2>
+
+          <p>
+            Register your organisation on FindMyPet India and help
+            more lost, found and injured animals.
+          </p>
+
+        </div>
+
+      </div>
+
+      <a
+        href="mailto:findmypetindia@gmail.com?subject=NGO Registration Request"
+        class="btn btn-primary"
+      >
+        Register Your NGO
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+
+    <div>
+
+      <h3>
+        🐶 FindMyPet India
+      </h3>
+
+      <p>
+        Reuniting Pets. Reuniting Hearts.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h4>
+        Quick Links
+      </h4>
+
+      <a href="/">
+        Home
+      </a>
+
+      <a href="lost.html">
+        Lost Pets
+      </a>
+
+      <a href="found.html">
+        Found Pets
+      </a>
+
+      <a href="ai-search.html">
+        AI Search
+      </a>
+
+      <a href="success-stories.html">
+        Success Stories
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <h4>
+        Support
+      </h4>
+
+      <a href="#">
+        Help Center
+      </a>
+
+      <a href="#">
+        Contact
+      </a>
+
+      <a href="#">
+        Privacy Policy
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="../js/supabase.js"></script>
+
+  <script src="../js/navbar.js?v=12"></script>
+
+  <script src="../js/ngos.js?v=1"></script>
+
+</body>
+
+</html>

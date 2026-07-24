@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>Dashboard | FindMyPet India</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+
+</head>
+
+<body>
+
+<header id="siteHeader"></header>
+
+<main class="dashboard-page">
+
+<section class="dashboard-hero">
+
+<h1>👋 Welcome Back</h1>
+
+<p>
+Manage all your Lost & Found Pet reports from one dashboard.
+</p>
+
+</section>
+
+<section class="dashboard-cards">
+
+<div class="dashboard-card">
+
+<h2>🐶 My Lost Reports</h2>
+
+<p id="lostCount">
+0 Reports
+</p>
+
+<a
+href="lost.html"
+class="btn btn-primary"
+>
+Report Lost Pet
+</a>
+
+</div>
+
+<div class="dashboard-card">
+
+<h2>🐾 My Found Reports</h2>
+
+<p id="foundCount">
+0 Reports
+</p>
+
+<a
+href="found.html"
+class="btn btn-success"
+>
+Report Found Pet
+</a>
+
+</div>
+
+</section>
+
+<section class="dashboard-list">
+
+<h2>
+📋 My Reports
+</h2>
+
+<div id="dashboardReports">
+
+Loading your reports...
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+<div>
+
+<h3>🐶 FindMyPet India</h3>
+
+<p>
+Reuniting Pets. Reuniting Hearts.
+</p>
+
+</div>
+
+<div>
+
+<h4>Quick Links</h4>
+
+<a href="../index.html">Home</a>
+
+<a href="lost.html">Lost Pets</a>
+
+<a href="found.html">Found Pets</a>
+
+<a href="ai-search.html">AI Search</a>
+
+</div>
+
+<div>
+
+<h4>Support</h4>
+
+<a href="#">Help Center</a>
+
+<a href="#">Contact</a>
+
+<a href="#">Privacy Policy</a>
+
+</div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../js/supabase.js"></script>
+
+<script src="../js/navbar-auth.js?v=10"></script>
+
+<script src="../js/dashboard.js?v=1"></script>
+
+</body>
+
+</html>

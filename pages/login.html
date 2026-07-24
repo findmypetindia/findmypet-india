@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Login | FindMyPet India</title>
+
+  <link rel="stylesheet" href="../css/login.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+  <main class="login-page">
+
+    <section class="left-section">
+
+      <div class="logo">
+        <span class="logo-icon">🐾</span>
+        <span>FindMyPet India</span>
+      </div>
+
+      <div class="left-content">
+
+        <div class="pet-design">
+
+          <div class="small-card card-one">
+            <span>🐶</span>
+            <p>Report Lost Pets</p>
+          </div>
+
+          <div class="small-card card-two">
+            <span>🐱</span>
+            <p>Report Found Pets</p>
+          </div>
+
+          <div class="main-pet">
+            🐕
+          </div>
+
+          <div class="small-card card-three">
+            <span>🏠</span>
+            <p>Reunite Families</p>
+          </div>
+
+        </div>
+
+        <h1>
+  Lost Pets.
+  <br>
+  Found Pets.
+  <br>
+  <span>Powered by AI.</span>
+</h1>
+       <p class="tagline">
+  Report lost pets, report found pets, search with AI,
+  receive instant alerts, and help reunite pets with
+  their families across India.
+</p>
+
+      </div>
+
+    </section>
+
+    <section class="right-section">
+
+      <div class="login-box">
+
+        <div class="mobile-logo">
+          🐾 FindMyPet India
+        </div>
+
+        <h2>Log in to FindMyPet India</h2>
+
+       <p class="subtitle">
+  Sign in to report Lost Pets, report Found Pets,
+  use AI Pet Search, manage your dashboard,
+  and receive real-time pet alerts.
+</p>
+
+        <form id="loginForm" autocomplete="off">
+
+          <div class="input-group">
+
+            <label for="loginEmail">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="Enter your email"
+              autocomplete="off"
+              required
+            >
+
+          </div>
+
+          <div class="input-group">
+
+            <label for="loginPassword">
+              Password
+            </label>
+
+            <div class="password-wrapper">
+
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                autocomplete="off"
+                required
+              >
+
+              <button
+                type="button"
+                class="show-password"
+                id="showPasswordButton"
+              >
+                Show
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="login-options">
+
+            <label class="remember-me">
+
+              <input
+                type="checkbox"
+                id="rememberMe"
+              >
+
+              Remember me
+
+            </label>
+
+            <button
+              type="button"
+              class="forgot-password"
+              id="forgotPasswordButton"
+            >
+              Forgot Password?
+            </button>
+
+          </div>
+
+          <button
+            class="login-button"
+            id="loginButton"
+            type="submit"
+          >
+            Log In
+          </button>
+
+          <p
+            id="loginMessage"
+            class="message"
+          ></p>
+
+        </form>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <a
+          href="signup.html"
+          class="create-account-button"
+        >
+          Create New Account
+        </a>
+        <div class="footer-logo">
+          🐾 FindMyPet India
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+<script src="../js/js/auth.js?v=500"></script>
+</body>
+
+</html>

@@ -1,0 +1,581 @@
+/* =========================================
+   FINDMYPET INDIA - EDIT REPORT PAGE
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f8fc;
+  color: #0f172a;
+}
+
+
+/* =========================================
+   PAGE LAYOUT
+========================================= */
+
+.edit-report-page {
+  min-height: 78vh;
+  padding: 48px 6% 65px;
+}
+
+.edit-report-hero {
+  max-width: 1180px;
+  margin: 0 auto 28px;
+  padding: 34px 38px;
+
+  text-align: center;
+
+  border: 1px solid #dce6fb;
+  border-radius: 24px;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(49, 88, 245, 0.09),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #eef4ff,
+      #ffffff
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(15, 23, 42, 0.08);
+}
+
+.edit-report-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  color: #3158f5;
+  background: #e8efff;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.edit-report-hero h1 {
+  margin-bottom: 10px;
+
+  color: #0f172a;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.1;
+}
+
+.edit-report-hero p {
+  max-width: 680px;
+  margin: 0 auto;
+
+  color: #64748b;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   FORM WRAPPER
+========================================= */
+
+.edit-report-wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 18px 45px
+    rgba(15, 23, 42, 0.08);
+}
+
+.edit-report-form {
+  width: 100%;
+}
+
+
+/* =========================================
+   LOADING / ERROR STATE
+========================================= */
+
+.edit-report-state {
+  padding: 48px 24px;
+
+  text-align: center;
+
+  border: 1px dashed #cbd5e1;
+  border-radius: 18px;
+
+  color: #64748b;
+  background: #f8fafc;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.edit-report-error {
+  color: #b42318;
+  border-color: #fecaca;
+  background: #fff1f2;
+}
+
+
+/* =========================================
+   REPORT TYPE
+========================================= */
+
+.edit-report-type-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  margin-bottom: 26px;
+  padding: 18px 20px;
+
+  border: 1px solid #dbe5f5;
+  border-radius: 16px;
+
+  background: #f8fbff;
+}
+
+.edit-report-type-box span {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.edit-report-type-box strong {
+  padding: 7px 13px;
+
+  border-radius: 999px;
+
+  color: #ffffff;
+  background: #3158f5;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.edit-report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  margin-bottom: 8px;
+
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+
+  border: 1px solid #d6deea;
+  border-radius: 13px;
+
+  background: #ffffff;
+  color: #0f172a;
+
+  font: inherit;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.field input,
+.field select {
+  min-height: 55px;
+  padding: 0 15px;
+}
+
+.field textarea {
+  min-height: 150px;
+  padding: 15px;
+
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #94a3b8;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #3158f5;
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(49, 88, 245, 0.11);
+}
+
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  cursor: not-allowed;
+
+  color: #94a3b8;
+  background: #f1f5f9;
+}
+
+
+/* =========================================
+   PHOTO SECTION
+========================================= */
+
+.edit-photo-section {
+  margin: 30px 0;
+  padding: 24px;
+
+  border: 1px solid #dbe5f5;
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fbff,
+      #ffffff
+    );
+}
+
+.edit-photo-section > h2 {
+  margin-bottom: 20px;
+
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.edit-photo-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1.2fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.current-photo-box,
+.change-photo-box {
+  padding: 20px;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+
+  background: #ffffff;
+}
+
+.current-photo-box > p,
+.change-photo-box > label {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.change-photo-box > p {
+  margin-bottom: 14px;
+
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.edit-current-image {
+  width: 100%;
+  height: 280px;
+
+  display: block;
+
+  border: 2px solid #dbeafe;
+  border-radius: 16px;
+
+  object-fit: cover;
+
+  background: #e2e8f0;
+}
+
+#editImage {
+  width: 100%;
+  padding: 14px;
+
+  border: 2px dashed #b9c8e8;
+  border-radius: 13px;
+
+  background: #f8fbff;
+
+  cursor: pointer;
+}
+
+#editImage:hover {
+  border-color: #3158f5;
+  background: #f1f5ff;
+}
+
+.edit-new-image-preview {
+  width: 100%;
+  height: 240px;
+
+  display: block;
+  margin-top: 16px;
+
+  border: 2px solid #bbf7d0;
+  border-radius: 16px;
+
+  object-fit: cover;
+
+  background: #e2e8f0;
+}
+
+.edit-new-image-preview[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message {
+  min-height: 22px;
+  margin-top: 20px;
+  padding: 0;
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.message.success {
+  padding: 13px 15px;
+
+  border: 1px solid #86efac;
+  border-radius: 12px;
+
+  color: #166534;
+  background: #dcfce7;
+}
+
+.message.error {
+  padding: 13px 15px;
+
+  border: 1px solid #fca5a5;
+  border-radius: 12px;
+
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.edit-report-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+
+  margin-top: 28px;
+  padding-top: 24px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+.edit-report-actions .btn {
+  min-width: 155px;
+  min-height: 50px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 22px;
+
+  border-radius: 13px;
+
+  text-decoration: none;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.edit-report-actions .btn-light {
+  border: 1px solid #d6deea;
+
+  color: #0f172a;
+  background: #ffffff;
+}
+
+.edit-report-actions .btn-light:hover {
+  color: #3158f5;
+  border-color: #3158f5;
+
+  transform: translateY(-1px);
+}
+
+.edit-report-actions .btn-primary {
+  border: 1px solid #3158f5;
+
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      #3564ff,
+      #244ed8
+    );
+
+  box-shadow:
+    0 10px 24px
+    rgba(49, 88, 245, 0.24);
+}
+
+.edit-report-actions .btn-primary:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #244ed8,
+      #1e40af
+    );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 14px 30px
+    rgba(49, 88, 245, 0.3);
+}
+
+.edit-report-actions .btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .edit-report-page {
+    padding: 34px 22px 55px;
+  }
+
+  .edit-report-wrapper {
+    padding: 26px;
+  }
+
+  .edit-photo-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-current-image,
+  .edit-new-image-preview {
+    height: 320px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+  .edit-report-page {
+    padding: 22px 14px 45px;
+  }
+
+  .edit-report-hero {
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .edit-report-wrapper {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .edit-report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field.full {
+    grid-column: auto;
+  }
+
+  .edit-report-type-box {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .edit-photo-section {
+    padding: 18px;
+  }
+
+  .current-photo-box,
+  .change-photo-box {
+    padding: 16px;
+  }
+
+  .edit-current-image,
+  .edit-new-image-preview {
+    height: 260px;
+  }
+
+  .edit-report-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .edit-report-actions .btn {
+    width: 100%;
+  }
+}

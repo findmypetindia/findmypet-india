@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Edit Report | FindMyPet India</title>
+
+  <link
+    rel="stylesheet"
+    href="../css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/edit-report.css"
+  >
+</head>
+
+<body>
+
+  <!-- SHARED NAVBAR -->
+  <header id="siteHeader"></header>
+
+
+  <main class="edit-report-page">
+
+    <!-- PAGE HERO -->
+
+    <section class="edit-report-hero">
+
+      <span class="edit-report-chip">
+        ✏️ Update Pet Report
+      </span>
+
+      <h1>Edit Your Report</h1>
+
+      <p>
+        Update pet information, contact details and photo,
+        then save your changes.
+      </p>
+
+    </section>
+
+
+    <!-- EDIT FORM WRAPPER -->
+
+    <section class="edit-report-wrapper">
+
+      <div
+        id="editReportLoading"
+        class="edit-report-state"
+      >
+        Loading report...
+      </div>
+
+
+      <div
+        id="editReportError"
+        class="edit-report-state edit-report-error"
+        hidden
+      >
+        Report load nahi ho saki.
+      </div>
+
+
+      <form
+        id="editReportForm"
+        class="edit-report-form"
+        hidden
+      >
+
+        <!-- REPORT TYPE -->
+
+        <div class="edit-report-type-box">
+
+          <span>
+            Report Type
+          </span>
+
+          <strong id="editReportTypeLabel">
+            PET REPORT
+          </strong>
+
+        </div>
+
+
+        <!-- FORM FIELDS -->
+
+        <div class="edit-report-grid">
+
+          <div class="field">
+
+            <label for="editOwnerName">
+              Owner / Finder Name *
+            </label>
+
+            <input
+              type="text"
+              id="editOwnerName"
+              placeholder="Enter full name"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editMobile">
+              Mobile Number *
+            </label>
+
+            <input
+              type="tel"
+              id="editMobile"
+              maxlength="10"
+              placeholder="Enter 10-digit mobile number"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editEmail">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              id="editEmail"
+              placeholder="Enter email address"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editWhatsapp">
+              WhatsApp Number
+            </label>
+
+            <input
+              type="tel"
+              id="editWhatsapp"
+              maxlength="10"
+              placeholder="Enter WhatsApp number"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editPetName">
+              Pet Name
+            </label>
+
+            <input
+              type="text"
+              id="editPetName"
+              placeholder="Example: Bruno"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editPetType">
+              Pet Type *
+            </label>
+
+            <select
+              id="editPetType"
+              required
+            >
+              <option value="">
+                Select Pet Type
+              </option>
+
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
+              <option value="Bird">Bird</option>
+              <option value="Rabbit">Rabbit</option>
+              <option value="Cow">Cow</option>
+              <option value="Horse">Horse</option>
+              <option value="Other">Other</option>
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editBreed">
+              Breed
+            </label>
+
+            <input
+              type="text"
+              id="editBreed"
+              placeholder="Example: Labrador"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editColor">
+              Color *
+            </label>
+
+            <input
+              type="text"
+              id="editColor"
+              placeholder="Example: Brown and white"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editGender">
+              Gender
+            </label>
+
+            <select id="editGender">
+
+              <option value="">
+                Select Gender
+              </option>
+
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Unknown">Unknown</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editAge">
+              Age
+            </label>
+
+            <input
+              type="text"
+              id="editAge"
+              placeholder="Example: 2 years"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editCity">
+              City *
+            </label>
+
+            <input
+              type="text"
+              id="editCity"
+              placeholder="Example: Jaipur"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editState">
+              State *
+            </label>
+
+            <input
+              type="text"
+              id="editState"
+              placeholder="Example: Rajasthan"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editArea">
+              Area / Landmark *
+            </label>
+
+            <input
+              type="text"
+              id="editArea"
+              placeholder="Example: Vaishali Nagar"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editReportDate">
+              Report Date *
+            </label>
+
+            <input
+              type="date"
+              id="editReportDate"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editReportTime">
+              Report Time
+            </label>
+
+            <input
+              type="time"
+              id="editReportTime"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="editReward">
+              Reward Amount
+            </label>
+
+            <input
+              type="number"
+              id="editReward"
+              min="0"
+              placeholder="Example: 5000"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- PHOTO SECTION -->
+
+        <section class="edit-photo-section">
+
+          <h2>📸 Pet Photo</h2>
+
+          <div class="edit-photo-layout">
+
+            <div class="current-photo-box">
+
+              <p>Current Photo</p>
+
+              <img
+                id="editCurrentImage"
+                src="https://placehold.co/500x350?text=Pet+Photo"
+                alt="Current pet photo"
+                class="edit-current-image"
+              >
+
+            </div>
+
+
+            <div class="change-photo-box">
+
+              <label for="editImage">
+                Change Photo
+              </label>
+
+              <p>
+                Optional. Select a new JPG, PNG or WEBP image.
+              </p>
+
+              <input
+                type="file"
+                id="editImage"
+                accept="image/jpeg,image/png,image/webp"
+              >
+
+              <img
+                id="editNewImagePreview"
+                alt="New pet photo preview"
+                class="edit-new-image-preview"
+                hidden
+              >
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ADDITIONAL DETAILS -->
+
+        <div class="field full">
+
+          <label for="editDetails">
+            Additional Identification Details
+          </label>
+
+          <textarea
+            id="editDetails"
+            rows="6"
+            placeholder="Collar, injury marks, behaviour, special identification, etc."
+          ></textarea>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <p
+          id="editReportMessage"
+          class="message"
+        ></p>
+
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="edit-report-actions">
+
+          <a
+            href="dashboard.html"
+            class="btn btn-light"
+          >
+            Cancel
+          </a>
+
+          <button
+            type="submit"
+            id="saveEditButton"
+            class="btn btn-primary"
+          >
+            Save Changes
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div>
+
+      <h3>
+        🐶 FindMyPet India
+      </h3>
+
+      <p>
+        Reuniting Pets. Reuniting Hearts.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h4>Quick Links</h4>
+
+      <a href="/">
+        Home
+      </a>
+
+      <a href="lost.html">
+        Lost Pets
+      </a>
+
+      <a href="found.html">
+        Found Pets
+      </a>
+
+      <a href="ai-search.html">
+        AI Search
+      </a>
+
+      <a href="success-stories.html">
+        Success Stories
+      </a>
+
+    </div>
+
+
+    <div>
+
+      <h4>Support</h4>
+
+      <a href="#">
+        Help Center
+      </a>
+
+      <a href="#">
+        Contact
+      </a>
+
+      <a href="#">
+        Privacy Policy
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="../js/supabase.js"></script>
+
+  <script src="../js/navbar.js?v=12"></script>
+
+  <script src="../js/edit-report.js?v=2"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Pet Details | FindMyPet India</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pet-details.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    
+  </header>
+
+
+  <main class="pet-details-page">
+
+    <div id="petDetailsLoading" class="details-state">
+      <div class="details-spinner"></div>
+      <p>Pet details load ho rahi hain...</p>
+    </div>
+
+
+    <div
+      id="petDetailsError"
+      class="details-state details-error"
+      hidden
+    >
+      <h2>Pet report nahi mili</h2>
+
+      <p id="petDetailsErrorMessage">
+        Please try again.
+      </p>
+
+      <a href="../index.html" class="btn btn-primary">
+        Back to Home
+      </a>
+    </div>
+
+
+    <article
+      id="petDetailsCard"
+      class="pet-details-card"
+      hidden
+    >
+
+      <div class="details-image-column">
+
+        <div class="details-image-box">
+
+          <span
+            id="detailsStatus"
+            class="details-status"
+          >
+            LOST
+          </span>
+
+          <img
+            id="detailsImage"
+            src=""
+            alt="Pet report photo"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="details-content-column">
+
+        <div class="details-heading">
+
+          <div>
+            <span id="detailsPetType" class="details-chip">
+              Pet
+            </span>
+
+            <h1 id="detailsPetName">
+              Pet Name
+            </h1>
+
+            <p id="detailsBreed">
+              Breed
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="details-info-grid">
+
+          <div class="details-info-item">
+            <span>🐾 Pet Type</span>
+            <strong id="detailsTypeValue">—</strong>
+          </div>
+
+          <div class="details-info-item">
+            <span>🎨 Color</span>
+            <strong id="detailsColor">—</strong>
+          </div>
+
+          <div class="details-info-item">
+            <span>🚻 Gender</span>
+            <strong id="detailsGender">—</strong>
+          </div>
+
+          <div class="details-info-item">
+            <span>🎂 Age</span>
+            <strong id="detailsAge">—</strong>
+          </div>
+
+          <div class="details-info-item">
+            <span>📅 Report Date</span>
+            <strong id="detailsDate">—</strong>
+          </div>
+
+          <div class="details-info-item">
+            <span>🕐 Report Time</span>
+            <strong id="detailsTime">—</strong>
+          </div>
+
+        </div>
+
+
+        <section class="details-section">
+
+          <h2>📍 Location</h2>
+
+          <p id="detailsLocation">
+            Location not provided
+          </p>
+
+        </section>
+
+
+        <section
+          id="rewardSection"
+          class="details-section reward-section"
+          hidden
+        >
+
+          <h2>💰 Reward</h2>
+
+          <p id="detailsReward"></p>
+
+        </section>
+
+
+        <section class="details-section">
+
+          <h2>📝 Identification Details</h2>
+
+          <p id="detailsDescription">
+            No additional details provided.
+          </p>
+
+        </section>
+
+
+        <section class="details-section contact-section">
+
+          <h2 id="contactHeading">
+            👤 Contact Information
+          </h2>
+
+          <p>
+            <strong>Name:</strong>
+            <span id="detailsOwnerName">Not provided</span>
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            <span id="detailsEmail">Not provided</span>
+          </p>
+
+          <div class="details-actions">
+
+            <a
+              id="detailsCallButton"
+              href="#"
+              class="btn details-call-button"
+              hidden
+            >
+              📞 Call Now
+            </a>
+
+            <a
+              id="detailsWhatsappButton"
+              href="#"
+              class="btn details-whatsapp-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              hidden
+            >
+              💬 WhatsApp
+            </a>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </article>
+
+  </main>
+
+
+  <footer class="footer">
+
+    <div>
+      <h3>🐶 FindMyPet India</h3>
+      <p>Reuniting Pets. Reuniting Hearts.</p>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <a href="../index.html">Home</a>
+      <a href="lost.html">Lost Pets</a>
+      <a href="found.html">Found Pets</a>
+      <a href="ai-search.html">AI Search</a>
+    </div>
+
+    <div>
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/pet-details.js?v=1"></script>
+
+</body>
+
+</html>
