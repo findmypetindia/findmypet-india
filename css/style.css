@@ -2435,3 +2435,91 @@ main {
   font-weight: 900;
   box-shadow: 0 4px 9px rgba(14, 175, 101, 0.25);
 }
+@media (max-width: 650px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .step-card {
+    min-height: 165px;
+    padding: 28px 12px 16px;
+  }
+
+  .step-card h3 {
+    font-size: 16px;
+  }
+
+  .step-card p {
+    font-size: 13px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-logo,
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-links {
+    align-items: center;
+  }
+
+  .footer-founder {
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+/* MOBILE NAVBAR FIX */
+
+@media (max-width: 1050px) {
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .navbar {
+    height: auto;
+    min-height: 74px;
+    padding: 14px 5%;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 650px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+  }
+
+  .nav-actions {
+    flex-direction: column;
+  }
+
+  .nav-actions .btn {
+    width: 100%;
+  }
+}
