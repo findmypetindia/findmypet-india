@@ -591,3 +591,74 @@ input {
   }
 
 }
+@media screen and (max-width: 950px) {
+
+  html,
+  body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  .login-page {
+    display: block !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+  }
+
+  .left-section {
+    display: none !important;
+  }
+
+  .right-section {
+    width: 100% !important;
+    min-height: 100vh !important;
+    padding: 30px 20px !important;
+
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+
+  .login-box {
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+  }
+
+  .mobile-logo {
+    display: block !important;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 520px) {
+
+  .right-section {
+    padding: 24px 18px 35px !important;
+  }
+
+  .login-box h2 {
+    font-size: 25px;
+    line-height: 1.25;
+  }
+
+  .login-options {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .input-group input {
+    height: 56px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+
+  .login-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
