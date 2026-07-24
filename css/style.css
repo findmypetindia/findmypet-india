@@ -462,58 +462,174 @@ body {
   margin-top: 5px;
 }
 
-/* HOW */
+
+/* =====================================
+   HOW IT WORKS — SCREENSHOT STYLE
+===================================== */
 
 .how {
-  padding: 70px 6%;
-  background: #f6fbff;
+  padding: 64px 6% 40px;
+  background: #ffffff;
   text-align: center;
 }
 
 .how h2 {
-  font-size: 30px;
-  margin-bottom: 8px;
+  margin: 0 0 4px;
+  color: #020f2e;
+  font-size: 31px;
+  line-height: 1.2;
+  font-weight: 900;
 }
 
 .how > p {
-  color: #64748b;
-  margin-bottom: 36px;
+  margin: 0 0 28px;
+  color: #081537;
+  font-size: 16px;
 }
 
 .steps {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  align-items: stretch;
 }
 
 .step-card {
-  background: white;
-  border: 1px solid #edf2fb;
-  border-radius: 18px;
-  padding: 28px;
-  text-align: left;
-  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.07);
+  position: relative;
+  min-height: 152px;
+  padding: 25px 16px 18px;
+  background: #ffffff;
+  border: 1px solid #dfe5ef;
+  border-radius: 13px;
+  text-align: center;
+  box-shadow: 0 10px 22px rgba(5, 25, 68, 0.11);
 }
 
-.step-card span {
-  width: 38px;
-  height: 38px;
-  background: #2457f5;
-  color: white;
-  border-radius: 50%;
+/* dotted connector between the cards */
+.step-card:not(:last-child)::after {
+  content: "•••";
+  position: absolute;
+  top: 50%;
+  right: -31px;
+  transform: translateY(-50%);
+  color: #94a9d8;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+/* numbered circle */
+.step-card > span:first-child {
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  width: 39px;
+  height: 39px;
+  margin: 0;
   display: grid;
   place-items: center;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 17px;
   font-weight: 900;
-  margin-bottom: 18px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.15);
+}
+
+.step-card:nth-child(1) > span:first-child {
+  background: #176fe8;
+}
+
+.step-card:nth-child(2) > span:first-child {
+  background: #08b778;
+}
+
+.step-card:nth-child(3) > span:first-child {
+  background: #ff9416;
+}
+
+.step-card:nth-child(4) > span:first-child {
+  background: #6c3ee3;
+}
+
+/* Any icon element placed after the number */
+.step-card .step-icon,
+.step-card .icon {
+  width: 57px;
+  height: 57px;
+  margin: 0 auto 3px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 32px;
+}
+
+.step-card:nth-child(1) .step-icon,
+.step-card:nth-child(1) .icon {
+  background: #edf4ff;
+}
+
+.step-card:nth-child(2) .step-icon,
+.step-card:nth-child(2) .icon {
+  background: #e9fbf4;
+}
+
+.step-card:nth-child(3) .step-icon,
+.step-card:nth-child(3) .icon {
+  background: #fff5e8;
+}
+
+.step-card:nth-child(4) .step-icon,
+.step-card:nth-child(4) .icon {
+  background: #f4edff;
 }
 
 .step-card h3 {
-  margin-bottom: 8px;
+  margin: 0 0 4px;
+  color: #050b1d;
+  font-size: 17px;
+  font-weight: 900;
 }
 
 .step-card p {
-  color: #64748b;
-  line-height: 1.6;
+  margin: 0;
+  color: #06102c;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+@media (max-width: 1050px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+  }
+
+  .step-card::after {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .how {
+    padding: 48px 18px 35px;
+  }
+
+  .how h2 {
+    font-size: 28px;
+  }
+
+  .how > p {
+    font-size: 14px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 /* AI IMAGE SEARCH */
@@ -1969,61 +2085,111 @@ main {
 }
 
 /* =========================================
-   FINAL FOOTER
+   FINDMYPET INDIA FOOTER — SCREENSHOT STYLE
 ========================================= */
 
-.footer {
+.site-footer {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  padding: 42px 6% 18px;
-  background: #111a46;
+  padding: 30px 44px 13px;
+  background: linear-gradient(110deg, #071d4d 0%, #061a46 48%, #091e54 100%);
   color: #ffffff;
 }
 
-.footer-grid {
-  max-width: 1280px;
+.footer-glow {
+  display: none;
+}
+
+.footer-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1270px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.3fr 0.8fr 0.8fr 1.5fr;
-  gap: 46px;
+  grid-template-columns: 1.35fr 0.8fr 0.85fr 1.65fr;
+  gap: 50px;
   align-items: start;
 }
 
-.footer-brand h3 {
-  margin: 0 0 12px;
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: #ffffff;
-  font-size: 27px;
-  line-height: 1.2;
-}
-
-.footer-brand h3 span {
-  color: #4f7cff;
-}
-
-.footer-brand p,
-.footer-founder p {
-  margin: 0;
-  color: #cbd5e1;
-  line-height: 1.65;
-}
-
-.footer-column h4 {
-  margin: 0 0 14px;
-  color: #ffffff;
-  font-size: 17px;
-}
-
-.footer-column a {
-  display: block;
-  width: fit-content;
-  margin-bottom: 9px;
-  color: #cbd5e1;
   text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
+  font-size: 24px;
+  font-weight: 900;
+  white-space: nowrap;
 }
 
-.footer-column a:hover {
-  color: #7dd3fc;
-  transform: translateX(2px);
+.footer-logo strong {
+  color: #1e7eff;
+}
+
+.footer-logo-icon {
+  font-size: 27px;
+}
+
+.footer-tagline {
+  margin: 18px 0;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-socials a {
+  width: 33px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #19366d;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+  transition: 0.25s ease;
+}
+
+.footer-socials a:hover {
+  background: #287cf2;
+  transform: translateY(-3px);
+}
+
+.footer-column h3 {
+  margin: 1px 0 14px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a {
+  width: fit-content;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.2;
+  transition: 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: #55a0ff;
+  transform: translateX(3px);
 }
 
 .footer-founder {
@@ -2031,95 +2197,131 @@ main {
 }
 
 .founder-badge {
-  display: inline-block;
-  margin-bottom: 14px;
-  padding: 7px 16px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 0 auto 10px;
+  padding: 4px 18px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #287cf2, #665ae5);
   color: #ffffff;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 800;
 }
 
 .footer-founder h2 {
-  margin: 0 0 3px;
+  margin: 0 0 2px;
   color: #ffffff;
-  font-size: 29px;
-  line-height: 1.15;
-  letter-spacing: 0.4px;
-  white-space: nowrap;
+  font-size: 25px;
+  line-height: 1.1;
+  font-weight: 900;
 }
 
-.footer-founder h3 {
-  margin: 0 0 12px;
-  color: #bcd9ff;
-  font-size: 17px;
-  font-weight: 600;
+.founder-nickname {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
 }
 
-.footer-founder p {
-  margin: 0 auto 14px;
-  max-width: 430px;
+.founder-role {
+  margin: 0 0 4px;
+  color: #ffffff;
   font-size: 14px;
+  font-weight: 400;
 }
 
-.footer .founder-email {
+.founder-description {
+  max-width: 390px;
+  margin: 0 auto 12px;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.founder-email {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  padding: 10px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.07);
-  color: #7dd3fc;
+  gap: 8px;
+  padding: 8px 15px;
+  border: 1px solid #1b448e;
+  border-radius: 8px;
+  background: #112f69;
+  color: #47a0ff;
   text-decoration: none;
   font-size: 14px;
   font-weight: 800;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: 0.25s ease;
 }
 
-.footer .founder-email:hover {
-  background: #2563eb;
+.founder-email:hover {
+  background: #19438c;
   color: #ffffff;
 }
 
 .footer-bottom {
-  max-width: 1280px;
-  margin: 28px auto 0;
-  padding-top: 17px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  color: #aebbd3;
+  position: relative;
+  z-index: 2;
+  max-width: 1270px;
+  margin: 16px auto 0;
+  padding-top: 0;
+  border-top: 0;
   text-align: center;
-  font-size: 13px;
+  color: #ffffff;
 }
 
-@media (max-width: 1050px) {
-  .footer-grid {
+.footer-bottom p {
+  margin: 4px 0;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.developer-credit {
+  margin-top: 4px;
+}
+
+.developer-credit a,
+.developer-credit span {
+  color: #2490ff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+  .footer-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 34px;
+    gap: 40px;
   }
 }
 
-@media (max-width: 650px) {
-  .footer {
-    padding: 34px 22px 18px;
+@media (max-width: 700px) {
+  .site-footer {
+    padding: 35px 22px 18px;
   }
 
-  .footer-grid {
+  .footer-container {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 32px;
     text-align: center;
   }
 
-  .footer-column a {
-    margin-left: auto;
-    margin-right: auto;
+  .footer-logo,
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-logo {
+    white-space: normal;
+  }
+
+  .footer-links {
+    align-items: center;
   }
 
   .footer-founder h2 {
     font-size: 25px;
-    white-space: normal;
   }
 }
 /* =========================================
@@ -2218,4 +2420,18 @@ main {
     width: 100%;
     max-width: 100%;
   }
+}
+
+/* AI icon text inside How It Works */
+.step-card:nth-child(2) .step-icon {
+  width: 48px;
+  height: 48px;
+  margin-top: 7px;
+  margin-bottom: 5px;
+  border-radius: 9px;
+  background: #27c979;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: 0 4px 9px rgba(14, 175, 101, 0.25);
 }
