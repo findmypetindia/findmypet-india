@@ -2670,3 +2670,910 @@ main {
   color: #64b5ff;
   font-weight: 700;
 }
+/* =====================================================
+   FINDMYPET INDIA - FINAL RESPONSIVE FIX
+   Paste this at the VERY END of style.css
+===================================================== */
+
+
+/* =====================================================
+   GLOBAL SAFETY
+===================================================== */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =====================================================
+   TABLET AND MOBILE
+===================================================== */
+
+@media screen and (max-width: 1050px) {
+
+  /* -----------------------------
+     HEADER
+  ----------------------------- */
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+  }
+
+  .navbar {
+    width: 100%;
+    height: auto;
+    min-height: 74px;
+
+    padding: 14px 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+  }
+
+  .logo {
+    flex-shrink: 0;
+  }
+
+  /* Purane CSS mein links hide ho rahe the */
+  .nav-links {
+    width: 100%;
+
+    display: flex !important;
+    align-items: center;
+
+    gap: 22px;
+
+    padding: 12px 2px 6px;
+    margin: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+
+    scrollbar-width: thin;
+
+    order: 3;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .nav-links::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
+  }
+
+  .nav-links li {
+    flex: 0 0 auto;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 7px 0;
+    font-size: 14px;
+  }
+
+  .nav-actions {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    margin-left: auto;
+  }
+
+  .nav-actions .btn {
+    white-space: nowrap;
+    padding: 11px 17px;
+  }
+
+
+  /* -----------------------------
+     HERO
+  ----------------------------- */
+
+  .hero {
+    width: 100%;
+    min-height: auto;
+
+    padding: 55px 6% 50px;
+
+    display: grid;
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+
+    text-align: center;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .hero h1 {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: clamp(44px, 7vw, 62px);
+  }
+
+  .hero-text {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-card {
+    width: 100%;
+    max-width: 650px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-right {
+    min-height: 510px;
+    display: grid;
+    place-items: center;
+  }
+
+  .pet-circle {
+    width: 440px;
+    height: 440px;
+  }
+
+  .pet-circle::before {
+    width: 520px;
+    height: 520px;
+
+    top: -40px;
+    left: -40px;
+  }
+
+  /* Purane CSS mein floating cards hide ho rahe the */
+  .float-card {
+    display: flex !important;
+  }
+
+
+  /* -----------------------------
+     COMMUNITY BANNER
+  ----------------------------- */
+
+  .community-banner {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .community-banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+
+  /* -----------------------------
+     FEATURED / COMMUNITY PET CARDS
+  ----------------------------- */
+
+  .latest {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .section-heading {
+    gap: 20px;
+  }
+
+  .pet-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+
+    justify-content: stretch;
+  }
+
+  .pet-card {
+    width: 100%;
+    max-width: none;
+  }
+
+
+  /* -----------------------------
+     AI SECTION
+  ----------------------------- */
+
+  .ai-search-section {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 42px;
+
+    padding-left: 6%;
+    padding-right: 6%;
+
+    text-align: center;
+  }
+
+  .ai-left {
+    width: 100%;
+  }
+
+  .ai-left p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ai-features {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 28px;
+  }
+
+  .ai-upload-card {
+    width: 100%;
+    max-width: 720px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  /* -----------------------------
+     STATISTICS
+  ----------------------------- */
+
+  .stats {
+    width: 100%;
+
+    padding-left: 5%;
+    padding-right: 5%;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+
+  /* -----------------------------
+     HOW IT WORKS
+  ----------------------------- */
+
+  .how {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .steps {
+    width: 100%;
+    max-width: 700px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 38px;
+  }
+
+  .step-card {
+    width: 100%;
+  }
+
+  .step-card:not(:last-child)::after {
+    display: none;
+  }
+
+
+  /* -----------------------------
+     LOST / FOUND FORMS
+  ----------------------------- */
+
+  .lost-page-hero,
+  .lost-form-wrap {
+    width: 100%;
+  }
+
+  .lost-form {
+    width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-progress {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+
+  /* -----------------------------
+     AI SEARCH PAGE RESULTS
+  ----------------------------- */
+
+  .ai-container,
+  .scan-section,
+  .results-section {
+    width: 100%;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+
+  /* -----------------------------
+     FOOTER
+  ----------------------------- */
+
+  .site-footer {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .footer-container {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 35px;
+
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .footer-brand,
+  .footer-column,
+  .footer-founder {
+    min-width: 0;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media screen and (max-width: 650px) {
+
+  /* -----------------------------
+     HEADER
+  ----------------------------- */
+
+  .navbar {
+    padding: 13px 16px;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .logo-icon {
+    font-size: 30px;
+  }
+
+  .nav-actions {
+    width: auto;
+    gap: 7px;
+  }
+
+  .nav-actions .btn {
+    flex: none;
+    min-width: auto;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+  }
+
+  .nav-links {
+    gap: 20px;
+    padding-top: 9px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+
+  /* -----------------------------
+     HERO
+  ----------------------------- */
+
+  .hero {
+    padding: 42px 18px 40px;
+    gap: 30px;
+  }
+
+  .badge {
+    padding: 9px 14px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 12vw, 50px);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+  }
+
+  .hero-text {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hero-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .search-card {
+    height: auto;
+
+    display: grid;
+    grid-template-columns: 34px 1fr;
+
+    padding: 12px;
+
+    gap: 8px;
+  }
+
+  .search-card span {
+    align-self: center;
+  }
+
+  .search-card input {
+    width: 100%;
+    min-width: 0;
+
+    height: 44px;
+
+    font-size: 14px;
+  }
+
+  .search-card button {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    min-height: 46px;
+  }
+
+
+  /* -----------------------------
+     HERO PET IMAGE
+  ----------------------------- */
+
+  .hero-right {
+    min-height: 380px;
+  }
+
+  .pet-circle {
+    width: 300px;
+    height: 300px;
+  }
+
+  .pet-circle::before {
+    width: 344px;
+    height: 344px;
+
+    top: -22px;
+    left: -22px;
+  }
+
+  .dog-img {
+    width: 185px;
+    height: 235px;
+
+    left: 12px;
+    bottom: 15px;
+
+    border-radius: 28px;
+  }
+
+  .cat-img {
+    width: 140px;
+    height: 195px;
+
+    right: 10px;
+    bottom: 15px;
+
+    border-radius: 25px;
+  }
+
+  .float-card {
+    display: flex !important;
+
+    padding: 10px 12px;
+    border-radius: 14px;
+
+    gap: 8px;
+  }
+
+  .float-card span {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+    font-size: 17px;
+  }
+
+  .float-card h3 {
+    font-size: 15px;
+  }
+
+  .float-card p {
+    font-size: 9px;
+  }
+
+  .top-card {
+    top: 5px;
+    right: 0;
+  }
+
+  .bottom-card {
+    right: 0;
+    bottom: 18px;
+  }
+
+
+  /* -----------------------------
+     SECTION HEADINGS
+  ----------------------------- */
+
+  .section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 14px;
+  }
+
+  .section-heading h2 {
+    font-size: 25px;
+  }
+
+  .view-all-actions {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+  }
+
+  .view-all-link {
+    flex: 1;
+    min-width: 135px;
+
+    text-align: center;
+  }
+
+
+  /* -----------------------------
+     PET CARDS
+  ----------------------------- */
+
+  .latest {
+    padding: 38px 18px 50px;
+  }
+
+  .pet-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .pet-card {
+    width: 100%;
+    max-width: 430px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pet-photo,
+  .pet-photo img {
+    width: 100%;
+  }
+
+  .pet-photo {
+    height: 280px;
+  }
+
+
+  /* -----------------------------
+     AI SECTION
+  ----------------------------- */
+
+  .ai-search-section {
+    padding: 55px 18px;
+  }
+
+  .ai-left h2 {
+    font-size: 32px;
+  }
+
+  .ai-left p {
+    font-size: 15px;
+  }
+
+  .ai-features {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-upload-card {
+    padding: 30px 18px;
+    border-radius: 22px;
+  }
+
+
+  /* -----------------------------
+     STATISTICS
+  ----------------------------- */
+
+  .stats {
+    grid-template-columns: 1fr;
+
+    padding: 25px 18px 45px;
+  }
+
+  .stat-card {
+    width: 100%;
+  }
+
+
+  /* -----------------------------
+     HOW IT WORKS
+  ----------------------------- */
+
+  .how {
+    padding: 45px 18px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .step-card {
+    width: 100%;
+    max-width: 430px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  /* -----------------------------
+     FORMS
+  ----------------------------- */
+
+  .lost-page-hero {
+    padding: 55px 18px;
+  }
+
+  .lost-page-hero h1 {
+    font-size: 36px;
+  }
+
+  .lost-page-hero p {
+    font-size: 16px;
+  }
+
+  .lost-form-wrap {
+    padding: 40px 16px;
+  }
+
+  .form-progress {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-card {
+    padding: 23px 17px;
+  }
+
+  .form-card h2 {
+    font-size: 24px;
+  }
+
+  .photo-upload {
+    padding: 35px 14px;
+  }
+
+  .form-actions-row {
+    flex-direction: column;
+  }
+
+  .form-actions-row .btn {
+    width: 100%;
+  }
+
+
+  /* -----------------------------
+     AI SEARCH PAGE
+  ----------------------------- */
+
+  .ai-hero {
+    padding: 60px 18px;
+  }
+
+  .ai-hero h1 {
+    font-size: 37px;
+  }
+
+  .ai-container {
+    padding: 40px 16px;
+  }
+
+  .ai-card {
+    padding: 28px 17px;
+  }
+
+  .results-section {
+    padding: 45px 16px;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* -----------------------------
+     FOOTER
+  ----------------------------- */
+
+  .footer-container {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+
+    padding-left: 18px;
+    padding-right: 18px;
+
+    text-align: center;
+  }
+
+  .footer-logo,
+  .footer-socials,
+  .footer-links {
+    justify-content: center;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-founder {
+    width: 100%;
+  }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+  .navbar {
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .logo-icon {
+    font-size: 27px;
+  }
+
+  .nav-actions .btn {
+    padding: 9px 9px;
+    font-size: 11px;
+  }
+
+  .hero {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .pet-circle {
+    width: 270px;
+    height: 270px;
+  }
+
+  .pet-circle::before {
+    width: 308px;
+    height: 308px;
+
+    top: -19px;
+    left: -19px;
+  }
+
+  .dog-img {
+    width: 165px;
+    height: 210px;
+  }
+
+  .cat-img {
+    width: 125px;
+    height: 175px;
+  }
+
+  .float-card {
+    transform: scale(0.9);
+  }
+}

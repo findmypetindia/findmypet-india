@@ -662,3 +662,150 @@ input {
     align-items: flex-start;
   }
 }
+/* =====================================================
+   LOGIN PAGE - FINAL MOBILE RESPONSIVE FIX
+   Paste this at the VERY END of login.css
+===================================================== */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 950px) {
+
+  .login-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .left-section {
+    display: none !important;
+  }
+
+  .right-section {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 35px 22px !important;
+  }
+
+  .login-box {
+    width: 100% !important;
+    max-width: 560px !important;
+
+    margin: 0 auto !important;
+  }
+
+  .mobile-logo {
+    display: block !important;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    color: var(--primary);
+
+    font-size: 25px;
+    font-weight: 800;
+  }
+}
+
+
+@media screen and (max-width: 520px) {
+
+  .right-section {
+    min-height: 100vh;
+
+    align-items: flex-start !important;
+
+    padding: 25px 17px 38px !important;
+  }
+
+  .login-box {
+    max-width: 100% !important;
+  }
+
+  .mobile-logo {
+    margin-bottom: 24px;
+
+    font-size: 22px;
+  }
+
+  .login-box h2 {
+    font-size: 25px;
+    line-height: 1.25;
+  }
+
+  .subtitle {
+    margin-bottom: 24px;
+
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .input-group {
+    margin-bottom: 17px;
+  }
+
+  .input-group input {
+    width: 100%;
+    height: 56px;
+
+    font-size: 16px;
+  }
+
+  .login-options {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 12px;
+
+    margin: 5px 0 21px;
+  }
+
+  .remember-me,
+  .forgot-password {
+    font-size: 13px;
+  }
+
+  .login-button,
+  .create-account-button {
+    width: 100%;
+  }
+
+  .footer-logo {
+    margin-top: 28px;
+  }
+}
+
+
+@media screen and (max-width: 380px) {
+
+  .right-section {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .login-options {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .login-box h2 {
+    font-size: 23px;
+  }
+}
