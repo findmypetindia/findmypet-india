@@ -2523,3 +2523,87 @@ main {
     width: 100%;
   }
 }
+/* =========================================
+   MOBILE NAVBAR LIKE DESKTOP
+========================================= */
+
+@media screen and (max-width: 650px) {
+
+  .navbar {
+    min-height: 68px;
+    height: auto;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+    font-size: 16px;
+    gap: 7px;
+  }
+
+  .logo-icon {
+    font-size: 27px;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 auto;
+  }
+
+  .nav-links li {
+    flex: 0 0 auto;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .nav-actions,
+  #guestActions,
+  #userActions {
+    width: auto !important;
+    margin-left: 8px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+  }
+
+  .nav-actions .btn,
+  #guestActions .btn,
+  #userActions .btn {
+    width: auto !important;
+    min-width: max-content;
+    flex: 0 0 auto !important;
+    padding: 10px 14px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .hero {
+    padding-top: 42px;
+  }
+}
