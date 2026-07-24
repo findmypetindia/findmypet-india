@@ -2122,115 +2122,100 @@ main {
     white-space: normal;
   }
 }
+/* =========================================
+   CORRECT MOBILE RESPONSIVE NAVBAR
+========================================= */
 
-/* =====================================================
-   FINAL MOBILE NAVBAR OVERRIDE
-   Keeps logo, navigation, dashboard and logout in one row.
-===================================================== */
 @media screen and (max-width: 1050px) {
-  .site-header {
-    width: 100%;
-    overflow: hidden;
-  }
-
   .navbar {
-    width: 100%;
-    min-height: 74px;
     height: auto;
-    padding: 10px 14px;
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
+    min-height: 70px;
+    padding: 14px 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
     gap: 14px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-  }
-
-  .navbar::-webkit-scrollbar {
-    height: 3px;
-  }
-
-  .navbar::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 999px;
+    overflow: visible;
   }
 
   .logo {
-    flex: 0 0 auto;
-    margin: 0;
+    flex-shrink: 0;
   }
 
   .nav-links {
-    width: auto !important;
-    display: flex !important;
-    flex: 0 0 auto;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 18px;
-    order: initial !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    white-space: nowrap;
-  }
-
-  .nav-links li {
-    flex: 0 0 auto;
+    display: none !important;
   }
 
   .nav-actions {
-    width: auto !important;
-    display: flex !important;
-    flex: 0 0 auto;
-    flex-direction: row !important;
-    align-items: center !important;
+    width: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
     gap: 8px;
-    margin: 0 0 0 auto !important;
-  }
-
-  .nav-actions .btn,
-  .nav-actions a,
-  .nav-actions button {
-    flex: 0 0 auto;
-    white-space: nowrap;
   }
 }
 
 @media screen and (max-width: 650px) {
   .navbar {
-    gap: 10px;
-    padding: 9px 10px;
+    padding: 12px 14px;
   }
 
   .logo {
-    gap: 6px;
-    font-size: 14px;
+    font-size: 16px;
+    gap: 7px;
   }
 
   .logo-icon {
-    font-size: 23px;
-  }
-
-  .nav-links {
-    gap: 13px;
-  }
-
-  .nav-links a {
-    font-size: 11px;
+    font-size: 26px;
   }
 
   .nav-actions {
-    gap: 6px;
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .nav-actions .btn,
   .nav-actions a,
   .nav-actions button {
-    padding: 8px 9px;
-    font-size: 10px;
+    flex: 1;
+    min-width: 90px;
+    padding: 10px 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .hero {
+    width: 100%;
+    padding: 40px 18px;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .hero-right {
+    width: 100%;
+    min-height: 340px;
+  }
+
+  .search-card {
+    width: 100%;
+    max-width: 100%;
   }
 }
