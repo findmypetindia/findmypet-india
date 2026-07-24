@@ -1,113 +1,109 @@
 // ==========================================
 // FindMyPet India - Shared Protected Navbar
-// Only logged-in users can access the website
+// Desktop same, mobile hamburger menu
 // ==========================================
 
-document.addEventListener(
-  "DOMContentLoaded",
-  async function () {
-    const siteHeader =
-      document.getElementById("siteHeader");
+document.addEventListener("DOMContentLoaded", async function () {
+  const siteHeader = document.getElementById("siteHeader");
 
-    if (!siteHeader) {
-      return;
-    }
+  if (!siteHeader) {
+    return;
+  }
 
-    // Check whether current HTML file is inside /pages/
-    const insidePagesFolder =
-      window.location.pathname.includes("/pages/");
+  const insidePagesFolder =
+    window.location.pathname.includes("/pages/");
 
-    // Homepage is at project root
-    const homeLink = "/";
+  const homeLink = "/";
+  const pagesLink = insidePagesFolder ? "" : "pages/";
 
-    // Links from root and pages folder need different paths
-    const pagesLink =
-      insidePagesFolder ? "" : "pages/";
+  const currentPage =
+    window.location.pathname
+      .split("/")
+      .pop()
+      .toLowerCase();
 
-    const currentPage =
-      window.location.pathname
-        .split("/")
-        .pop()
-        .toLowerCase();
-
-    // Active navbar link class
-    function activeClass(pageName) {
-      if (
-        pageName === "home" &&
-        (
-          currentPage === "" ||
-          currentPage === "index.html"
-        )
-      ) {
-        return "active";
-      }
-
-      return currentPage === pageName
-        ? "active"
-        : "";
-    }
-
-    // Supabase must load before navbar.js
+  function activeClass(pageName) {
     if (
-      typeof supabaseClient === "undefined"
+      pageName === "home" &&
+      (currentPage === "" || currentPage === "index.html")
     ) {
-      console.error(
-        "Supabase client is not available."
-      );
-
-      return;
+      return "active";
     }
 
-    // ======================================
-    // CHECK LOGIN SESSION
-    // ======================================
+    return currentPage === pageName ? "active" : "";
+  }
 
-    try {
-      const { data, error } =
-        await supabaseClient.auth.getSession();
+  // Supabase check
+  if (typeof supabaseClient === "undefined") {
+    console.error("Supabase client is not available.");
+    return;
+  }
 
-      if (error) {
-        throw error;
-      }
+  // Login session check
+  try {
+    const { data, error } =
+      await supabaseClient.auth.getSession();
 
-      // No login session: send user to login page
-      if (!data.session) {
-        window.location.replace(
-          "/pages/login.html"
-        );
-
-        return;
-      }
-
-    } catch (error) {
-      console.error(
-        "Navbar session check error:",
-        error
-      );
-
-      window.location.replace(
-        "/pages/login.html"
-      );
-
-      return;
+    if (error) {
+      throw error;
     }
 
-    // ======================================
-    // CREATE NAVBAR
-    // ======================================
+    if (!data.session) {
+      window.location.replace("/pages/login.html");
+      return;
+    }
+  } catch (error) {
+    console.error("Navbar session check error:", error);
+    window.location.replace("/pages/login.html");
+    return;
+  }
 
-    siteHeader.className = "site-header";
+  siteHeader.className = "site-header";
 
-    siteHeader.innerHTML = `
-      <nav class="navbar">
+  siteHeader.innerHTML = `
+    <nav class="navbar">
 
-        <a href="${homeLink}" class="logo">
-          <span class="logo-icon">🐶</span>
+      <a href="${homeLink}" class="logo">
+        <span class="logo-icon">🐶</span>
 
-          <span>
-            FindMyPet <b>India</b>
-          </span>
-        </a>
+        <span>
+          FindMyPet <b>India</b>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        class="mobile-menu-button"
+        id="mobileMenuButton"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+      <div class="navbar-content" id="navbarContent">
+
+        <div class="mobile-menu-header">
+
+          <a href="${homeLink}" class="mobile-menu-logo">
+            <span>🐶</span>
+            <strong>FindMyPet India</strong>
+          </a>
+
+          <button
+            type="button"
+            class="mobile-menu-close"
+            id="mobileMenuClose"
+            aria-label="Close navigation menu"
+          >
+            ×
+          </button>
+
+        </div>
 
         <ul class="nav-links">
 
@@ -148,25 +144,30 @@ document.addEventListener(
           </li>
 
           <li>
-           <a
-  href="${pagesLink}success-stories.html"
-  class="${activeClass("success-stories.html")}"
->
-  Success Stories
-</a>
-          </li>
-
-          <li>
-        <a href="/pages/ngos.html">NGOs</a>
+            <a
+              href="${pagesLink}success-stories.html"
+              class="${activeClass("success-stories.html")}"
+            >
+              Success Stories
+            </a>
           </li>
 
           <li>
             <a
-  href="${pagesLink}about.html"
-  class="${activeClass("about.html")}"
->
-  About
-</a>
+              href="${pagesLink}ngos.html"
+              class="${activeClass("ngos.html")}"
+            >
+              NGOs
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="${pagesLink}about.html"
+              class="${activeClass("about.html")}"
+            >
+              About
+            </a>
           </li>
 
         </ul>
@@ -190,59 +191,139 @@ document.addEventListener(
 
         </div>
 
-      </nav>
-    `;
+      </div>
 
-    // ======================================
-    // LOGOUT
-    // ======================================
+    </nav>
+  `;
 
-    const logoutButton =
-      document.getElementById(
-        "navbarLogoutButton"
-      );
+  // ======================================
+  // MOBILE MENU
+  // ======================================
 
-    if (!logoutButton) {
-      return;
-    }
+  const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
 
-    logoutButton.addEventListener(
+  const mobileMenuClose =
+    document.getElementById("mobileMenuClose");
+
+  const navbarContent =
+    document.getElementById("navbarContent");
+
+  const mobileMenuOverlay =
+    document.getElementById("mobileMenuOverlay");
+
+  function openMobileMenu() {
+    navbarContent.classList.add("mobile-menu-open");
+    mobileMenuOverlay.classList.add("mobile-menu-overlay-open");
+    mobileMenuButton.classList.add("menu-button-active");
+    mobileMenuButton.setAttribute("aria-expanded", "true");
+    document.body.classList.add("mobile-menu-body-lock");
+  }
+
+  function closeMobileMenu() {
+    navbarContent.classList.remove("mobile-menu-open");
+    mobileMenuOverlay.classList.remove("mobile-menu-overlay-open");
+    mobileMenuButton.classList.remove("menu-button-active");
+    mobileMenuButton.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("mobile-menu-body-lock");
+  }
+
+  if (mobileMenuButton) {
+    mobileMenuButton.addEventListener(
       "click",
-      async function () {
-        logoutButton.disabled = true;
+      function () {
+        const menuIsOpen =
+          navbarContent.classList.contains("mobile-menu-open");
 
-        logoutButton.textContent =
-          "Logging out...";
-
-        try {
-          const { error } =
-            await supabaseClient.auth.signOut();
-
-          if (error) {
-            throw error;
-          }
-
-          window.location.replace(
-            "/pages/login.html"
-          );
-
-        } catch (error) {
-          console.error(
-            "Logout error:",
-            error
-          );
-
-          alert(
-            error.message ||
-            "Logout nahi ho saka."
-          );
-
-          logoutButton.disabled = false;
-
-          logoutButton.textContent =
-            "Logout";
+        if (menuIsOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
         }
       }
     );
   }
-);
+
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener(
+      "click",
+      closeMobileMenu
+    );
+  }
+
+  if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener(
+      "click",
+      closeMobileMenu
+    );
+  }
+
+  navbarContent
+    .querySelectorAll("a")
+    .forEach(function (link) {
+      link.addEventListener(
+        "click",
+        closeMobileMenu
+      );
+    });
+
+  window.addEventListener(
+    "resize",
+    function () {
+      if (window.innerWidth > 768) {
+        closeMobileMenu();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+      if (event.key === "Escape") {
+        closeMobileMenu();
+      }
+    }
+  );
+
+  // ======================================
+  // LOGOUT
+  // ======================================
+
+  const logoutButton =
+    document.getElementById("navbarLogoutButton");
+
+  if (!logoutButton) {
+    return;
+  }
+
+  logoutButton.addEventListener(
+    "click",
+    async function () {
+      logoutButton.disabled = true;
+      logoutButton.textContent = "Logging out...";
+
+      try {
+        const { error } =
+          await supabaseClient.auth.signOut();
+
+        if (error) {
+          throw error;
+        }
+
+        window.location.replace(
+          "/pages/login.html"
+        );
+      } catch (error) {
+        console.error("Logout error:", error);
+
+        alert(
+          error.message ||
+          "Logout nahi ho saka."
+        );
+
+        logoutButton.disabled = false;
+        logoutButton.textContent = "Logout";
+      }
+    }
+  );
+});
