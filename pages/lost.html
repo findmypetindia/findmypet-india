@@ -1,563 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report Lost Pet | FindMyPet India</title>
-
- <link rel="stylesheet" href="../css/login.css?v=601">
+  <link rel="stylesheet" href="../css/style.css?v=607">
+  <link rel="stylesheet" href="../css/pet-pages.css?v=1">
 </head>
-
 <body class="lost-theme">
+  <header id="siteHeader"></header>
 
-  <!-- HEADER -->
-
- <header id="siteHeader"></header>
-
-    
+  <main class="page-main">
+    <section class="page-hero">
+      <div class="hero-inner container">
+        <div class="hero-content">
+          <span class="hero-chip">🚨 Lost Pet Report</span>
+          <h1 class="hero-title">Report Your Lost Pet</h1>
+          <p class="hero-text">Share clear and complete details so our community and matching system can help bring your pet home faster.</p>
+        </div>
       </div>
-
-    </nav>
-
-  </header>
-
-
-  <main>
-
-    <!-- PAGE HERO -->
-
-    <section class="lost-page-hero">
-
-      <div>
-
-        <span class="lost-chip">
-          🚨 Lost Pet Report
-        </span>
-
-        <h1>Report Your Lost Pet</h1>
-
-        <p>
-          Fill the details carefully. Clear information helps
-          people and AI-style matching find your pet faster.
-        </p>
-
-      </div>
-
     </section>
 
-
-    <!-- LOST PET FORM -->
-
-    <section class="lost-form-wrap">
-
-      <form
-        class="lost-form"
-        id="lostPetForm"
-      >
-
-        <div class="form-progress">
-
-        <div class="progress-step active" data-target="ownerSection">1. Owner</div>
-<div class="progress-step" data-target="petSection">2. Pet</div>
-<div class="progress-step" data-target="locationSection">3. Location</div>
-<div class="progress-step" data-target="photoSection">4. Photo</div>
-
+    <section class="form-section container">
+      <form class="form-card-shell" id="lostPetForm">
+        <div class="progress-bar">
+          <div class="progress-step active" data-target="ownerSection">1. Owner</div>
+          <div class="progress-step" data-target="petSection">2. Pet</div>
+          <div class="progress-step" data-target="locationSection">3. Location</div>
+          <div class="progress-step" data-target="photoSection">4. Photo</div>
         </div>
 
-
-        <!-- OWNER DETAILS -->
-
-        <div
-          id="ownerSection"
-          class="form-card"
-        >
-
-          <h2>👤 Owner Details</h2>
-
-          <div class="form-grid">
-
-            <div class="field">
-
-              <label for="ownerName">
-                Owner Name *
-              </label>
-
-              <input
-                type="text"
-                id="ownerName"
-                placeholder="Enter your full name"
-                required
-              >
-
+        <div class="form-body">
+          <section id="ownerSection" class="section-card">
+            <h2>👤 Owner Details</h2>
+            <div class="form-grid">
+              <div class="field"><label for="ownerName">Owner Name *</label><input type="text" id="ownerName" placeholder="Enter your full name" required></div>
+              <div class="field"><label for="mobile">Mobile Number *</label><input type="tel" id="mobile" placeholder="Enter mobile number" maxlength="10" required></div>
+              <div class="field"><label for="email">Email Address</label><input type="email" id="email" placeholder="Enter email address"></div>
+              <div class="field"><label for="whatsapp">WhatsApp Number</label><input type="tel" id="whatsapp" placeholder="Enter WhatsApp number" maxlength="10"></div>
             </div>
+          </section>
 
-
-            <div class="field">
-
-              <label for="mobile">
-                Mobile Number *
-              </label>
-
-              <input
-                type="tel"
-                id="mobile"
-                placeholder="Enter mobile number"
-                maxlength="10"
-                required
-              >
-
+          <section id="petSection" class="section-card">
+            <h2>🐾 Pet Details</h2>
+            <div class="form-grid">
+              <div class="field"><label for="petName">Pet Name</label><input type="text" id="petName" placeholder="Example: Bruno"></div>
+              <div class="field"><label for="petType">Pet Type *</label><select id="petType" required><option value="">Select pet type</option><option>Dog</option><option>Cat</option><option>Bird</option><option>Rabbit</option><option>Cow</option><option>Horse</option><option>Other</option></select></div>
+              <div class="field"><label for="breed">Breed</label><input type="text" id="breed" placeholder="Example: Labrador"></div>
+              <div class="field"><label for="color">Color *</label><input type="text" id="color" placeholder="Example: Brown and white" required></div>
+              <div class="field"><label for="gender">Gender</label><select id="gender"><option value="">Select gender</option><option>Male</option><option>Female</option><option>Unknown</option></select></div>
+              <div class="field"><label for="age">Age</label><input type="text" id="age" placeholder="Example: 2 years"></div>
             </div>
+          </section>
 
-
-            <div class="field">
-
-              <label for="email">
-                Email Address
-              </label>
-
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter email address"
-              >
-
+          <section id="locationSection" class="section-card">
+            <h2>📍 Last Seen Location</h2>
+            <div class="form-grid">
+              <div class="field"><label for="city">City *</label><input type="text" id="city" placeholder="Example: Jaipur" required></div>
+              <div class="field"><label for="state">State *</label><input type="text" id="state" placeholder="Example: Rajasthan" required></div>
+              <div class="field"><label for="area">Area / Landmark *</label><input type="text" id="area" placeholder="Example: Vaishali Nagar" required></div>
+              <div class="field"><label for="reportDate">Date Lost *</label><input type="date" id="reportDate" required></div>
+              <div class="field"><label for="reportTime">Time Lost</label><input type="time" id="reportTime"></div>
+              <div class="field"><label for="reward">Reward Amount</label><input type="number" id="reward" min="0" placeholder="Example: 5000"></div>
+              <div class="field full"><label for="details">Extra Identification Details</label><textarea id="details" placeholder="Collar colour, marks, behaviour, microchip number, injury details, etc."></textarea></div>
             </div>
+          </section>
 
-
-            <div class="field">
-
-              <label for="whatsapp">
-                WhatsApp Number
-              </label>
-
-              <input
-                type="tel"
-                id="whatsapp"
-                placeholder="Enter WhatsApp number"
-                maxlength="10"
-              >
-
+          <section id="photoSection" class="section-card">
+            <h2>📸 Upload Pet Photo</h2>
+            <div class="upload-box">
+              <div class="upload-icon">📷</div>
+              <h3>Upload a clear photo</h3>
+              <p>Front face or full body photo will help matching.</p>
+              <input type="file" id="petImage" accept="image/jpeg,image/png,image/webp" required>
+              <img id="imagePreview" class="preview-image" alt="Selected pet preview">
             </div>
+          </section>
 
+          <p id="formMessage" class="form-message"></p>
+          <div class="form-actions">
+            <a href="../index.html" class="btn btn-light">Cancel</a>
+            <button type="submit" class="btn btn-accent" id="submitReportButton">Submit Lost Pet Report</button>
           </div>
-
         </div>
-
-
-        <!-- PET DETAILS -->
-
-        <div
-          id="petSection"
-          class="form-card"
-        >
-
-          <h2>🐾 Pet Details</h2>
-
-          <div class="form-grid">
-
-            <div class="field">
-
-              <label for="petName">
-                Pet Name
-              </label>
-
-              <input
-                type="text"
-                id="petName"
-                placeholder="Example: Bruno"
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="petType">
-                Pet Type *
-              </label>
-
-              <select
-                id="petType"
-                required
-              >
-
-                <option value="">
-                  Select pet type
-                </option>
-
-                <option value="Dog">Dog</option>
-                <option value="Cat">Cat</option>
-                <option value="Bird">Bird</option>
-                <option value="Rabbit">Rabbit</option>
-                <option value="Cow">Cow</option>
-                <option value="Horse">Horse</option>
-                <option value="Other">Other</option>
-
-              </select>
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="breed">
-                Breed
-              </label>
-
-              <input
-                type="text"
-                id="breed"
-                placeholder="Example: Labrador"
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="color">
-                Color *
-              </label>
-
-              <input
-                type="text"
-                id="color"
-                placeholder="Example: Brown and white"
-                required
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="gender">
-                Gender
-              </label>
-
-              <select id="gender">
-
-                <option value="">
-                  Select gender
-                </option>
-
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Unknown">Unknown</option>
-
-              </select>
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="age">
-                Age
-              </label>
-
-              <input
-                type="text"
-                id="age"
-                placeholder="Example: 2 years"
-              >
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- LOCATION DETAILS -->
-
-        <div
-          id="locationSection"
-          class="form-card"
-        >
-
-          <h2>📍 Last Seen Location</h2>
-
-          <div class="form-grid">
-
-            <div class="field">
-
-              <label for="city">
-                City *
-              </label>
-
-              <input
-                type="text"
-                id="city"
-                placeholder="Example: Jaipur"
-                required
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="state">
-                State *
-              </label>
-
-              <input
-                type="text"
-                id="state"
-                placeholder="Example: Rajasthan"
-                required
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="area">
-                Area / Landmark *
-              </label>
-
-              <input
-                type="text"
-                id="area"
-                placeholder="Example: Vaishali Nagar"
-                required
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="reportDate">
-                Date Lost *
-              </label>
-
-              <input
-                type="date"
-                id="reportDate"
-                required
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="reportTime">
-                Time Lost
-              </label>
-
-              <input
-                type="time"
-                id="reportTime"
-              >
-
-            </div>
-
-
-            <div class="field">
-
-              <label for="reward">
-                Reward Amount
-              </label>
-
-              <input
-                type="number"
-                id="reward"
-                min="0"
-                placeholder="Example: 5000"
-              >
-
-            </div>
-
-          </div>
-
-
-          <div class="field full">
-
-            <label for="details">
-              Extra Identification Details
-            </label>
-
-            <textarea
-              id="details"
-              placeholder="Collar color, injury mark, behaviour, microchip number, special marks, etc."
-            ></textarea>
-
-          </div>
-
-        </div>
-
-
-        <!-- PHOTO UPLOAD -->
-
-        <div
-          id="photoSection"
-          class="form-card"
-        >
-
-          <h2>📸 Upload Pet Photo</h2>
-
-          <div class="photo-upload">
-
-            <div class="photo-icon">
-              📷
-            </div>
-
-            <h3>Upload a clear photo</h3>
-
-            <p>
-              Front face or full body photo will help matching.
-            </p>
-
-            <input
-              type="file"
-              id="petImage"
-              accept="image/jpeg,image/png,image/webp"
-              required
-            >
-
-            <img
-              id="imagePreview"
-              alt="Selected pet preview"
-              style="
-                display: none;
-                max-width: 260px;
-                margin: 20px auto 0;
-                border-radius: 14px;
-              "
-            >
-
-          </div>
-
-        </div>
-
-
-        <!-- SUBMISSION MESSAGE -->
-
-        <p
-          id="formMessage"
-          class="message"
-        ></p>
-
-
-        <!-- FORM BUTTONS -->
-
-        <div class="form-actions-row">
-
-          <a
-            href="../index.html"
-            class="btn btn-light"
-          >
-            Cancel
-          </a>
-
-          <button
-            type="submit"
-            class="btn btn-danger"
-            id="submitReportButton"
-          >
-            Submit Lost Pet Report
-          </button>
-
-        </div>
-
       </form>
-
     </section>
 
-
-    <!-- LOST PET REPORT LIST -->
-
-    <section class="reports-list-section">
-
-      <div class="section-heading">
-
-        <div>
-
-          <h2>Recently Reported Lost Pets</h2>
-
-          <p>
-            All currently reported lost pets
-          </p>
-
-        </div>
-
-      </div>
-
-      <div
-        class="pet-grid reports-page-grid"
-        data-report-type="lost"
-      ></div>
-
+    <section class="reports-section container">
+      <div class="section-heading"><h2>Recently Reported Lost Pets</h2><p>All currently reported lost pets</p></div>
+      <div class="pet-grid reports-page-grid" data-report-type="lost"></div>
     </section>
-
   </main>
 
-
-  <!-- FOOTER -->
-
-  <footer class="footer">
-
-    <div>
-
-      <h3>🐶 FindMyPet India</h3>
-
-      <p>
-        Reuniting Pets. Reuniting Hearts.
-      </p>
-
+  <footer class="simple-footer">
+    <div class="container footer-grid">
+      <div><h3>🐶 FindMyPet India</h3><p>Reuniting pets. Reuniting hearts.</p></div>
+      <div><h4>Quick Links</h4><a href="../index.html">Home</a><a href="found.html">Found Pets</a><a href="ai-search.html">AI Search</a></div>
+      <div><h4>Support</h4><a href="#">Help Center</a><a href="#">Contact</a><a href="#">Privacy Policy</a></div>
     </div>
-
-
-    <div>
-
-      <h4>Quick Links</h4>
-
-      <a href="/">Home</a>
-
-      <a href="lost.html">Lost Pets</a>
-
-      <a href="found.html">Found Pets</a>
-
-      <a href="ai-search.html">AI Search</a>
-
-    </div>
-
-
-    <div>
-
-      <h4>Support</h4>
-
-      <a href="#">Help Center</a>
-
-      <a href="#">Report Issue</a>
-
-      <a href="#">Contact</a>
-
-      <a href="#">Privacy Policy</a>
-
-    </div>
-
   </footer>
 
-
-  <!-- JAVASCRIPT -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../js/supabase.js"></script>
-<script src="../js/search.js"></script>
-<script src="../js/form.js?v=20"></script>
-<script src="../js/navbar-auth.js?v=10"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/navbar.js?v=13"></script>
+  <script src="../js/search.js"></script>
+  <script src="../js/form.js?v=20"></script>
 </body>
-
 </html>
