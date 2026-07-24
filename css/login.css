@@ -909,3 +909,79 @@ body {
     align-items: flex-start !important;
   }
 }
+/* ===== MOBILE LOGIN FIX ===== */
+
+@media (max-width: 950px) {
+  .login-page {
+    display: block !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+  }
+
+  .left-section {
+    display: none !important;
+  }
+
+  .right-section {
+    width: 100% !important;
+    min-height: 100vh !important;
+    padding: 24px 18px 40px !important;
+
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+
+  .login-box {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+  }
+
+  .mobile-logo {
+    display: block !important;
+    margin-bottom: 24px !important;
+    text-align: center !important;
+    font-size: 23px !important;
+    font-weight: 800 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .login-box h2 {
+    font-size: 25px !important;
+    line-height: 1.25 !important;
+  }
+
+  .subtitle {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 24px !important;
+  }
+
+  .input-group input {
+    width: 100% !important;
+    height: 56px !important;
+    font-size: 16px !important;
+  }
+
+  .login-options {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .login-button,
+  .create-account-button {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .login-options {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
