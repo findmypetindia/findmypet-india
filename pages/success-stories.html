@@ -1,54 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Success Stories | FindMyPet India</title>
 
-<link rel="stylesheet" href="../css/login.css?v=601">
-  <link
-    rel="stylesheet"
-    href="../css/success-stories.css"
-  >
+<link rel="stylesheet" href="../css/style.css?v=608">
+<link rel="stylesheet" href="../css/pet-pages.css?v=2">
+
+  <style>
+    body.success-theme {
+      --accent: #f59e0b;
+      --accent-dark: #b45309;
+      --accent-soft: #fff8e7;
+      --accent-border: #fde3a7;
+      --hero-a: #fffaf0;
+      --hero-b: #fff0c7;
+    }
+
+    .success-page {
+      padding-bottom: 70px;
+    }
+
+    .success-intro {
+      width: min(1120px, calc(100% - 32px));
+      margin: -34px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .success-intro-card {
+      background: #ffffff;
+      border: 1px solid #e8ebf0;
+      border-radius: 28px;
+      box-shadow: 0 18px 45px rgba(16, 24, 40, 0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+    .success-intro-card h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      color: #172033;
+    }
+
+    .success-intro-card p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: #667085;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .success-stories-section {
+      width: min(1120px, calc(100% - 32px));
+      margin: 55px auto 0;
+    }
+
+    .success-section-heading {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .success-section-heading span {
+      display: inline-block;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: #fff8e7;
+      color: #b45309;
+      border: 1px solid #fde3a7;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .success-section-heading h2 {
+      margin: 0 0 9px;
+      font-size: clamp(28px, 4vw, 40px);
+      color: #172033;
+    }
+
+    .success-section-heading p {
+      margin: 0;
+      color: #667085;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .story-card {
+      background: #ffffff;
+      border: 1px solid #e8ebf0;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(16, 24, 40, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(16, 24, 40, 0.12);
+    }
+
+    .story-image-wrap {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: #f2f4f7;
+      overflow: hidden;
+    }
+
+    .story-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .story-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #15803d;
+      border: 1px solid #bbefc8;
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
+    }
+
+    .story-content {
+      padding: 21px;
+    }
+
+    .story-location {
+      color: #667085;
+      font-size: 14px;
+      margin: 0 0 9px;
+    }
+
+    .story-content h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      color: #172033;
+    }
+
+    .story-content p {
+      margin: 0;
+      color: #667085;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .story-footer {
+      border-top: 1px solid #eef1f4;
+      padding: 15px 21px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #fbfcfe;
+    }
+
+    .story-footer strong {
+      color: #15803d;
+      font-size: 14px;
+    }
+
+    .story-footer span {
+      color: #98a2b3;
+      font-size: 13px;
+    }
+
+    .success-stats {
+      width: min(1120px, calc(100% - 32px));
+      margin: 62px auto 0;
+      background: linear-gradient(135deg, #fff9ec, #fff2ca);
+      border: 1px solid #fde3a7;
+      border-radius: 28px;
+      padding: 34px;
+    }
+
+    .success-stats h2 {
+      text-align: center;
+      margin: 0 0 26px;
+      font-size: 30px;
+      color: #172033;
+    }
+
+    .success-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .success-stat-card {
+      background: #ffffff;
+      border: 1px solid rgba(245, 158, 11, 0.22);
+      border-radius: 18px;
+      padding: 22px 16px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(16, 24, 40, 0.06);
+    }
+
+    .success-stat-card strong {
+      display: block;
+      font-size: 30px;
+      color: #b45309;
+      margin-bottom: 6px;
+    }
+
+    .success-stat-card span {
+      color: #667085;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .truth-note {
+      width: min(860px, calc(100% - 32px));
+      margin: 32px auto 0;
+      padding: 18px 20px;
+      background: #f8fafc;
+      border: 1px solid #e3e8ef;
+      border-radius: 16px;
+      color: #667085;
+      line-height: 1.65;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .success-cta {
+      width: min(1120px, calc(100% - 32px));
+      margin: 55px auto 0;
+      background: linear-gradient(135deg, #172033, #263653);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 42px 28px;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(16, 24, 40, 0.15);
+    }
+
+    .success-cta h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+    }
+
+    .success-cta p {
+      max-width: 660px;
+      margin: 0 auto 24px;
+      color: #d7deea;
+      line-height: 1.7;
+    }
+
+    .success-cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .success-cta .btn-lost {
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #ffffff;
+    }
+
+    .success-cta .btn-found {
+      background: linear-gradient(135deg, #22c55e, #15803d);
+      color: #ffffff;
+    }
+
+    .success-submit {
+      width: min(1120px, calc(100% - 32px));
+      margin: 55px auto 0;
+      background: #ffffff;
+      border: 1px solid #e8ebf0;
+      border-radius: 26px;
+      padding: 30px;
+      box-shadow: 0 16px 38px rgba(16, 24, 40, 0.08);
+    }
+
+    .success-submit h2 {
+      margin: 0 0 9px;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .success-submit > p {
+      text-align: center;
+      margin: 0 0 24px;
+      color: #667085;
+    }
+
+    .success-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .success-submit .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .success-submit-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 900px) {
+      .story-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .success-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .success-intro {
+        width: min(100% - 20px, 1120px);
+      }
+
+      .success-intro-card,
+      .success-submit,
+      .success-stats {
+        padding: 20px;
+      }
+
+      .story-grid,
+      .success-stats-grid,
+      .success-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .success-cta-actions {
+        flex-direction: column;
+      }
+
+      .success-cta-actions .btn {
+        width: 100%;
+      }
+
+      .success-submit-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="success-theme">
 
   <header id="siteHeader"></header>
 
-  <main class="success-stories-page">
+  <main class="success-page">
 
-    <section class="success-stories-hero">
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="hero-inner container">
+        <div class="hero-content">
+          <span class="hero-chip">❤️ Real Reunions</span>
 
-      <span class="success-chip">
-        ❤️ Reunited Pets
-      </span>
+          <h1 class="hero-title">
+            Success Stories
+          </h1>
 
-      <h1>Success Stories</h1>
+          <p class="hero-text">
+            Every reunion is a reminder that community support, timely reporting
+            and the right information can help bring a missing pet home.
+          </p>
+        </div>
+      </div>
+    </section>
 
-      <p>
-        Pets reunited with their families through the
-        FindMyPet India community.
-      </p>
+
+    <!-- INTRO -->
+    <section class="success-intro">
+      <div class="success-intro-card">
+        <h2>🐾 Real Families. Real Happiness.</h2>
+
+        <p>
+          Explore heartwarming reunion stories shared by pet owners,
+          rescuers and volunteers from across India.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- STORIES -->
+    <section class="success-stories-section">
+
+      <div class="success-section-heading">
+        <span>COMMUNITY STORIES</span>
+
+        <h2>Pets Reunited With Their Families</h2>
+
+        <p>
+          Replace these sample stories with verified user submissions.
+        </p>
+      </div>
+
+
+      <div class="story-grid">
+
+        <!-- STORY 1 -->
+        <article class="story-card">
+
+          <div class="story-image-wrap">
+            <img
+              src="../images/dog1.jpg"
+              alt="Bruno reunited with family"
+            >
+
+            <span class="story-badge">
+              ✅ REUNITED
+            </span>
+          </div>
+
+          <div class="story-content">
+
+            <p class="story-location">
+              📍 Jaipur, Rajasthan
+            </p>
+
+            <h3>
+              Bruno Returned Home Safely
+            </h3>
+
+            <p>
+              Bruno went missing during an evening walk.
+              A local resident recognised him from the online report
+              and contacted the family.
+            </p>
+
+          </div>
+
+          <div class="story-footer">
+            <strong>Reunited in 3 days</strong>
+            <span>Dog</span>
+          </div>
+
+        </article>
+
+
+        <!-- STORY 2 -->
+        <article class="story-card">
+
+          <div class="story-image-wrap">
+            <img
+              src="../images/cat1.jpg"
+              alt="Milo reunited with family"
+            >
+
+            <span class="story-badge">
+              ✅ REUNITED
+            </span>
+          </div>
+
+          <div class="story-content">
+
+            <p class="story-location">
+              📍 Mumbai, Maharashtra
+            </p>
+
+            <h3>
+              Milo Was Found After Heavy Rain
+            </h3>
+
+            <p>
+              A volunteer submitted a found-pet report.
+              The details matched Milo's missing report,
+              helping the family reconnect quickly.
+            </p>
+
+          </div>
+
+          <div class="story-footer">
+            <strong>Reunited in 24 hours</strong>
+            <span>Cat</span>
+          </div>
+
+        </article>
+
+
+        <!-- STORY 3 -->
+        <article class="story-card">
+
+          <div class="story-image-wrap">
+            <img
+              src="../images/dog2.jpg"
+              alt="Rocky reunited with family"
+            >
+
+            <span class="story-badge">
+              ✅ REUNITED
+            </span>
+          </div>
+
+          <div class="story-content">
+
+            <p class="story-location">
+              📍 Delhi
+            </p>
+
+            <h3>
+              Rocky Recognised by a Neighbour
+            </h3>
+
+            <p>
+              Rocky's report was shared locally.
+              A neighbour spotted him near a market
+              and safely informed the owner.
+            </p>
+
+          </div>
+
+          <div class="story-footer">
+            <strong>Reunited in 2 days</strong>
+            <span>Dog</span>
+          </div>
+
+        </article>
+
+      </div>
 
     </section>
 
 
-    <section class="success-stories-section">
+    <!-- STATS -->
+    <section class="success-stats">
 
-      <div
-        id="successStoriesGrid"
-        class="success-stories-grid"
-      >
-        <div class="success-state">
-          Loading success stories...
+      <h2>
+        ❤️ Together We Can Bring More Pets Home
+      </h2>
+
+      <div class="success-stats-grid">
+
+        <div class="success-stat-card">
+          <strong>3</strong>
+          <span>Sample Success Stories</span>
         </div>
+
+        <div class="success-stat-card">
+          <strong>24×7</strong>
+          <span>Report Availability</span>
+        </div>
+
+        <div class="success-stat-card">
+          <strong>India</strong>
+          <span>Community Coverage</span>
+        </div>
+
+        <div class="success-stat-card">
+          <strong>100%</strong>
+          <span>Community Driven</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="truth-note">
+      <strong>Important:</strong>
+      These are sample cards for layout demonstration.
+      Publish real names, photos, locations and reunion claims only after
+      receiving permission and verifying the story.
+    </div>
+
+
+    <!-- SUBMIT STORY -->
+    <section class="success-submit">
+
+      <h2>
+        Share Your Reunion Story
+      </h2>
+
+      <p>
+        Submit your details and celebrate your pet's safe return.
+      </p>
+
+      <form id="successStoryForm">
+
+        <div class="success-form-grid">
+
+          <div class="field">
+            <label for="storyOwnerName">Your Name *</label>
+
+            <input
+              type="text"
+              id="storyOwnerName"
+              placeholder="Enter your name"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="storyPetName">Pet Name *</label>
+
+            <input
+              type="text"
+              id="storyPetName"
+              placeholder="Example: Bruno"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="storyCity">City *</label>
+
+            <input
+              type="text"
+              id="storyCity"
+              placeholder="Example: Jaipur"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="reunionTime">Reunited In</label>
+
+            <input
+              type="text"
+              id="reunionTime"
+              placeholder="Example: 3 days"
+            >
+          </div>
+
+
+          <div class="field full">
+            <label for="storyMessage">Your Story *</label>
+
+            <textarea
+              id="storyMessage"
+              placeholder="Tell us how your pet was found..."
+              required
+            ></textarea>
+          </div>
+
+
+          <div class="field full">
+            <label for="storyImage">Upload Reunion Photo</label>
+
+            <input
+              type="file"
+              id="storyImage"
+              accept="image/jpeg,image/png,image/webp"
+            >
+          </div>
+
+        </div>
+
+
+        <p
+          id="successStoryMessage"
+          class="form-message"
+        ></p>
+
+
+        <div class="success-submit-actions">
+
+          <button
+            type="submit"
+            class="btn btn-accent"
+          >
+            ❤️ Submit Success Story
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="success-cta">
+
+      <h2>
+        Your Reunion Story Could Be Next
+      </h2>
+
+      <p>
+        Report a lost or found pet with clear details and a recent photograph.
+        Every report increases the chance of a safe reunion.
+      </p>
+
+      <div class="success-cta-actions">
+
+        <a
+          href="lost.html"
+          class="btn btn-lost"
+        >
+          🚨 Report Lost Pet
+        </a>
+
+        <a
+          href="found.html"
+          class="btn btn-found"
+        >
+          🐾 Report Found Pet
+        </a>
+
       </div>
 
     </section>
@@ -56,39 +716,71 @@
   </main>
 
 
-  <footer class="footer">
+  <!-- FOOTER -->
+  <footer class="simple-footer">
 
-  <div>
-    <h3>🐶 FindMyPet India</h3>
-    <p>Reuniting Pets. Reuniting Hearts.</p>
-  </div>
+    <div class="container footer-grid">
 
-  <div>
-    <h4>Quick Links</h4>
-    <a href="/">Home</a>
-    <a href="lost.html">Lost Pets</a>
-    <a href="found.html">Found Pets</a>
-    <a href="ai-search.html">AI Search</a>
-  </div>
+      <div>
+        <h3>🐶 FindMyPet India</h3>
 
-  <div>
-    <h4>Support</h4>
-    <a href="#">Help Center</a>
-    <a href="#">Contact</a>
-    <a href="#">Privacy Policy</a>
-  </div>
-
-</footer>
+        <p>
+          Reuniting pets. Reuniting hearts.
+        </p>
+      </div>
 
 
+      <div>
+        <h4>Quick Links</h4>
+
+        <a href="../index.html">Home</a>
+        <a href="lost.html">Lost Pets</a>
+        <a href="found.html">Found Pets</a>
+        <a href="ai-search.html">AI Search</a>
+      </div>
+
+
+      <div>
+        <h4>Support</h4>
+
+        <a href="#">Help Center</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/navbar.js?v=14"></script>
 
-  <script src="../js/supabase.js"></script>
+  <script>
+    const successStoryForm =
+      document.getElementById("successStoryForm");
 
-  <script src="../js/navbar.js?v=12"></script>
+    const successStoryMessage =
+      document.getElementById("successStoryMessage");
 
-  <script src="../js/success-stories.js?v=1"></script>
+    successStoryForm.addEventListener(
+      "submit",
+      function (event) {
+
+        event.preventDefault();
+
+        successStoryMessage.style.color = "#15803d";
+
+        successStoryMessage.textContent =
+          "Thank you! Your story has been received for review.";
+
+        successStoryForm.reset();
+
+      }
+    );
+  </script>
 
 </body>
-
 </html>
