@@ -16,13 +16,13 @@
   --border: #dbe3f0;
   --white: #ffffff;
 
-  --danger: #dc2626;
+  --danger: #1d4ed8;
   --success: #15803d;
 }
 
 body {
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, Helvetica, sans-serif;
   color: var(--dark);
   background: var(--white);
 }

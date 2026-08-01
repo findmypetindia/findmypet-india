@@ -216,7 +216,7 @@ body {
 
   border-radius: 16px;
 
-  background: #fee2e2;
+  background: #dbeafe;
 
   font-size: 30px;
 }
@@ -247,8 +247,8 @@ body {
   background:
     linear-gradient(
       135deg,
-      #ef4444,
-      #dc2626
+      #2563eb,
+      #1d4ed8
     );
 
   text-decoration: none;
@@ -431,7 +431,7 @@ body {
   top: 46px;
 
   color: #991b1b;
-  background: #fee2e2;
+  background: #dbeafe;
 }
 
 
