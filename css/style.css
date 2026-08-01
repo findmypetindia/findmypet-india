@@ -2863,6 +2863,57 @@ main {
   .mobile-menu-body-lock {
     overflow: hidden;
   }
+/* ===== Mobile Footer 2 Columns ===== */
+
+.footer-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+}
+
+.footer-brand{
+    grid-column:1 / -1;
+}
+
+@media (max-width:768px){
+
+  .footer-container{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+      align-items:start;
+  }
+
+  .footer-brand,
+  .footer-founder,
+  .footer-bottom{
+      grid-column:1 / -1;
+  }
+
+  .footer-column{
+      width:100%;
+      text-align:left;
+  }
+
+  .footer-column h3{
+      text-align:left;
+  }
+
+  .footer-links{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+  }
+
+}
+
+.footer-founder{
+    grid-column:1 / -1;
+}
+
+.footer-bottom{
+    grid-column:1 / -1;
+}
 }
 /* =========================================
    FINDMYPET INDIA SHARED NAVBAR
