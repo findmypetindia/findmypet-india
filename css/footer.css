@@ -199,10 +199,32 @@ padding:45px 20px;
 }
 
 .footer-container{
-grid-template-columns:1fr;
-text-align:center;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
+.footer-brand{
+    grid-column:1/-1;
+    text-align:center;
+}
+
+.footer-founder{
+    grid-column:1/-1;
+    margin-top:15px;
+}
+
+.footer-bottom{
+    grid-column:1/-1;
+}
+
+.footer-column{
+    text-align:left;
+}
+
+.footer-links{
+    align-items:flex-start;
+}
 .footer-logo{
 justify-content:center;
 }
