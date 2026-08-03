@@ -3589,3 +3589,11 @@ font-size:15px;
     --shadow:0 12px 28px rgba(49,88,245,.18);
 
 }
+#siteHeader{
+    min-height:72px;
+    visibility:hidden;
+}
+
+#siteHeader.navbar-loaded{
+    visibility:visible;
+}

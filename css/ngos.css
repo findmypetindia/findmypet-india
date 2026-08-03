@@ -702,3 +702,44 @@ body {
     align-items: flex-start;
   }
 }
+@media (max-width: 768px){
+
+  .ngo-page{
+    padding:20px 16px;
+  }
+
+  .ngo-hero h1{
+    font-size:2rem;
+    line-height:1.2;
+  }
+
+  .ngo-filter-section{
+    flex-direction:column;
+    gap:15px;
+  }
+
+  .ngo-search-box,
+  #ngoCityFilter{
+    width:100%;
+  }
+
+  .ngo-grid{
+    grid-template-columns:1fr;
+  }
+
+  .ngo-card{
+    width:100%;
+  }
+
+  .emergency-help,
+  .register-ngo-section{
+    flex-direction:column;
+    text-align:center;
+    gap:20px;
+  }
+
+  .emergency-call-button,
+  .register-ngo-section .btn{
+    width:100%;
+  }
+}
