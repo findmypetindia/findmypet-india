@@ -24,7 +24,8 @@ async function loadSuccessStories() {
         .order("updated_at", {
           ascending: false
         });
-
+console.log("DATA =", data);
+console.log("ERROR =", error);
     if (error) {
       throw error;
     }

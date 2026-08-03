@@ -7,11 +7,10 @@
   <title>Success Stories | FindMyPet India</title>
 
 <link rel="stylesheet" href="../css/style.css?v=608">
-<link rel="stylesheet" href="../css/pet-pages.css?v=2">
+<link rel="stylesheet" href="../css/success-stories.css?v=2">
 <link rel="stylesheet" href="../css/footer.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-  <style>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">  <style>
     body.success-theme {
       --accent: #f59e0b;
       --accent-dark: #b45309;
@@ -335,10 +334,11 @@
       }
 
       .story-grid,
-      .success-stats-grid,
-      .success-form-grid {
-        grid-template-columns: 1fr;
-      }
+.success-stories-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:25px;
+}
 
       .success-cta-actions {
         flex-direction: column;
@@ -360,25 +360,6 @@
   <header id="siteHeader"></header>
 
   <main class="success-page">
-
-    <!-- HERO -->
-    <section class="page-hero">
-      <div class="hero-inner container">
-        <div class="hero-content">
-          <span class="hero-chip">❤️ Real Reunions</span>
-
-          <h1 class="hero-title">
-            Success Stories
-          </h1>
-
-          <p class="hero-text">
-            Every reunion is a reminder that community support, timely reporting
-            and the right information can help bring a missing pet home.
-          </p>
-        </div>
-      </div>
-    </section>
-
 
     <!-- INTRO -->
     <section class="success-intro">
@@ -407,126 +388,8 @@
       </div>
 
 
-      <div class="story-grid">
-
-        <!-- STORY 1 -->
-        <article class="story-card">
-
-          <div class="story-image-wrap">
-            <img
-              src="../images/dog1.jpg"
-              alt="Bruno reunited with family"
-            >
-
-            <span class="story-badge">
-              ✅ REUNITED
-            </span>
-          </div>
-
-          <div class="story-content">
-
-            <p class="story-location">
-              📍 Jaipur, Rajasthan
-            </p>
-
-            <h3>
-              Bruno Returned Home Safely
-            </h3>
-
-            <p>
-              Bruno went missing during an evening walk.
-              A local resident recognised him from the online report
-              and contacted the family.
-            </p>
-
-          </div>
-
-          <div class="story-footer">
-            <strong>Reunited in 3 days</strong>
-            <span>Dog</span>
-          </div>
-
-        </article>
-
-
-        <!-- STORY 2 -->
-        <article class="story-card">
-
-          <div class="story-image-wrap">
-            <img
-              src="../images/cat1.jpg"
-              alt="Milo reunited with family"
-            >
-
-            <span class="story-badge">
-              ✅ REUNITED
-            </span>
-          </div>
-
-          <div class="story-content">
-
-            <p class="story-location">
-              📍 Mumbai, Maharashtra
-            </p>
-
-            <h3>
-              Milo Was Found After Heavy Rain
-            </h3>
-
-            <p>
-              A volunteer submitted a found-pet report.
-              The details matched Milo's missing report,
-              helping the family reconnect quickly.
-            </p>
-
-          </div>
-
-          <div class="story-footer">
-            <strong>Reunited in 24 hours</strong>
-            <span>Cat</span>
-          </div>
-
-        </article>
-
-
-        <!-- STORY 3 -->
-        <article class="story-card">
-
-          <div class="story-image-wrap">
-            <img
-              src="../images/dog2.jpg"
-              alt="Rocky reunited with family"
-            >
-
-            <span class="story-badge">
-              ✅ REUNITED
-            </span>
-          </div>
-
-          <div class="story-content">
-
-            <p class="story-location">
-              📍 Delhi
-            </p>
-
-            <h3>
-              Rocky Recognised by a Neighbour
-            </h3>
-
-            <p>
-              Rocky's report was shared locally.
-              A neighbour spotted him near a market
-              and safely informed the owner.
-            </p>
-
-          </div>
-
-          <div class="story-footer">
-            <strong>Reunited in 2 days</strong>
-            <span>Dog</span>
-          </div>
-
-        </article>
+      <div class="success-stories-grid" id="successStoriesGrid"></div>
+</div>
 
       </div>
 
@@ -721,7 +584,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../js/supabase.js"></script>
 <script src="../js/navbar.js?v=14"></script>
-
+<script src="../js/success-stories.js?v=1"></script>
   <script>
     const successStoryForm =
       document.getElementById("successStoryForm");

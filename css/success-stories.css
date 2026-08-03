@@ -20,11 +20,13 @@
 
 .success-stories-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
     gap:25px;
 }
 
 .success-story-card{
+    display:flex;
+    flex-direction:column;
     background:#fff;
     border-radius:20px;
     overflow:hidden;
@@ -32,13 +34,16 @@
 }
 
 .success-story-image{
-    position:relative;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
 .success-story-image img{
     width:100%;
-    height:240px;
-    object-fit:cover;
+    height:260px;
+    object-fit:contain;
+    background:#f8fafc;
 }
 
 .success-story-badge{
