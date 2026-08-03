@@ -23,6 +23,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         footerContainer.innerHTML = await response.text();
 
+if (
+    window.location.pathname.includes("login.html") ||
+    window.location.pathname.includes("signup.html")
+) {
+    document.querySelectorAll(".footer-column").forEach(el => {
+        el.remove();
+    });
+}
+
     } catch (err) {
         console.error("Footer Error:", err);
     }

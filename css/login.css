@@ -985,3 +985,24 @@ body {
     align-items: flex-start !important;
   }
 }
+/* Login & Signup Footer */
+
+.footer-column{
+    display:none;
+}
+
+.footer-container{
+    grid-template-columns:1fr 1fr;
+}
+
+.footer-brand{
+    justify-self:start;
+}
+
+.footer-founder{
+    justify-self:end;
+}
+
+.footer-bottom{
+    grid-column:1/-1;
+}
