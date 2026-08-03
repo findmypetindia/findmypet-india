@@ -1,0 +1,232 @@
+/* ==========================================
+   FINDMYPET INDIA - PREMIUM FOOTER
+========================================== */
+
+.site-footer{
+    background:linear-gradient(135deg,#0a1f56,#153d96);
+    color:#fff;
+    padding:55px 50px 25px;
+    overflow:hidden;
+    position:relative;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns: 1.7fr auto auto 1.3fr;
+    column-gap: 60px;
+    align-items:start;
+}
+.footer-column{
+    width:max-content;
+}
+
+.footer-links{
+    align-items:flex-start;
+}
+/* Brand */
+
+.footer-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#fff;
+    font-size:30px;
+    font-weight:800;
+}
+
+.footer-logo strong{
+    color:#58a6ff;
+}
+
+.footer-logo-icon{
+    font-size:34px;
+}
+
+.footer-tagline{
+    margin:18px 0 25px;
+    color:#d9e7ff;
+    line-height:1.7;
+    font-size:18px;
+}
+
+.footer-socials{
+    display:flex;
+    gap:14px;
+}
+
+.footer-socials a{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.footer-socials a:hover{
+    background:#2563eb;
+    transform:translateY(-5px);
+}
+
+/* Columns */
+
+.footer-column h3{
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+.footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.footer-links a{
+    color:#d9e7ff;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:#58a6ff;
+    padding-left:6px;
+}
+
+/* Founder Card */
+
+.footer-founder{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    padding:24px;
+    backdrop-filter:blur(12px);
+    transition:.3s;
+}
+
+.footer-founder:hover{
+    transform:translateY(-6px);
+}
+
+.founder-badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:50px;
+    background:#2563eb;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+.footer-founder h2{
+    font-size:34px;
+    margin-bottom:5px;
+}
+
+.founder-name{
+    color:#8dc3ff;
+    margin-bottom:15px;
+    font-weight:600;
+}
+
+.founder-role{
+    font-weight:600;
+    margin-bottom:16px;
+}
+
+.founder-description{
+    color:#d9e7ff;
+    line-height:1.8;
+    margin-bottom:22px;
+}
+
+.footer-email{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#fff;
+    background:#2563eb;
+    padding:14px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.footer-email:hover{
+    background:#1d4ed8;
+}
+
+/* Bottom */
+
+.footer-bottom{
+    margin-top:40px;
+    border-top:1px solid rgba(255,255,255,.1);
+    padding-top:20px;
+    text-align:center;
+    color:#d9e7ff;
+}
+
+.footer-bottom strong{
+    color:#fff;
+}
+
+/* Tablet */
+
+@media(max-width:1100px){
+
+.footer-container{
+grid-template-columns:1fr 1fr;
+}
+
+.footer-founder{
+grid-column:1/-1;
+max-width:550px;
+margin:auto;
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.site-footer{
+padding:45px 20px;
+}
+
+.footer-container{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.footer-logo{
+justify-content:center;
+}
+
+.footer-socials{
+justify-content:center;
+}
+
+.footer-links{
+align-items:center;
+}
+
+.footer-founder{
+margin-top:15px;
+}
+
+}
+.footer-links-column{
+    justify-self:end;
+    text-align:left;
+}
+
+.footer-support-column{
+    justify-self:start;
+    text-align:left;
+    margin-left:-25px;
+}

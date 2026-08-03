@@ -2293,17 +2293,67 @@ main {
   }
 }
 
-@media (max-width: 700px) {
-  .site-footer {
-    padding: 35px 22px 18px;
-  }
+@media (max-width:700px){
 
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    text-align: center;
-  }
+.site-footer{
+    padding:45px 40px 18px;
+}
 
+.footer-container{
+    grid-template-columns:1fr;
+    gap:32px;
+    text-align:center;
+}
+
+.footer-brand{
+    text-align:center;
+}
+
+.footer-logo{
+    justify-content:center;
+}
+
+.footer-socials{
+    justify-content:center;
+}
+
+.footer-links{
+    align-items:center;
+}
+
+.footer-founder{
+    margin-top:15px;
+    text-align:center;
+}
+
+.footer-founder h2{
+    font-size:28px;
+    line-height:1.2;
+}
+
+.footer-founder p{
+    font-size:15px;
+}
+
+.footer-email{
+    width:100%;
+    justify-content:center;
+}
+
+.footer-bottom{
+    margin-top:25px;
+    text-align:center;
+}
+}
+.footer-links{
+    align-items:center;
+}
+
+.footer-links a{
+    display:inline-block;
+}
+
+}
   .footer-logo,
   .footer-socials {
     justify-content: center;
@@ -2320,6 +2370,278 @@ main {
   .footer-founder h2 {
     font-size: 25px;
   }
+}
+/* ===========================
+   PREMIUM FOUNDER CARD
+=========================== */
+
+.footer-founder{
+    grid-column:1/-1;
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.founder-card{
+
+    width:100%;
+    max-width:760px;
+
+    padding:42px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    background:linear-gradient(135deg,#16213e,#1d4ed8);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.35);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.founder-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.05);
+
+    top:-120px;
+
+    right:-120px;
+
+}
+
+.founder-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 20px;
+
+    border-radius:999px;
+
+    background:#3158f5;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    margin-bottom:22px;
+
+}
+
+.founder-avatar{
+
+    width:95px;
+
+    height:95px;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:42px;
+
+    background:#fff;
+
+    color:#3158f5;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+    margin-bottom:18px;
+
+}
+
+.founder-card h2{
+
+    color:#fff;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:6px;
+
+}
+
+.founder-nickname{
+
+    color:#bfdbfe;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+.founder-role{
+
+    color:#e2e8f0;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    margin-bottom:22px;
+
+}
+
+.founder-description{
+
+    max-width:560px;
+
+    margin:auto;
+
+    color:#dbeafe;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+}
+
+.founder-email{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:30px;
+
+    padding:14px 28px;
+
+    border-radius:15px;
+
+    text-decoration:none;
+
+    background:#fff;
+
+    color:#1d4ed8;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.founder-email:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.2);
+
+}
+
+.footer-description{
+
+    margin:20px 0;
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+}
+
+.footer-links a{
+
+    transition:.25s;
+
+}
+
+.footer-links a:hover{
+
+    transform:translateX(6px);
+
+    color:#60a5fa;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+.footer-founder{
+
+margin-top:28px;
+
+}
+
+.founder-card{
+
+padding:28px 22px;
+
+border-radius:24px;
+
+}
+
+.founder-card h2{
+
+font-size:28px;
+
+}
+
+.founder-role{
+
+font-size:15px;
+
+}
+
+.founder-description{
+
+font-size:15px;
+
+line-height:1.7;
+
+}
+
+.founder-avatar{
+
+width:82px;
+
+height:82px;
+
+font-size:36px;
+
+}
+
+.footer-description{
+
+font-size:15px;
+
+}
+
 }
 /* =========================================
    CORRECT MOBILE RESPONSIVE NAVBAR
