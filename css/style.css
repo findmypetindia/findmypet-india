@@ -3438,3 +3438,120 @@ font-size:15px;
     --shadow:0 12px 28px rgba(49,88,245,.18);
 
 }
+/* ==========================================
+   FINAL MOBILE NAVBAR FIX
+========================================== */
+
+@media (max-width:1050px){
+
+.mobile-menu-button{
+    display:flex !important;
+    width:44px;
+    height:44px;
+    border:none;
+    background:#fff;
+    cursor:pointer;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    z-index:10005;
+}
+
+.mobile-menu-button span{
+    display:block !important;
+    width:24px;
+    height:3px !important;
+    background:#172033 !important;
+    border-radius:10px;
+    opacity:1 !important;
+    visibility:visible !important;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar-content{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:320px;
+    max-width:90%;
+    height:100vh;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+    overflow-y:auto;
+    transition:right .3s ease;
+    z-index:10004;
+    box-shadow:-10px 0 35px rgba(0,0,0,.15);
+}
+
+.navbar-content.mobile-menu-open{
+    right:0;
+}
+
+.mobile-menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    z-index:10003;
+}
+
+.mobile-menu-overlay.mobile-menu-overlay-open{
+    display:block;
+}
+
+.mobile-menu-header{
+    display:flex !important;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.navbar-content .nav-links{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:8px;
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.navbar-content .nav-links li{
+    width:100%;
+}
+
+.navbar-content .nav-links a{
+    display:flex !important;
+    width:100%;
+    padding:14px;
+    color:#172033;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.navbar-content .nav-links a:hover,
+.navbar-content .nav-links a.active{
+    background:#eef4ff;
+    color:#2563eb;
+}
+
+.navbar-content .nav-actions{
+    margin-top:auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.navbar-content .nav-actions .btn{
+    width:100%;
+}
+
+}
