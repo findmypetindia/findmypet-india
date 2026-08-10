@@ -12,23 +12,104 @@ const searchBtn = document.querySelector(".search-card button");
 const searchInput = document.querySelector(".search-card input");
 
 if (searchBtn && searchInput) {
-  searchBtn.addEventListener("click", () => {
-    const searchValue = searchInput.value.trim();
-
-    if (!searchValue) {
-      alert("Please enter pet name, breed, color or city.");
-      searchInput.focus();
-      return;
-    }
-
-    alert(`Searching pet reports for: ${searchValue}`);
-  });
+  searchBtn.addEventListener("click", searchHomepageReports);
 
   searchInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       searchBtn.click();
     }
   });
+}
+
+async function searchHomepageReports() {
+  const searchValue = searchInput.value.trim();
+
+  if (!searchValue) {
+    alert("Please enter pet name, breed, color or city.");
+    searchInput.focus();
+    return;
+  }
+
+  const reportsGrid = document.getElementById("homepageReportsGrid");
+  const resultsSection = document.querySelector(".community-reports");
+  const resultsHeading = document.getElementById("communityReportsHeading");
+
+  if (!reportsGrid || !window.supabaseClient) {
+    alert("Search is loading. Please try again in a moment.");
+    return;
+  }
+
+  const originalButtonText = searchBtn.textContent;
+  const safeSearchValue = searchValue.replace(/[,%().]/g, " ").trim();
+
+  if (!safeSearchValue) {
+    alert("Please enter a valid search term.");
+    return;
+  }
+
+  searchBtn.disabled = true;
+  searchBtn.textContent = "Searching...";
+  reportsGrid.innerHTML = `
+    <div class="homepage-loading">
+      <div class="homepage-spinner"></div>
+      <p>Matching pet reports search ho rahi hain...</p>
+    </div>
+  `;
+  resultsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  try {
+    const filter = [
+      "pet_name",
+      "pet_type",
+      "breed",
+      "color",
+      "city",
+      "area",
+      "state"
+    ]
+      .map((field) => `${field}.ilike.%${safeSearchValue}%`)
+      .join(",");
+
+    const { data, error } = await supabaseClient
+      .from("pet_reports")
+      .select("id, report_type, pet_name, pet_type, breed, color, city, state, report_date, mobile, image_url, created_at")
+      .or(filter)
+      .order("created_at", { ascending: false })
+      .limit(50);
+
+    if (error) throw error;
+
+    if (resultsHeading) {
+      resultsHeading.textContent = `🔎 Search Results for “${searchValue}”`;
+    }
+
+    reportsGrid.innerHTML = "";
+
+    if (!data?.length) {
+      reportsGrid.innerHTML = `
+        <div class="homepage-empty">
+          <h3>Koi matching pet report nahi mili</h3>
+          <p>Pet name, breed, colour ya city ka doosra keyword try karein.</p>
+        </div>
+      `;
+      return;
+    }
+
+    data.forEach((pet) => {
+      reportsGrid.appendChild(createHomepagePetCard(pet));
+    });
+  } catch (error) {
+    console.error("Homepage search error:", error);
+    reportsGrid.innerHTML = `
+      <div class="homepage-error">
+        <h3>Search complete nahi ho paayi</h3>
+        <p>Please refresh karke dobara try karein.</p>
+      </div>
+    `;
+  } finally {
+    searchBtn.disabled = false;
+    searchBtn.textContent = originalButtonText;
+  }
 }
 
 
