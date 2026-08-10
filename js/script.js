@@ -34,7 +34,7 @@ async function searchHomepageReports() {
   const resultsSection = document.querySelector(".community-reports");
   const resultsHeading = document.getElementById("communityReportsHeading");
 
-  if (!reportsGrid || !window.supabaseClient) {
+  if (!reportsGrid || typeof supabaseClient === "undefined") {
     alert("Search is loading. Please try again in a moment.");
     return;
   }
@@ -80,7 +80,7 @@ async function searchHomepageReports() {
     if (error) throw error;
 
     if (resultsHeading) {
-      resultsHeading.textContent = `🔎 Search Results for “${searchValue}”`;
+      resultsHeading.textContent = `ð Search Results for â${searchValue}â`;
     }
 
     reportsGrid.innerHTML = "";
@@ -458,7 +458,7 @@ if (foundForm) {
         await savePetReport(reportData);
 
         alert(
-          "Found pet report saved successfully! 🐾"
+          "Found pet report saved successfully! ð¾"
         );
 
         foundForm.reset();
