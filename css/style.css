@@ -1,3 +1,10 @@
+/* Desktop navbar spacing */
+@media (min-width: 1051px) {
+  .navbar-content {
+    padding-left: 26px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1821,6 +1828,14 @@ padding:35px 20px;
 
 .details-btn:hover {
   background: #2148c7;
+
+
+/* Keep desktop navigation separate from the FindMyPet India logo. */
+@media (min-width: 1051px) {
+  .navbar-content {
+    padding-left: 26px;
+  }
+}
 }
 .view-all-actions {
   display: flex;
