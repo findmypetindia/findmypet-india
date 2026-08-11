@@ -1,11 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#132b68"/>
-  <circle cx="256" cy="264" r="156" fill="#fff0d3"/>
-  <path d="M139 172 94 90c-9-16 5-35 23-31l94 26M373 172l45-82c9-16-5-35-23-31l-94 26" fill="#8b6258" stroke="#a86b50" stroke-width="22" stroke-linejoin="round"/>
-  <circle cx="199" cy="240" r="18" fill="#242424"/>
-  <circle cx="313" cy="240" r="18" fill="#242424"/>
-  <circle cx="313" cy="240" r="40" fill="none" stroke="#cf7650" stroke-width="22"/>
-  <path d="M224 286q32 24 64 0" fill="none" stroke="#242424" stroke-width="20" stroke-linecap="round"/>
-  <path d="M256 271l-24 18 24 19 24-19z" fill="#242424"/>
-  <path d="M238 323q18 20 36 0v39q-18 27-36 0z" fill="#e54085"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="FindMyPet India dog icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#0b1e58"/>
+      <stop offset=".54" stop-color="#123bba"/>
+      <stop offset="1" stop-color="#2f5bf3"/>
+    </linearGradient>
+    <linearGradient id="face" x1=".25" y1="0" x2=".75" y2="1">
+      <stop stop-color="#fff3d8"/>
+      <stop offset="1" stop-color="#fce2ad"/>
+    </linearGradient>
+    <linearGradient id="ear" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#b27663"/>
+      <stop offset="1" stop-color="#805047"/>
+    </linearGradient>
+    <linearGradient id="tongue" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#f34a9b"/>
+      <stop offset="1" stop-color="#d92476"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="11" flood-color="#071443" flood-opacity=".36"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="4" y="4" width="504" height="504" rx="108" fill="none" stroke="#4b73f7" stroke-opacity=".62" stroke-width="4"/>
+  <ellipse cx="256" cy="474" rx="137" ry="19" fill="#07164a" opacity=".32"/>
+  <g filter="url(#shadow)">
+    <path d="M183 171C137 139 93 151 83 205c-9 50 10 101 49 106 31 5 44-25 54-70z" fill="url(#ear)" stroke="#cf7650" stroke-width="6"/>
+    <path d="M329 171c46-32 90-20 100 34 9 50-10 101-49 106-31 5-44-25-54-70z" fill="url(#ear)" stroke="#cf7650" stroke-width="6"/>
+    <path d="M256 137c-71 0-116 50-116 133 0 98 41 143 116 143s116-45 116-143c0-83-45-133-116-133z" fill="url(#face)"/>
+    <ellipse cx="198" cy="272" rx="15" ry="20" fill="#202125"/>
+    <circle cx="313" cy="270" r="43" fill="#d47750"/>
+    <ellipse cx="313" cy="272" rx="16" ry="21" fill="#202125"/>
+    <ellipse cx="256" cy="322" rx="28" ry="21" fill="#202125"/>
+    <path d="M256 339c-11 13-22 17-37 17-14 0-25-6-33-15M256 339c11 13 22 17 37 17 14 0 25-6 33-15" fill="none" stroke="#202125" stroke-width="11" stroke-linecap="round"/>
+    <path d="M240 362c8 9 24 9 32 0v35c-9 16-23 16-32 0z" fill="url(#tongue)"/>
+    <path d="M256 372v15" stroke="#ff9fc8" stroke-width="6" stroke-linecap="round"/>
+  </g>
 </svg>
