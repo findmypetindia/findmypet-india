@@ -1084,3 +1084,14 @@ body {
 
   .forgot-password { margin-left: auto; }
 }
+
+
+/* Override the narrow-phone column rule: keep both actions side by side */
+@media (max-width: 380px) {
+  .login-options {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
