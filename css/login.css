@@ -1006,3 +1006,63 @@ body {
 .footer-bottom{
     grid-column:1/-1;
 }
+
+/* Compact branded hero for phones */
+.mobile-hero { display: none; }
+
+@media (max-width: 950px) {
+  .right-section {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .mobile-hero {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 auto 22px;
+    padding: 16px;
+    border: 1px solid #dbe6ff;
+    border-radius: 20px;
+    color: #fff;
+    background: linear-gradient(135deg, #0e245d, #2f5bea);
+    box-shadow: 0 14px 32px rgba(31, 70, 180, .22);
+  }
+
+  .mobile-hero-icon {
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: #fff;
+    font-size: 34px;
+    box-shadow: 0 8px 18px rgba(5, 22, 72, .22);
+  }
+
+  .mobile-hero strong,
+  .mobile-hero span { display: block; }
+
+  .mobile-hero strong {
+    font-size: 20px;
+    line-height: 1.15;
+  }
+
+  .mobile-hero span {
+    margin-top: 5px;
+    color: #dce7ff;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .mobile-logo { display: none !important; }
+}
+
+@media (max-width: 380px) {
+  .mobile-hero { padding: 13px; gap: 11px; }
+  .mobile-hero-icon { width: 50px; height: 50px; flex-basis: 50px; font-size: 29px; }
+  .mobile-hero strong { font-size: 18px; }
+}
