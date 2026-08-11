@@ -273,7 +273,7 @@ if (lostForm) {
       );
 
       try {
-        const imageURL =
+        const { imageUrl, imagePath } =
           await uploadPetImage(imageFile);
 
         const reportData = {
@@ -330,8 +330,8 @@ if (lostForm) {
           details:
             formFields[16]?.value.trim() || "",
 
-        image_url: imageUrl,
-image_path: imagePath,
+          image_url: imageUrl,
+          image_path: imagePath,
         };
 
         await savePetReport(reportData);
@@ -397,7 +397,7 @@ if (foundForm) {
       );
 
       try {
-        const imageURL =
+        const { imageUrl, imagePath } =
           await uploadPetImage(imageFile);
 
         const reportData = {
@@ -452,7 +452,8 @@ if (foundForm) {
           details:
             formFields[16]?.value.trim() || "",
 
-          image_url: imageURL
+          image_url: imageUrl,
+          image_path: imagePath
         };
 
         await savePetReport(reportData);
