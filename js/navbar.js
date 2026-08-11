@@ -1,3 +1,12 @@
+// Load the shared responsive navbar stylesheet on every page.
+if (!document.querySelector('link[data-navbar-styles]')) {
+  const navbarStyles = document.createElement("link");
+  navbarStyles.rel = "stylesheet";
+  navbarStyles.href = "/css/navbar.css?v=1";
+  navbarStyles.dataset.navbarStyles = "true";
+  document.head.appendChild(navbarStyles);
+}
+
 // ==========================================
 // FindMyPet India - Shared Protected Navbar
 // Desktop same, mobile hamburger menu
