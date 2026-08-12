@@ -60,4 +60,4 @@ I led this project from concept to deployment:
 
 ---
 
-Created and developed by **Kitty**.
+Created and developed by **Aditi Panwar**.
