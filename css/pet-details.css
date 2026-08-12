@@ -318,3 +318,54 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Shared-header fallback for this standalone detail page. */
+.site-header {
+  position: relative;
+  z-index: 1003;
+  min-height: 72px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--details-border);
+}
+
+.navbar {
+  width: min(1180px, calc(100% - 32px));
+  min-height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--details-navy);
+  font-size: 1.12rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logo b {
+  color: var(--details-blue);
+}
+
+.logo-icon {
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  background: #edf3ff;
+  border-radius: 11px;
+}
+
+/* The dimmer must never cover the page until the menu is explicitly opened. */
+@media (max-width: 767px) {
+  .mobile-menu-overlay:not(.mobile-menu-overlay-open) {
+    display: none !important;
+  }
+
+  .mobile-menu-overlay.mobile-menu-overlay-open {
+    display: block !important;
+  }
+}
