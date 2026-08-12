@@ -20,6 +20,50 @@ document.addEventListener("DOMContentLoaded", function () {
   const forgotPasswordButton =
     document.getElementById("forgotPasswordButton");
 
+  const rememberMe =
+    document.getElementById("rememberMe");
+
+  const REMEMBERED_EMAIL_KEY =
+    "findmypet_remembered_email";
+
+
+  // =====================================
+  // REMEMBERED EMAIL
+  // Password kabhi save nahi hota
+  // =====================================
+
+  function restoreRememberedEmail() {
+    if (!loginEmail || !rememberMe) return;
+
+    try {
+      const rememberedEmail =
+        localStorage.getItem(REMEMBERED_EMAIL_KEY);
+
+      if (rememberedEmail) {
+        loginEmail.value = rememberedEmail;
+        rememberMe.checked = true;
+      }
+    } catch (error) {
+      console.warn("Could not restore remembered email:", error);
+    }
+  }
+
+
+  function updateRememberedEmail(email) {
+    try {
+      if (rememberMe && rememberMe.checked) {
+        localStorage.setItem(REMEMBERED_EMAIL_KEY, email);
+      } else {
+        localStorage.removeItem(REMEMBERED_EMAIL_KEY);
+      }
+    } catch (error) {
+      console.warn("Could not update remembered email:", error);
+    }
+  }
+
+
+  restoreRememberedEmail();
+
 
   // =====================================
   // MESSAGE FUNCTION
@@ -188,6 +232,11 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
 
         }
+
+
+        // Remember only the email when requested.
+        // Password is never stored in the browser.
+        updateRememberedEmail(email);
 
 
         // Button loading state
