@@ -65,6 +65,32 @@ document.addEventListener("DOMContentLoaded", function () {
   restoreRememberedEmail();
 
 
+  // Save immediately when the checkbox is selected.
+  // This also works before submitting the form.
+  if (rememberMe) {
+    rememberMe.addEventListener("change", function () {
+      const email = loginEmail ? loginEmail.value.trim() : "";
+
+      if (rememberMe.checked && email) {
+        updateRememberedEmail(email);
+      }
+
+      if (!rememberMe.checked) {
+        updateRememberedEmail("");
+      }
+    });
+  }
+
+
+  if (loginEmail) {
+    loginEmail.addEventListener("input", function () {
+      if (rememberMe && rememberMe.checked) {
+        updateRememberedEmail(loginEmail.value.trim());
+      }
+    });
+  }
+
+
   // =====================================
   // MESSAGE FUNCTION
   // =====================================
