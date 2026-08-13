@@ -3584,3 +3584,27 @@ font-size:15px;
   color: #7c2d12;
   background: #ffedd5;
 }
+
+
+/* Full visible sighting action in search and AI result cards */
+.sighting-btn {
+  flex: 1 0 100% !important;
+  min-width: 0 !important;
+  min-height: 46px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px !important;
+  color: #9a3412 !important;
+  background: #fff7ed !important;
+  border: 1px solid #fdba74 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.sighting-btn:hover {
+  color: #7c2d12 !important;
+  background: #ffedd5 !important;
+}
