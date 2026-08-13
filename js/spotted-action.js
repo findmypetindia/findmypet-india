@@ -1,6 +1,6 @@
 /*
- * Makes the "I Spotted This Pet" action visible on every LOST report card.
- * It also supports cards that are rendered after the page has loaded.
+ * Adds the "I Spotted This Pet" action to LOST report cards.
+ * This script deliberately runs only once after cards finish rendering.
  */
 (function () {
   "use strict";
@@ -9,83 +9,54 @@
 
   function isLostCard(card) {
     return Boolean(
-      card.querySelector(
-        ".tag.lost, .status-badge.lost, [data-report-type='lost']"
-      )
+      card.querySelector(".tag.lost, .status-badge.lost")
     );
   }
 
-  function makeSightingHref(detailsLink) {
-    const href = detailsLink?.getAttribute("href") || "";
-
-    if (!href) {
-      return "#";
-    }
-
-    if (/[?&]spotted=1(?:&|$)/.test(href)) {
-      return href;
-    }
-
-    return href + (href.includes("?") ? "&" : "?") + "spotted=1";
-  }
-
   function addSightingAction(card) {
-    if (!isLostCard(card)) {
-      return;
-    }
+    if (!isLostCard(card)) return;
 
     const actions = card.querySelector(
       ".pet-card-actions, .ai-result-actions"
     );
 
-    if (!actions) {
-      return;
-    }
+    if (!actions || actions.querySelector(".sighting-btn")) return;
 
     const detailsLink = actions.querySelector(
       "a.details-btn, a[href*='pet.html?id=']"
     );
 
-    let sightingButton = actions.querySelector(".sighting-btn");
+    if (!detailsLink) return;
 
-    if (!sightingButton) {
-      sightingButton = document.createElement("a");
-      sightingButton.className =
-        "pet-action-btn sighting-btn visible-sighting-action";
+    const button = document.createElement("a");
+    const href = detailsLink.getAttribute("href") || "";
 
-      const firstContactAction = actions.querySelector(
-        ".call-btn, .whatsapp-btn"
-      );
+    button.className =
+      "pet-action-btn sighting-btn visible-sighting-action";
+    button.textContent = LABEL;
+    button.setAttribute("aria-label", LABEL);
+    button.href =
+      href + (href.includes("?") ? "&" : "?") + "spotted=1";
 
-      if (firstContactAction) {
-        actions.insertBefore(sightingButton, firstContactAction);
-      } else {
-        actions.appendChild(sightingButton);
-      }
+    const contactAction = actions.querySelector(
+      ".call-btn, .whatsapp-btn"
+    );
+
+    if (contactAction) {
+      actions.insertBefore(button, contactAction);
+    } else {
+      actions.appendChild(button);
     }
-
-    sightingButton.textContent = LABEL;
-    sightingButton.setAttribute("aria-label", LABEL);
-    sightingButton.href = makeSightingHref(detailsLink);
   }
 
-  function enhanceAllCards() {
+  function enhanceCards() {
     document
       .querySelectorAll(".pet-card, .match-card")
       .forEach(addSightingAction);
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    enhanceAllCards();
-
-    const observer = new MutationObserver(enhanceAllCards);
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-
-    window.setTimeout(enhanceAllCards, 500);
-    window.setTimeout(enhanceAllCards, 1500);
+    window.setTimeout(enhanceCards, 400);
+    window.setTimeout(enhanceCards, 1200);
   });
 })();
