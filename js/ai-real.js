@@ -297,7 +297,7 @@ const reports = await fetchPetReports(requiredReportType);
 async function fetchPetReports(requiredReportType) {
   const { data, error } = await supabaseClient
     .from("pet_reports")
-    .select("*")
+    .select("id,report_type,pet_name,pet_type,breed,color,city,state,image_url")
     .eq("report_type", requiredReportType)
     .not("image_url", "is", null)
     .neq("image_url", "")
@@ -510,19 +510,6 @@ function renderMatches(matches, resultsGrid) {
         pet.similarity
       );
 
-    const rawPhone =
-      pet.whatsapp ||
-      pet.mobile ||
-      "";
-
-    const phone = String(rawPhone)
-      .replace(/\D/g, "");
-
-    const whatsappNumber =
-      phone.length === 10
-        ? `91${phone}`
-        : phone;
-
     const card =
       document.createElement("article");
 
@@ -590,31 +577,12 @@ function renderMatches(matches, resultsGrid) {
         </p>
 
         <div class="ai-result-actions">
-          ${
-            phone
-              ? `
-                <a
-                  class="pet-action-btn call-btn"
-                  href="tel:${phone}"
-                >
-                  Call
-                </a>
-
-                <a
-                  class="pet-action-btn whatsapp-btn"
-                  href="https://wa.me/${whatsappNumber}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  WhatsApp
-                </a>
-              `
-              : `
-                <span class="contact-unavailable">
-                  Contact unavailable
-                </span>
-              `
-          }
+          <a
+            class="pet-action-btn details-btn"
+            href="pet.html?id=${pet.id}"
+          >
+            View Details
+          </a>
         </div>
       </div>
     `;
