@@ -78,7 +78,7 @@ async function loadFilteredReports() {
     const { data, error } =
       await supabaseClient
         .from("pet_reports")
-        .select("*")
+        .select("id,report_type,pet_name,pet_type,breed,color,city,state,area,report_date,details,image_url,created_at")
         .eq("report_type", reportType)
         .order("created_at", {
           ascending: false
@@ -132,25 +132,6 @@ async function loadFilteredReports() {
         [pet.area, pet.city, pet.state]
           .filter(Boolean)
           .join(", ");
-
-
-      const phone =
-        String(pet.mobile || "")
-          .replace(/\D/g, "");
-
-
-      const whatsappRaw =
-        String(
-          pet.whatsapp ||
-          pet.mobile ||
-          ""
-        ).replace(/\D/g, "");
-
-
-      const whatsappNumber =
-        whatsappRaw.length === 10
-          ? `91${whatsappRaw}`
-          : whatsappRaw;
 
 
       const imageUrl =
@@ -221,43 +202,13 @@ async function loadFilteredReports() {
           }
 
           <div class="pet-card-actions">
-          <a
-  class="pet-action-btn details-btn"
-  href="pet.html?id=${pet.id}"
->
-  View Details
-</a>
-
-  <a
-    class="pet-action-btn details-btn"
-    href="pet.html?id=${pet.id}"
-  >
-    View Details
-  </a>
-
-  <a class="pet-action-btn call-btn" href="tel:${phone}">
-    Call
-  </a>
-
-  <a
-    class="pet-action-btn whatsapp-btn"
-    href="https://wa.me/${whatsappNumber}"
-    target="_blank"
-  >
-    WhatsApp
-  </a>
-
-</div>
-
-            ${
-              !phone && !whatsappNumber
-                ? `
-                  <span class="contact-unavailable">
-                    Contact unavailable
-                  </span>
-                `
-                : ""
-            }
+            <a
+              class="pet-action-btn details-btn"
+              href="pet.html?id=${pet.id}"
+            >
+              View Details
+            </a>
+          </div>
 
           </div>
 
