@@ -195,7 +195,7 @@ function createReportCard(
     actions.appendChild(
       makeReportAction(
         "sighting-btn",
-        "👀 I Spotted This Pet",
+        "I Spotted This Pet",
         detailsUrl + "&spotted=1",
         false
       )
