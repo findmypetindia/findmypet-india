@@ -47,7 +47,6 @@ async function loadHomepageReports() {
   try {
     const { data, error } = await supabaseClient
       .from("pet_reports")
-      .eq("status", "active")
       .select(
         `
           id,
@@ -64,6 +63,7 @@ async function loadHomepageReports() {
           created_at
         `
       )
+      .or("status.eq.active,status.is.null")
       .order("created_at", { ascending: false })
       .limit(8);
 
