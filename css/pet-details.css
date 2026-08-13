@@ -251,6 +251,15 @@ body {
 
 .details-call-button { background: var(--details-blue); }
 .details-whatsapp-button { background: #12a866; }
+.details-contact-button {
+  color: var(--details-blue) !important;
+  background: #fff;
+  border: 1px solid #9db8ff !important;
+  cursor: pointer;
+}
+.contact-privacy-note {
+  margin-bottom: 2px !important;
+}
 
 @media (max-width: 760px) {
   .pet-details-page {

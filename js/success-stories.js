@@ -19,7 +19,7 @@ async function loadSuccessStories() {
     const { data, error } =
       await supabaseClient
         .from("pet_reports")
-        .select("*")
+        .select("id,report_type,pet_name,pet_type,breed,city,state,image_url,updated_at,created_at")
         .eq("status", "reunited")
         .order("updated_at", {
           ascending: false

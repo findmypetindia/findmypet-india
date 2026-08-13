@@ -58,6 +58,45 @@ function showSignupMessage(message, type = "error") {
 }
 
 
+function getFriendlySignupError(error) {
+  const rawMessage = String(
+    error?.message ||
+    ""
+  );
+  const message = rawMessage.toLowerCase();
+
+  if (
+    message.includes("already registered") ||
+    message.includes("already exists")
+  ) {
+    return "This email is already registered. Please log in.";
+  }
+
+  if (message.includes("invalid email")) {
+    return "Please enter a valid email address.";
+  }
+
+  if (
+    message.includes("email") &&
+    (
+      message.includes("rate limit") ||
+      message.includes("send") ||
+      message.includes("smtp") ||
+      message.includes("delivery") ||
+      message.includes("provider")
+    )
+  ) {
+    return "Verification email is temporarily unavailable. Please try again later or contact indiafindmypet@gmail.com.";
+  }
+
+  if (message.includes("password")) {
+    return "Please create a password with at least 6 characters.";
+  }
+
+  return "Account could not be created right now. Please try again or contact indiafindmypet@gmail.com.";
+}
+
+
 // =====================================
 // SHOW / HIDE PASSWORD
 // =====================================
@@ -215,7 +254,7 @@ if (signupForm) {
 );
 
           showSignupMessage(
-            "Account created! Please check your email and confirm your account.",
+            "Account created! Check your email to confirm your account. If it does not arrive, use Resend or try again later.",
             "success"
           );
 
@@ -253,47 +292,8 @@ setTimeout(function () {
           error
         );
 
-        let message =
-          error.message ||
-          "Account could not be created.";
-
-        const lowerMessage =
-          message.toLowerCase();
-
-
-        if (
-          lowerMessage.includes("already registered") ||
-          lowerMessage.includes("already exists")
-        ) {
-
-          message =
-            "This email is already registered. Please log in.";
-
-        }
-
-
-        if (
-          lowerMessage.includes("invalid email")
-        ) {
-
-          message =
-            "Please enter a valid email address.";
-
-        }
-
-
-        if (
-          lowerMessage.includes("password")
-        ) {
-
-          message =
-            "Please create a password with at least 6 characters.";
-
-        }
-
-
         showSignupMessage(
-          message,
+          getFriendlySignupError(error),
           "error"
         );
 

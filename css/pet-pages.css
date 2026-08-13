@@ -412,6 +412,45 @@ body.ai-theme{
   .reports-page-grid,.results-grid,.footer-grid{grid-template-columns:1fr}
   .ai-card{padding:18px}
 }
+
+/* Report privacy notice */
+.privacy-notice{
+  margin-top:20px;
+  padding:18px;
+  border:1px solid #bdd1ff;
+  border-radius:16px;
+  background:linear-gradient(145deg,#f9fbff,#edf4ff);
+}
+.privacy-notice h2{
+  margin:0 0 8px;
+  color:#173a9d;
+  font-size:1.05rem;
+}
+.privacy-notice p{
+  margin:7px 0;
+  color:#40506b;
+  line-height:1.55;
+}
+.privacy-consent{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-top:14px;
+  color:#1d2c4d;
+  font-weight:700;
+  line-height:1.45;
+  cursor:pointer;
+}
+.privacy-consent input{
+  width:18px;
+  height:18px;
+  flex:0 0 auto;
+  margin-top:2px;
+  accent-color:#2f5cf4;
+}
+.privacy-consent a{
+  color:#1f4fd4;
+}
 :root{
   --bg:#f7f9fc;
   --surface:#ffffff;
