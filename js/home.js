@@ -58,7 +58,6 @@ async function loadHomepageReports() {
           city,
           state,
           report_date,
-          mobile,
           image_url,
           created_at
         `
@@ -138,8 +137,6 @@ function createHomepagePetCard(pet) {
     pet.report_date || pet.created_at
   );
 
-  const phone = cleanPhoneNumber(pet.mobile);
-
   const photo = document.createElement("div");
   photo.className = "pet-photo";
 
@@ -194,27 +191,6 @@ detailsLink.textContent =
 "View Details";
 
 actionRow.appendChild(detailsLink);
-  if (phone) {
-    const callLink = document.createElement("a");
-    callLink.className = "pet-action-btn call-btn";
-    callLink.href = `tel:+${phone}`;
-    callLink.textContent = "Call";
-
-    const whatsappLink = document.createElement("a");
-    whatsappLink.className =
-      "pet-action-btn whatsapp-btn";
-    whatsappLink.href = `https://wa.me/${phone}`;
-    whatsappLink.target = "_blank";
-    whatsappLink.rel = "noopener noreferrer";
-    whatsappLink.textContent = "WhatsApp";
-
-    actionRow.append(callLink, whatsappLink);
-  } else {
-    const unavailable = document.createElement("span");
-    unavailable.className = "contact-unavailable";
-    unavailable.textContent = "Contact unavailable";
-    actionRow.appendChild(unavailable);
-  }
 
   content.append(
     title,
