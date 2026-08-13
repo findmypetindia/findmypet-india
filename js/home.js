@@ -200,7 +200,7 @@ actionRow.appendChild(detailsLink);
     const sightingLink = document.createElement("a");
 
     sightingLink.className =
-      "pet-action-btn sighting-btn";
+      "pet-action-btn sighting-btn visible-sighting-action";
 
     sightingLink.href =
       "pages/pet.html?id=" +
