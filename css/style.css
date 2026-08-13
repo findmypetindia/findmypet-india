@@ -3570,3 +3570,17 @@ font-size:15px;
 }
 
 }
+
+
+/* Lost-pet sighting action */
+.sighting-btn {
+  flex-basis: 100%;
+  color: #9a3412;
+  background: #fff7ed;
+  border: 1px solid #fdba74;
+}
+
+.sighting-btn:hover {
+  color: #7c2d12;
+  background: #ffedd5;
+}
