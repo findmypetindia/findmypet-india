@@ -1,3 +1,46 @@
+
+const OFFICIAL_DELHI_NGOS = [
+  {
+    name: "Friendicoes SECA",
+    city: "Delhi",
+    state: "Delhi",
+    phone: "1135712913",
+    whatsapp: "",
+    email: "friendicoes.india@gmail.com",
+    website: "https://friendicoes.org/",
+    address:
+      "271 & 273 Defence Colony Flyover, Flyover Market, Jungpura Side, New Delhi, Delhi 110024",
+    maps_url:
+      "https://www.google.com/maps/search/?api=1&query=Friendicoes+SECA+Defence+Colony+New+Delhi",
+    services:
+      "AWBI-recognised: rescue and rehabilitation, veterinary shelter support, street-dog sterilisation and vaccination, adoption and re-homing",
+    emergency_available: false,
+    verified: true,
+    verification_label: "✓ AWBI-recognised",
+    logo_url: ""
+  },
+  {
+    name: "Delhi SPCA",
+    city: "Delhi",
+    state: "Delhi",
+    phone: "1123972805",
+    whatsapp: "",
+    email: "dspca09@yahoo.in",
+    website:
+      "https://development.delhi.gov.in/development/dspca",
+    address:
+      "Boulevard Road, opposite Tis Hazari Court, Delhi 110054",
+    maps_url:
+      "https://www.google.com/maps/search/?api=1&query=Delhi+SPCA+Boulevard+Road+Tis+Hazari+Delhi",
+    services:
+      "Delhi Government animal-welfare service: animal hospital support and cruelty-to-animals helpline",
+    emergency_available: false,
+    verified: true,
+    verification_label: "✓ Delhi Government",
+    logo_url: ""
+  }
+];
+
 document.addEventListener(
   "DOMContentLoaded",
   loadNgoDirectory
@@ -51,7 +94,10 @@ async function loadNgoDirectory() {
     }
 
     allNgos =
-      Array.isArray(data) ? data : [];
+      mergeNgoDirectory(
+        Array.isArray(data) ? data : [],
+        OFFICIAL_DELHI_NGOS
+      );
 
     updateCityOptions(allNgos);
     renderNgos(allNgos);
@@ -165,6 +211,37 @@ async function loadNgoDirectory() {
       );
     });
   }
+}
+
+function mergeNgoDirectory(
+  databaseNgos,
+  officialNgos
+) {
+  const seenNames = new Set();
+
+  return [
+    ...officialNgos,
+    ...databaseNgos
+  ]
+    .filter(function (ngo) {
+      const key =
+        cleanText(ngo.name)
+          .toLowerCase();
+
+      if (!key || seenNames.has(key)) {
+        return false;
+      }
+
+      seenNames.add(key);
+      return true;
+    })
+    .sort(function (firstNgo, secondNgo) {
+      return cleanText(firstNgo.name)
+        .localeCompare(
+          cleanText(secondNgo.name),
+          "en"
+        );
+    });
 }
 
 function createNgoCard(ngo) {
@@ -295,7 +372,10 @@ function createNgoCard(ngo) {
       "ngo-badge verified";
 
     verifiedBadge.textContent =
-      "✓ Verified";
+      cleanText(
+        ngo.verification_label,
+        "✓ Verified"
+      );
 
     header.appendChild(
       verifiedBadge
