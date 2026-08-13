@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             class="btn delete-report-button"
             data-report-id="${report.id}"
           >
-            Delete Report
+            Archive Report
           </button>
 
         </div>
@@ -220,20 +220,20 @@ document.addEventListener(
 
     const confirmed =
       window.confirm(
-        "Kya aap is report ko permanently delete karna chahte hain?"
+        "Kya aap is report ko archive karna chahte hain? Report aur photo recovery ke liye safe rahenge."
       );
 
     if (!confirmed) return;
 
     deleteButton.disabled = true;
     deleteButton.textContent =
-      "Deleting...";
+      "Archiving...";
 
     try {
       const { error } =
         await supabaseClient
           .from("pet_reports")
-          .delete()
+          .update({ status: "archived" })
           .eq("id", reportId);
 
       if (error) {
@@ -241,7 +241,7 @@ document.addEventListener(
       }
 
       alert(
-        "Report successfully delete ho gayi."
+        "Report archived ho gayi. Data recovery ke liye safe hai."
       );
 
       window.location.reload();
@@ -259,7 +259,7 @@ document.addEventListener(
 
       deleteButton.disabled = false;
       deleteButton.textContent =
-        "Delete Report";
+        "Archive Report";
     }
   }
 );
