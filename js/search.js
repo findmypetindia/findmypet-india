@@ -298,9 +298,9 @@ async function loadFilteredReports() {
     const { data, error } =
       await supabaseClient
         .from("pet_reports")
-        .eq("status", "active")
         .select("*")
         .eq("report_type", reportType)
+        .or("status.eq.active,status.is.null")
         .order("created_at", {
           ascending: false
         });
