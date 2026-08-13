@@ -6,7 +6,7 @@
   <title>Report Found Pet | FindMyPet India</title>
   <link rel="stylesheet" href="../css/navbar.css?v=1">
 <link rel="stylesheet" href="../css/style.css?v=607">
-  <link rel="stylesheet" href="../css/pet-pages.css?v=1">
+  <link rel="stylesheet" href="../css/pet-pages.css?v=2">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -34,23 +34,13 @@
         </div>
 
         <div class="form-body">
-          <section class="search-mode-box privacy-note" aria-label="Privacy and safety notice">
-            <h3>🔒 Your privacy and safety</h3>
-            <p>FindMyPet India only uses the details you enter to create and manage this pet report. We never ask for your OTP, payment details, phone contacts, or access to your full gallery. You select the pet photo yourself.</p>
-            <p><strong>Before you submit:</strong> the pet photo, pet details, location, and Call/WhatsApp contact buttons may be shown with the report so people can help reunite the pet safely.</p>
-            <label class="privacy-confirm">
-              <input type="checkbox" required>
-              I understand how this report will be used and agree to the <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
-            </label>
-          </section>
-
           <section id="finderSection" class="section-card">
             <h2>👤 Finder Details</h2>
             <div class="form-grid">
-              <div class="field"><label for="finderName">Your Name *</label><input type="text" id="finderName" placeholder="Enter your name" required></div>
-              <div class="field"><label for="finderMobile">Mobile Number *</label><input type="tel" id="finderMobile" placeholder="Enter mobile number" maxlength="10" required></div>
-              <div class="field"><label for="finderEmail">Email</label><input type="email" id="finderEmail" placeholder="Enter email address"></div>
-              <div class="field"><label for="finderWhatsapp">WhatsApp</label><input type="tel" id="finderWhatsapp" placeholder="Enter WhatsApp number" maxlength="10"></div>
+              <div class="field"><label for="finderName">Your Name *</label><input type="text" id="finderName" placeholder="Enter your name" autocomplete="name" required></div>
+              <div class="field"><label for="finderMobile">Mobile Number *</label><input type="tel" id="finderMobile" placeholder="Enter mobile number" autocomplete="tel" inputmode="numeric" maxlength="10" required></div>
+              <div class="field"><label for="finderEmail">Email</label><input type="email" id="finderEmail" placeholder="Enter email address" autocomplete="email"></div>
+              <div class="field"><label for="finderWhatsapp">WhatsApp</label><input type="tel" id="finderWhatsapp" placeholder="Enter WhatsApp number" inputmode="numeric" maxlength="10"></div>
             </div>
           </section>
 
@@ -89,7 +79,17 @@
             </div>
           </section>
 
-          <p id="foundFormMessage" class="form-message"></p>
+          <section class="privacy-notice" aria-labelledby="foundPrivacyHeading">
+            <h2 id="foundPrivacyHeading">🔒 Privacy &amp; Safety</h2>
+            <p>Your pet photo is re-saved before upload to remove camera metadata. Your pet details, reported location and selected contact options may be visible to people using FindMyPet India so they can help.</p>
+            <p>Do not enter passwords, OTPs, bank details, government-ID details or a full home address.</p>
+            <label class="privacy-consent" for="foundPrivacyConsent">
+              <input type="checkbox" id="foundPrivacyConsent">
+              <span>I understand what information may be shared and agree to the <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</span>
+            </label>
+          </section>
+
+          <p id="foundFormMessage" class="form-message" role="status" aria-live="polite"></p>
           <div class="form-actions">
             <a href="../index.html" class="btn btn-light">Cancel</a>
             <button type="submit" class="btn btn-accent" id="submitFoundButton">Submit Found Report</button>
@@ -107,8 +107,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../js/supabase.js"></script>
   <script src="../js/navbar.js?v=13"></script>
-  <script src="../js/search.js"></script>
-  <script src="../js/found.js?v=201"></script>
+  <script src="../js/search.js?v=2"></script>
+  <script src="../js/js/js/found.js?v=202"></script>
 <div id="footer-container"></div>
 
 <script src="../js/footer.js"></script>
