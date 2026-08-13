@@ -447,3 +447,194 @@ body {
     border: 1px solid #ffd4d8 !important;
   }
 }
+
+/* I spotted this pet */
+.sighting-section {
+  border-color: #fed7aa;
+  background: linear-gradient(145deg, #fffaf5, #fff7ed);
+}
+
+.sighting-open-button {
+  width: 100%;
+  margin-top: 16px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  box-shadow: 0 10px 22px rgba(234, 88, 12, 0.18);
+}
+
+.sighting-safety-note {
+  margin-top: 12px !important;
+  color: #9a3412 !important;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.sighting-modal {
+  position: fixed;
+  z-index: 1100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.sighting-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.62);
+  backdrop-filter: blur(4px);
+}
+
+.sighting-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 540px);
+  max-height: min(760px, calc(100vh - 40px));
+  overflow: auto;
+  padding: 30px;
+  border: 1px solid #fed7aa;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 28px 72px rgba(15, 23, 42, 0.28);
+}
+
+.sighting-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #475569;
+  background: #f1f5f9;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sighting-kicker {
+  display: inline-flex;
+  padding: 7px 11px;
+  color: #9a3412;
+  background: #fff7ed;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.sighting-dialog h2 {
+  margin: 15px 0 8px;
+  color: var(--details-navy);
+  font-size: 1.65rem;
+}
+
+.sighting-dialog-intro {
+  margin: 0 0 22px;
+  color: var(--details-muted);
+  line-height: 1.55;
+}
+
+.sighting-field {
+  display: block;
+  margin-top: 15px;
+}
+
+.sighting-field span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--details-text);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.sighting-field input,
+.sighting-field textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 12px 13px;
+  color: var(--details-text);
+  background: #ffffff;
+  font: inherit;
+}
+
+.sighting-field textarea {
+  min-height: 102px;
+  resize: vertical;
+}
+
+.sighting-field input:focus,
+.sighting-field textarea:focus {
+  outline: none;
+  border-color: #f97316;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.13);
+}
+
+.sighting-form-message {
+  min-height: 20px;
+  margin: 13px 0 0;
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.sighting-form-message.error {
+  color: #b91c1c;
+}
+
+.sighting-form-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.sighting-form-actions button {
+  min-height: 46px;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.sighting-cancel-button {
+  color: #475569;
+  background: #f1f5f9;
+}
+
+.sighting-submit-button {
+  color: #ffffff;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.sighting-dialog-note {
+  margin: 16px 0 0;
+  color: #9a3412;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+body.sighting-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 520px) {
+  .sighting-modal {
+    align-items: end;
+    padding: 10px;
+  }
+
+  .sighting-dialog {
+    max-height: calc(100vh - 20px);
+    padding: 25px 18px 20px;
+    border-radius: 22px;
+  }
+
+  .sighting-form-actions {
+    grid-template-columns: 1fr;
+  }
+}
