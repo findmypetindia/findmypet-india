@@ -3608,3 +3608,31 @@ font-size:15px;
   color: #7c2d12 !important;
   background: #ffedd5 !important;
 }
+
+
+/* Guaranteed visible "I Spotted This Pet" action */
+.pet-card-actions .visible-sighting-action,
+.ai-result-actions .visible-sighting-action,
+.pet-card-actions .sighting-btn,
+.ai-result-actions .sighting-btn {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  min-height: 50px !important;
+  margin: 0 !important;
+  padding: 13px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ffffff !important;
+  background: #f97316 !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
