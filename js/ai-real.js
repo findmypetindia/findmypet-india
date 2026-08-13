@@ -652,7 +652,7 @@ function renderMatches(matches, resultsGrid) {
         document.createElement("a");
 
       spotted.className =
-        "pet-action-btn sighting-btn";
+        "pet-action-btn sighting-btn visible-sighting-action";
 
       spotted.href =
         "pet.html?id=" +
