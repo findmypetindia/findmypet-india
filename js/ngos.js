@@ -687,9 +687,6 @@ function updateCityOptions(ngos) {
 
   if (!cityFilter) return;
 
-  const currentValue =
-    cityFilter.value;
-
   const cities = [
     ...new Set(
       ngos
@@ -718,10 +715,7 @@ function updateCityOptions(ngos) {
     cityFilter.appendChild(option);
   });
 
-  if (cities.includes(currentValue)) {
-    cityFilter.value =
-      currentValue;
-  }
+  cityFilter.value = "";
 }
 
 function cleanPhone(value) {
