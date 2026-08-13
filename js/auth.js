@@ -199,6 +199,45 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeSupabase();
 
 
+  function getPostLoginDestination() {
+    const requestedPath =
+      new URLSearchParams(
+        window.location.search
+      ).get("next");
+
+    if (!requestedPath) {
+      return window.location.origin + "/index.html";
+    }
+
+    try {
+      const destination = new URL(
+        requestedPath,
+        window.location.origin
+      );
+
+      const blockedPaths = [
+        "/pages/login.html",
+        "/pages/signup.html",
+        "/pages/verify-email.html"
+      ];
+
+      if (
+        destination.origin === window.location.origin &&
+        !blockedPaths.includes(destination.pathname)
+      ) {
+        return destination.toString();
+      }
+    } catch (error) {
+      console.warn(
+        "Invalid post-login destination:",
+        error
+      );
+    }
+
+    return window.location.origin + "/index.html";
+  }
+
+
   // =====================================
   // LOGIN
   // =====================================
@@ -340,7 +379,7 @@ document.addEventListener("DOMContentLoaded", function () {
           setTimeout(function () {
 
             window.location.replace(
-              `${window.location.origin}/index.html`
+              getPostLoginDestination()
             );
 
           }, 800);
