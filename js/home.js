@@ -47,6 +47,7 @@ async function loadHomepageReports() {
   try {
     const { data, error } = await supabaseClient
       .from("pet_reports")
+      .eq("status", "active")
       .select(
         `
           id,
