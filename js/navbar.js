@@ -48,7 +48,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
-  // Login session check
+  // Public pages stay viewable without an account.
+  // Login is required only when someone submits or manages a report.
+  let currentSession = null;
+
   try {
     const { data, error } =
       await supabaseClient.auth.getSession();
@@ -57,15 +60,36 @@ document.addEventListener("DOMContentLoaded", async function () {
       throw error;
     }
 
-    if (!data.session) {
-      window.location.replace("/pages/login.html");
-      return;
-    }
+    currentSession = data.session || null;
   } catch (error) {
-    console.error("Navbar session check error:", error);
-    window.location.replace("/pages/login.html");
-    return;
+    console.warn("Navbar session check error:", error);
   }
+
+  const accountAction = currentSession
+    ? `
+          <a
+            href="${pagesLink}dashboard.html"
+            class="btn btn-dashboard ${activeClass("dashboard.html")}"
+          >
+            My Dashboard
+          </a>
+
+          <button
+            type="button"
+            class="btn btn-light"
+            id="navbarLogoutButton"
+          >
+            Logout
+          </button>
+      `
+    : `
+          <a
+            href="${pagesLink}login.html"
+            class="btn btn-dashboard ${activeClass("login.html")}"
+          >
+            Log In
+          </a>
+      `;
 
   siteHeader.className = "site-header";
 
@@ -182,22 +206,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         </ul>
 
         <div class="nav-actions">
-
-          <a
-            href="${pagesLink}dashboard.html"
-            class="btn btn-dashboard ${activeClass("dashboard.html")}"
-          >
-            My Dashboard
-          </a>
-
-          <button
-            type="button"
-            class="btn btn-light"
-            id="navbarLogoutButton"
-          >
-            Logout
-          </button>
-
+          ${accountAction}
         </div>
 
       </div>
