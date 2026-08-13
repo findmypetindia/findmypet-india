@@ -67,6 +67,9 @@ document.addEventListener(
     const submitFoundButton =
       document.getElementById("submitFoundButton");
 
+    const privacyConsentInput =
+      document.getElementById("foundPrivacyConsent");
+
     const progressSteps =
       document.querySelectorAll(".progress-step");
 
@@ -242,6 +245,113 @@ document.addEventListener(
     }
 
 
+    // Re-save photos in the browser before upload so camera metadata,
+    // including common EXIF location data, is not sent to storage.
+    async function prepareImageForUpload(imageFile) {
+      const objectUrl = URL.createObjectURL(imageFile);
+
+      try {
+        const image = await new Promise(function (resolve, reject) {
+          const imageElement = new Image();
+
+          imageElement.onload = function () {
+            resolve(imageElement);
+          };
+
+          imageElement.onerror = function () {
+            reject(
+              new Error(
+                "Photo could not be prepared. Please choose a valid image."
+              )
+            );
+          };
+
+          imageElement.src = objectUrl;
+        });
+
+        const maximumDimension = 1920;
+        const largestDimension = Math.max(
+          image.naturalWidth,
+          image.naturalHeight
+        );
+        const scale =
+          largestDimension > maximumDimension
+            ? maximumDimension / largestDimension
+            : 1;
+        const width = Math.max(
+          1,
+          Math.round(image.naturalWidth * scale)
+        );
+        const height = Math.max(
+          1,
+          Math.round(image.naturalHeight * scale)
+        );
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d", {
+          alpha: false
+        });
+
+        if (!context) {
+          throw new Error("Photo preparation is not available in this browser.");
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        context.drawImage(image, 0, 0, width, height);
+
+        const imageBlob = await new Promise(function (resolve) {
+          canvas.toBlob(resolve, "image/jpeg", 0.9);
+        });
+
+        if (!imageBlob) {
+          throw new Error("Photo could not be prepared. Please try another image.");
+        }
+
+        return new File(
+          [imageBlob],
+          "pet-photo.jpg",
+          {
+            type: "image/jpeg"
+          }
+        );
+      } finally {
+        URL.revokeObjectURL(objectUrl);
+      }
+    }
+
+
+    function getFriendlyFoundReportError(error) {
+      const rawMessage = String(error?.message || "");
+      const message = rawMessage.toLowerCase();
+
+      if (
+        message.includes("jwt") ||
+        message.includes("session") ||
+        message.includes("not authenticated")
+      ) {
+        return "Your sign-in session has expired. Please log in again and submit the report.";
+      }
+
+      if (
+        message.includes("row-level security") ||
+        message.includes("permission") ||
+        message.includes("not authorized")
+      ) {
+        return "We could not verify your account permission. Please log out, log in again and try once more.";
+      }
+
+      if (
+        message.includes("upload") ||
+        message.includes("bucket") ||
+        message.includes("storage")
+      ) {
+        return "The photo could not be uploaded. Please use a JPG, PNG or WEBP image under 10 MB and try again.";
+      }
+
+      return "Your found pet report could not be submitted right now. Please try again or contact indiafindmypet@gmail.com.";
+    }
+
+
     foundPetForm.addEventListener(
   "submit",
   async function (event) {
@@ -289,6 +399,19 @@ document.addEventListener(
       return;
     }
 
+    if (
+      !privacyConsentInput ||
+      !privacyConsentInput.checked
+    ) {
+      showFoundMessage(
+        "Please accept the Privacy & Safety notice before publishing your report.",
+        "error"
+      );
+
+      privacyConsentInput?.focus();
+      return;
+    }
+
     submitFoundButton.disabled = true;
     submitFoundButton.textContent =
       "Submitting Report...";
@@ -313,13 +436,21 @@ document.addEventListener(
       }
 
       showFoundMessage(
+        "Preparing your photo for a privacy-safe upload...",
+        "success"
+      );
+
+      const uploadReadyImage =
+        await prepareImageForUpload(imageFile);
+
+      showFoundMessage(
         "Pet photo upload ho rahi hai...",
         "success"
       );
 
       const imageUrl =
         await uploadFoundImage(
-          imageFile,
+          uploadReadyImage,
           currentUser.id
         );
 
@@ -433,8 +564,7 @@ document.addEventListener(
       );
 
       showFoundMessage(
-        error.message ||
-          "Found report submit nahi ho saki.",
+        getFriendlyFoundReportError(error),
         "error"
       );
 
