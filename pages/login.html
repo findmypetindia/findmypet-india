@@ -11,6 +11,7 @@
 
   <title>Login | FindMyPet India</title>
 <meta name="theme-color" content="#2457f5">
+<meta name="description" content="Secure account login for FindMyPet India, India’s lost and found pet platform.">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/images/pwa-icon.svg">
 <link rel="stylesheet" href="../css/login.css?v=605">
@@ -97,7 +98,9 @@
   and receive real-time pet alerts.
 </p>
 
-        <form id="loginForm" autocomplete="off">
+        <p class="login-security-note">Use only your FindMyPet India account. We never ask for Google, banking, OTP, or card passwords.</p>
+
+        <form id="loginForm" autocomplete="on">
 
           <div class="input-group">
 
@@ -108,8 +111,9 @@
             <input
               type="email"
               id="loginEmail"
+              name="email"
               placeholder="Enter your email"
-              autocomplete="off"
+              autocomplete="email"
               required
             >
 
@@ -126,8 +130,9 @@
               <input
                 type="password"
                 id="loginPassword"
+                name="password"
                 placeholder="Enter your password"
-                autocomplete="off"
+                autocomplete="current-password"
                 required
               >
 
@@ -191,6 +196,8 @@
         >
           Create New Account
         </a>
+
+        <a href="../index.html" class="back-home-link">← Back to FindMyPet India</a>
         <div class="footer-logo">
           🐾 FindMyPet India
         </div>
