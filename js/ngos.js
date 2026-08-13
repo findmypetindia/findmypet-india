@@ -126,6 +126,40 @@ const OFFICIAL_NOIDA_NGOS = [
   }
 ];
 
+
+const OFFICIAL_NATIONWIDE_NGOS = [
+  {
+    name: "Compassion Unlimited Plus Action (CUPA)",
+    city: "Bengaluru",
+    state: "Karnataka",
+    phone: "9845425678",
+    whatsapp: "",
+    email: "communications@cupaindia.org",
+    website: "https://cupabangalore.org/trauma-rescue-centre/",
+    address:
+      "CUPA Trauma & Rescue Centre, KVAFSU Veterinary College Campus, Bellary Road, Hebbal, Bengaluru, Karnataka 560024",
+    maps_url:
+      "https://www.google.com/maps/search/?api=1&query=CUPA+Trauma+%26+Rescue+Centre+Hebbal+Bengaluru",
+    services:
+      "Injured-animal rescue, trauma care, veterinary support, rehabilitation, sterilisation and adoption services",
+    emergency_available: true,
+    verified: true,
+    verification_label: "✓ AWBI project-recognised",
+    verification_source_url:
+      "https://awbi.gov.in/uploads/documents/178271834413List%20of%20AWOs%20Municipal%20Corporations%20Granted%20ABC%20PR29.pdf",
+    logo_url: ""
+  }
+];
+
+function getOfficialNgos() {
+  return [
+    ...OFFICIAL_DELHI_NGOS,
+    ...OFFICIAL_HARYANA_NGOS,
+    ...OFFICIAL_NOIDA_NGOS,
+    ...OFFICIAL_NATIONWIDE_NGOS
+  ];
+}
+
 document.addEventListener(
   "DOMContentLoaded",
   loadNgoDirectory
@@ -181,11 +215,7 @@ async function loadNgoDirectory() {
     allNgos =
       mergeNgoDirectory(
         Array.isArray(data) ? data : [],
-        [
-          ...OFFICIAL_DELHI_NGOS,
-          ...OFFICIAL_HARYANA_NGOS,
-          ...OFFICIAL_NOIDA_NGOS
-        ]
+        getOfficialNgos()
       );
 
     updateCityOptions(allNgos);
@@ -197,21 +227,13 @@ async function loadNgoDirectory() {
       error
     );
 
-    ngoGrid.innerHTML = `
-      <div class="ngo-empty ngo-error">
-        <h3>NGOs load nahi ho paayi</h3>
+    allNgos = mergeNgoDirectory(
+      [],
+      getOfficialNgos()
+    );
 
-        <p>
-          ${escapeText(
-            error.message ||
-            "Please try again."
-          )}
-        </p>
-      </div>
-    `;
-
-    resultCount.textContent =
-      "0 organisations";
+    updateCityOptions(allNgos);
+    renderNgos(allNgos);
   }
 
   searchInput.addEventListener(
@@ -388,6 +410,9 @@ function createNgoCard(ngo) {
 
   const mapsUrl =
     cleanUrl(ngo.maps_url);
+
+  const verificationSourceUrl =
+    cleanUrl(ngo.verification_source_url);
 
   const email =
     cleanText(ngo.email);
@@ -587,6 +612,18 @@ function createNgoCard(ngo) {
         label: "🗺️ Map",
         className:
           "ngo-action-map",
+        newTab: true
+      })
+    );
+  }
+
+  if (verificationSourceUrl) {
+    actions.appendChild(
+      createActionLink({
+        href: verificationSourceUrl,
+        label: "✓ Official proof",
+        className:
+          "ngo-action-source",
         newTab: true
       })
     );
