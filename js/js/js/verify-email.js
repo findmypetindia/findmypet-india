@@ -32,6 +32,30 @@ function showVerifyMessage(message, type = "error") {
   verifyMessage.className = `message ${type}`;
 }
 
+
+function getFriendlyVerificationError(error) {
+  const rawMessage = String(
+    error?.message ||
+    ""
+  );
+  const message = rawMessage.toLowerCase();
+
+  if (
+    message.includes("email") &&
+    (
+      message.includes("rate limit") ||
+      message.includes("send") ||
+      message.includes("smtp") ||
+      message.includes("delivery") ||
+      message.includes("provider")
+    )
+  ) {
+    return "Verification email is temporarily unavailable. Please try again later or contact indiafindmypet@gmail.com.";
+  }
+
+  return "Verification email could not be sent right now. Please try again later or contact indiafindmypet@gmail.com.";
+}
+
 if (resendButton) {
   resendButton.addEventListener(
     "click",
@@ -75,8 +99,7 @@ if (resendButton) {
         );
 
         showVerifyMessage(
-          error.message ||
-          "Verification email could not be sent."
+          getFriendlyVerificationError(error)
         );
 
       } finally {
