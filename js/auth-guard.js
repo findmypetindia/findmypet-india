@@ -1,5 +1,5 @@
 // FindMyPet India - protected page gate
-(async function () {
+(function () {
   document.documentElement.classList.add("auth-checking");
 
   function redirectToLogin() {
@@ -17,31 +17,61 @@
     window.location.replace(loginUrl.toString());
   }
 
-  try {
-    if (
-      !window.supabase ||
-      typeof window.supabase.createClient !== "function"
-    ) {
-      redirectToLogin();
-      return;
-    }
+  function verifySession() {
+    try {
+      if (
+        !window.supabase ||
+        typeof window.supabase.createClient !== "function"
+      ) {
+        redirectToLogin();
+        return;
+      }
 
-    const client = window.supabase.createClient(
-      "https://vrhaagzkeyzlblgjgidg.supabase.co",
-      "sb_publishable_6qEYBNFz3SddtxvOxiCLGg__NAMfQS1"
+      const client = window.supabase.createClient(
+        "https://vrhaagzkeyzlblgjgidg.supabase.co",
+        "sb_publishable_6qEYBNFz3SddtxvOxiCLGg__NAMfQS1"
+      );
+
+      client.auth
+        .getSession()
+        .then(function (result) {
+          const session =
+            result &&
+            result.data &&
+            result.data.session;
+
+          if (result.error || !session) {
+            redirectToLogin();
+            return;
+          }
+
+          document.documentElement.classList.remove(
+            "auth-checking"
+          );
+        })
+        .catch(function (error) {
+          console.warn(
+            "Protected page access check failed:",
+            error
+          );
+          redirectToLogin();
+        });
+    } catch (error) {
+      console.warn(
+        "Protected page access check failed:",
+        error
+      );
+      redirectToLogin();
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      verifySession,
+      { once: true }
     );
-
-    const { data, error } =
-      await client.auth.getSession();
-
-    if (error || !data.session) {
-      redirectToLogin();
-      return;
-    }
-
-    document.documentElement.classList.remove("auth-checking");
-  } catch (error) {
-    console.warn("Protected page access check failed:", error);
-    redirectToLogin();
+  } else {
+    verifySession();
   }
 })();
