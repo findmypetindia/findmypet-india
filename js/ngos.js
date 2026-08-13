@@ -83,6 +83,49 @@ const OFFICIAL_HARYANA_NGOS = [
   }
 ];
 
+
+const OFFICIAL_NOIDA_NGOS = [
+  {
+    name: "Dhyan Foundation — Noida Animal Shelter",
+    city: "Noida",
+    state: "Uttar Pradesh",
+    phone: "9999099423",
+    whatsapp: "",
+    email: "info@dhyanfoundation.com",
+    website:
+      "https://www.dhyanfoundation.com/karma/animal-welfare/gaushala-animal-shelter",
+    address:
+      "Noida Authority Animal Shelter, Sector 94, Noida, Uttar Pradesh 201301",
+    maps_url:
+      "https://www.google.com/maps/search/?api=1&query=Dhyan+Foundation+Animal+Shelter+Sector+94+Noida",
+    services:
+      "Noida Authority-linked animal shelter: rescue, rehabilitation, veterinary support and shelter care for animals in distress",
+    emergency_available: false,
+    verified: true,
+    verification_label: "✓ Noida Authority-linked",
+    logo_url: ""
+  },
+  {
+    name: "House of Stray Animals",
+    city: "Noida",
+    state: "Uttar Pradesh",
+    phone: "9818048398",
+    whatsapp: "",
+    email: "strayanimals12@gmail.com",
+    website: "",
+    address:
+      "HSA Animal Dispensary, Sector 54, Noida, Uttar Pradesh 201301",
+    maps_url:
+      "https://www.google.com/maps/search/?api=1&query=HSA+Animal+Dispensary+Sector+54+Noida",
+    services:
+      "Noida Authority-authorised vaccination and deworming programme partner; animal dispensary, rescue and veterinary support",
+    emergency_available: true,
+    verified: true,
+    verification_label: "✓ Noida Authority programme partner",
+    logo_url: ""
+  }
+];
+
 document.addEventListener(
   "DOMContentLoaded",
   loadNgoDirectory
@@ -140,7 +183,8 @@ async function loadNgoDirectory() {
         Array.isArray(data) ? data : [],
         [
           ...OFFICIAL_DELHI_NGOS,
-          ...OFFICIAL_HARYANA_NGOS
+          ...OFFICIAL_HARYANA_NGOS,
+          ...OFFICIAL_NOIDA_NGOS
         ]
       );
 
