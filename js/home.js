@@ -194,6 +194,24 @@ detailsLink.textContent =
 "View Details";
 
 actionRow.appendChild(detailsLink);
+
+  if (reportType === "lost") {
+    const sightingLink = document.createElement("a");
+
+    sightingLink.className =
+      "pet-action-btn sighting-btn";
+
+    sightingLink.href =
+      "pages/pet.html?id=" +
+      encodeURIComponent(String(pet.id)) +
+      "&spotted=1";
+
+    sightingLink.textContent =
+      "👀 I Spotted This Pet";
+
+    actionRow.appendChild(sightingLink);
+  }
+
   if (phone) {
     const callLink = document.createElement("a");
     callLink.className = "pet-action-btn call-btn";
