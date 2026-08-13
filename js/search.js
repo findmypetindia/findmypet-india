@@ -58,6 +58,13 @@ function makeReportAction(
   link.href = href;
   link.textContent = label;
 
+  if (className === "sighting-btn") {
+    link.setAttribute(
+      "style",
+      "display:flex!important;width:100%!important;min-height:52px!important;margin:8px 0!important;padding:14px 16px!important;align-items:center!important;justify-content:center!important;flex:0 0 100%!important;background:#f97316!important;color:#ffffff!important;border:0!important;border-radius:12px!important;font-size:16px!important;font-weight:800!important;line-height:1.2!important;text-align:center!important;text-decoration:none!important;visibility:visible!important;opacity:1!important;box-sizing:border-box!important;"
+    );
+  }
+
   if (newTab) {
     link.target = "_blank";
     link.rel = "noopener noreferrer";
