@@ -661,7 +661,7 @@ function renderMatches(matches, resultsGrid) {
         "&spotted=1";
 
       spotted.textContent =
-        "👀 I Spotted This Pet";
+        "I Spotted This Pet";
 
       actions.appendChild(spotted);
     }
