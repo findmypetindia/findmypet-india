@@ -51,7 +51,10 @@ function makeReportAction(
   const link = document.createElement("a");
 
   link.className =
-    "pet-action-btn " + className;
+    "pet-action-btn " + className +
+    (className === "sighting-btn"
+      ? " visible-sighting-action"
+      : "");
   link.href = href;
   link.textContent = label;
 
