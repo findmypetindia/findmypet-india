@@ -3,25 +3,6 @@ document.addEventListener(
   loadFilteredReports
 );
 
-
-// =====================================
-// SAFE TEXT FUNCTION
-// =====================================
-
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-
-// =====================================
-// DATE FORMAT FUNCTION
-// =====================================
-
 function formatReportDate(dateValue) {
   if (!dateValue) {
     return "Date not provided";
@@ -30,49 +11,288 @@ function formatReportDate(dateValue) {
   const date = new Date(dateValue);
 
   if (Number.isNaN(date.getTime())) {
-    return escapeHtml(dateValue);
+    return String(dateValue);
   }
 
-  return date.toLocaleDateString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-  });
+  return date.toLocaleDateString(
+    "en-IN",
+    {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    }
+  );
 }
 
+function createStateBox(
+  className,
+  title,
+  description
+) {
+  const box = document.createElement("div");
+  const heading = document.createElement("h3");
+  const text = document.createElement("p");
 
-// =====================================
-// LOAD LOST / FOUND REPORTS
-// =====================================
+  box.className = className;
+  heading.textContent = title;
+  text.textContent = description;
+
+  box.append(heading, text);
+
+  return box;
+}
+
+function makeReportAction(
+  className,
+  label,
+  href,
+  newTab
+) {
+  const link = document.createElement("a");
+
+  link.className =
+    "pet-action-btn " + className;
+  link.href = href;
+  link.textContent = label;
+
+  if (newTab) {
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  }
+
+  return link;
+}
+
+function createReportCard(
+  pet,
+  reportType
+) {
+  const card =
+    document.createElement("article");
+
+  card.className = "pet-card";
+
+  const petName =
+    pet.pet_name ||
+    pet.pet_type ||
+    "Unknown Pet";
+
+  const breedText =
+    pet.breed ||
+    pet.pet_type ||
+    "Breed not provided";
+
+  const location = [
+    pet.area,
+    pet.city,
+    pet.state
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  const phone = String(
+    pet.mobile || ""
+  ).replace(/\D/g, "");
+
+  const whatsappRaw = String(
+    pet.whatsapp ||
+    pet.mobile ||
+    ""
+  ).replace(/\D/g, "");
+
+  const whatsappNumber =
+    whatsappRaw.length === 10
+      ? "91" + whatsappRaw
+      : whatsappRaw;
+
+  const photo =
+    document.createElement("div");
+
+  photo.className = "pet-photo";
+
+  const tag =
+    document.createElement("span");
+
+  tag.className =
+    "tag " + reportType;
+
+  tag.textContent =
+    reportType.toUpperCase();
+
+  const image =
+    document.createElement("img");
+
+  image.src =
+    pet.image_url ||
+    "https://placehold.co/600x400?text=Pet+Photo";
+
+  image.alt = petName;
+  image.loading = "lazy";
+
+  image.addEventListener(
+    "error",
+    function () {
+      image.src =
+        "https://placehold.co/600x400?text=Pet+Photo";
+    },
+    { once: true }
+  );
+
+  photo.append(tag, image);
+
+  const content =
+    document.createElement("div");
+
+  content.className = "pet-content";
+
+  const title =
+    document.createElement("h3");
+
+  title.textContent = petName;
+
+  const breed =
+    document.createElement("p");
+
+  breed.textContent = breedText;
+
+  const locationText =
+    document.createElement("small");
+
+  locationText.textContent =
+    "📍 " +
+    (location || "Location not provided");
+
+  const dateText =
+    document.createElement("small");
+
+  dateText.textContent =
+    "📅 " +
+    formatReportDate(
+      pet.report_date ||
+      pet.created_at
+    );
+
+  const actions =
+    document.createElement("div");
+
+  actions.className =
+    "pet-card-actions";
+
+  const detailsUrl =
+    "pet.html?id=" +
+    encodeURIComponent(String(pet.id));
+
+  actions.appendChild(
+    makeReportAction(
+      "details-btn",
+      "View Details",
+      detailsUrl,
+      false
+    )
+  );
+
+  if (reportType === "lost") {
+    actions.appendChild(
+      makeReportAction(
+        "sighting-btn",
+        "👀 I Spotted This Pet",
+        detailsUrl + "&spotted=1",
+        false
+      )
+    );
+  }
+
+  if (phone) {
+    actions.appendChild(
+      makeReportAction(
+        "call-btn",
+        "Call",
+        "tel:+" + phone,
+        false
+      )
+    );
+  }
+
+  if (whatsappNumber) {
+    actions.appendChild(
+      makeReportAction(
+        "whatsapp-btn",
+        "WhatsApp",
+        "https://wa.me/" + whatsappNumber,
+        true
+      )
+    );
+  }
+
+  content.append(
+    title,
+    breed,
+    locationText,
+    dateText
+  );
+
+  if (pet.details) {
+    const details =
+      document.createElement("p");
+
+    details.className = "pet-details";
+    details.textContent = pet.details;
+
+    content.appendChild(details);
+  }
+
+  content.appendChild(actions);
+
+  if (!phone && !whatsappNumber) {
+    const unavailable =
+      document.createElement("span");
+
+    unavailable.className =
+      "contact-unavailable";
+
+    unavailable.textContent =
+      "Contact unavailable";
+
+    content.appendChild(unavailable);
+  }
+
+  card.append(photo, content);
+
+  return card;
+}
 
 async function loadFilteredReports() {
   const reportsGrid =
-    document.querySelector(".reports-page-grid");
+    document.querySelector(
+      ".reports-page-grid"
+    );
 
-  if (!reportsGrid) return;
+  if (!reportsGrid) {
+    return;
+  }
 
   const reportType =
     reportsGrid.dataset.reportType;
 
   if (!reportType) {
-    reportsGrid.innerHTML = `
-      <div class="homepage-error">
-        <h3>Report type missing</h3>
-        <p>Page configuration sahi nahi hai.</p>
-      </div>
-    `;
+    reportsGrid.replaceChildren(
+      createStateBox(
+        "homepage-error",
+        "Report type missing",
+        "Page configuration sahi nahi hai."
+      )
+    );
 
     return;
   }
 
-
-  reportsGrid.innerHTML = `
-    <div class="homepage-loading">
-      <div class="homepage-spinner"></div>
-      <p>Pet reports load ho rahi hain...</p>
-    </div>
-  `;
-
+  reportsGrid.replaceChildren(
+    createStateBox(
+      "homepage-loading",
+      "Loading reports",
+      "Pet reports load ho rahi hain..."
+    )
+  );
 
   try {
     const { data, error } =
@@ -88,184 +308,30 @@ async function loadFilteredReports() {
       throw error;
     }
 
-
-    if (!Array.isArray(data) || data.length === 0) {
-      reportsGrid.innerHTML = `
-        <div class="homepage-empty">
-          <h3>
-            No ${escapeHtml(reportType)} reports found
-          </h3>
-
-          <p>
-            Abhi is category me koi report available nahi hai.
-          </p>
-        </div>
-      `;
+    if (
+      !Array.isArray(data) ||
+      data.length === 0
+    ) {
+      reportsGrid.replaceChildren(
+        createStateBox(
+          "homepage-empty",
+          "No " + reportType + " reports found",
+          "Abhi is category me koi report available nahi hai."
+        )
+      );
 
       return;
     }
 
-
-    reportsGrid.innerHTML = "";
-
+    reportsGrid.replaceChildren();
 
     data.forEach(function (pet) {
-      const card =
-        document.createElement("article");
-
-      card.className = "pet-card";
-
-
-      const petName =
-        pet.pet_name ||
-        pet.pet_type ||
-        "Unknown Pet";
-
-
-      const breedText =
-        pet.breed ||
-        pet.pet_type ||
-        "Breed not provided";
-
-
-      const location =
-        [pet.area, pet.city, pet.state]
-          .filter(Boolean)
-          .join(", ");
-
-
-      const phone =
-        String(pet.mobile || "")
-          .replace(/\D/g, "");
-
-
-      const whatsappRaw =
-        String(
-          pet.whatsapp ||
-          pet.mobile ||
-          ""
-        ).replace(/\D/g, "");
-
-
-      const whatsappNumber =
-        whatsappRaw.length === 10
-          ? `91${whatsappRaw}`
-          : whatsappRaw;
-
-
-      const imageUrl =
-        pet.image_url ||
-        "https://placehold.co/600x400?text=Pet+Photo";
-
-
-      const safePetName =
-        escapeHtml(petName);
-
-      const safeBreed =
-        escapeHtml(breedText);
-
-      const safeLocation =
-        escapeHtml(
-          location || "Location not provided"
-        );
-
-      const safeImageUrl =
-        escapeHtml(imageUrl);
-
-      const safeReportType =
-        escapeHtml(reportType.toUpperCase());
-
-
-      card.innerHTML = `
-        <div class="pet-photo">
-
-          <span class="tag ${escapeHtml(reportType)}">
-            ${safeReportType}
-          </span>
-
-          <img
-            src="${safeImageUrl}"
-            alt="${safePetName}"
-            loading="lazy"
-            onerror="
-              this.onerror=null;
-              this.src='https://placehold.co/600x400?text=Pet+Photo';
-            "
-          >
-
-        </div>
-
-
-        <div class="pet-content">
-
-          <h3>${safePetName}</h3>
-
-          <p>${safeBreed}</p>
-
-          <small>
-            📍 ${safeLocation}
-          </small>
-
-          <small>
-            📅 ${formatReportDate(pet.report_date)}
-          </small>
-
-          ${
-            pet.details
-              ? `
-                <p class="pet-details">
-                  ${escapeHtml(pet.details)}
-                </p>
-              `
-              : ""
-          }
-
-          <div class="pet-card-actions">
-          <a
-  class="pet-action-btn details-btn"
-  href="pet.html?id=${pet.id}"
->
-  View Details
-</a>
-
-  <a
-    class="pet-action-btn details-btn"
-    href="pet.html?id=${pet.id}"
-  >
-    View Details
-  </a>
-
-  <a class="pet-action-btn call-btn" href="tel:${phone}">
-    Call
-  </a>
-
-  <a
-    class="pet-action-btn whatsapp-btn"
-    href="https://wa.me/${whatsappNumber}"
-    target="_blank"
-  >
-    WhatsApp
-  </a>
-
-</div>
-
-            ${
-              !phone && !whatsappNumber
-                ? `
-                  <span class="contact-unavailable">
-                    Contact unavailable
-                  </span>
-                `
-                : ""
-            }
-
-          </div>
-
-        </div>
-      `;
-
-
-      reportsGrid.appendChild(card);
+      reportsGrid.appendChild(
+        createReportCard(
+          pet,
+          reportType
+        )
+      );
     });
 
   } catch (error) {
@@ -274,21 +340,13 @@ async function loadFilteredReports() {
       error
     );
 
-    reportsGrid.innerHTML = `
-      <div class="homepage-error">
-
-        <h3>
-          Reports load nahi ho paayi
-        </h3>
-
-        <p>
-          ${escapeHtml(
-            error.message ||
-            "Please try again."
-          )}
-        </p>
-
-      </div>
-    `;
+    reportsGrid.replaceChildren(
+      createStateBox(
+        "homepage-error",
+        "Reports load nahi ho paayi",
+        error.message ||
+          "Please try again."
+      )
+    );
   }
 }
