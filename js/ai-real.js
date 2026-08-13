@@ -520,7 +520,7 @@ function renderMatches(matches, resultsGrid) {
 
     const whatsappNumber =
       phone.length === 10
-        ? `91${phone}`
+        ? "91" + phone
         : phone;
 
     const card =
@@ -528,96 +528,197 @@ function renderMatches(matches, resultsGrid) {
 
     card.className = "match-card";
 
-    card.innerHTML = `
-      <div class="ai-result-image">
-        <span class="status-badge ${reportType}">
-          ${reportType.toUpperCase()}
-        </span>
+    const imageBox =
+      document.createElement("div");
 
-        ${
-          index === 0
-            ? `
-              <span class="best-match-badge">
-                BEST MATCH
-              </span>
-            `
-            : ""
-        }
+    imageBox.className = "ai-result-image";
 
-        <img
-          src="${escapeHTML(pet.image_url)}"
-          alt="${escapeHTML(petName)}"
-          loading="lazy"
-          onerror="
-            this.onerror=null;
-            this.src='https://placehold.co/600x400?text=Pet+Photo';
-          "
-        >
-      </div>
+    const status =
+      document.createElement("span");
 
-      <div class="ai-result-content">
-        <h3>${escapeHTML(petName)}</h3>
+    status.className =
+      "status-badge " + reportType;
 
-        <div class="similarity-row">
-          <strong>
-            ${matchPercentage}% Visual Similarity
-          </strong>
-        </div>
+    status.textContent =
+      reportType.toUpperCase();
 
-        <div class="similarity-track">
-          <div
-            class="similarity-fill"
-            style="width:${matchPercentage}%"
-          ></div>
-        </div>
+    const image =
+      document.createElement("img");
 
-        <p>
-          🐾 ${escapeHTML(
-            pet.breed || "Breed not provided"
-          )}
-        </p>
+    image.src =
+      pet.image_url ||
+      "https://placehold.co/600x400?text=Pet+Photo";
 
-        <p>
-          🎨 ${escapeHTML(
-            pet.color || "Color not provided"
-          )}
-        </p>
+    image.alt = petName;
+    image.loading = "lazy";
 
-        <p>
-          📍 ${escapeHTML(
-            location || "Location not provided"
-          )}
-        </p>
+    image.addEventListener(
+      "error",
+      function () {
+        image.src =
+          "https://placehold.co/600x400?text=Pet+Photo";
+      },
+      { once: true }
+    );
 
-        <div class="ai-result-actions">
-          ${
-            phone
-              ? `
-                <a
-                  class="pet-action-btn call-btn"
-                  href="tel:${phone}"
-                >
-                  Call
-                </a>
+    imageBox.append(status);
 
-                <a
-                  class="pet-action-btn whatsapp-btn"
-                  href="https://wa.me/${whatsappNumber}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  WhatsApp
-                </a>
-              `
-              : `
-                <span class="contact-unavailable">
-                  Contact unavailable
-                </span>
-              `
-          }
-        </div>
-      </div>
-    `;
+    if (index === 0) {
+      const bestMatch =
+        document.createElement("span");
+
+      bestMatch.className =
+        "best-match-badge";
+
+      bestMatch.textContent = "BEST MATCH";
+
+      imageBox.appendChild(bestMatch);
+    }
+
+    imageBox.appendChild(image);
+
+    const content =
+      document.createElement("div");
+
+    content.className = "ai-result-content";
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent = petName;
+
+    const similarityRow =
+      document.createElement("div");
+
+    similarityRow.className =
+      "similarity-row";
+
+    const similarityText =
+      document.createElement("strong");
+
+    similarityText.textContent =
+      matchPercentage +
+      "% Visual Similarity";
+
+    similarityRow.appendChild(similarityText);
+
+    const track =
+      document.createElement("div");
+
+    track.className = "similarity-track";
+
+    const fill =
+      document.createElement("div");
+
+    fill.className = "similarity-fill";
+    fill.style.width =
+      matchPercentage + "%";
+
+    track.appendChild(fill);
+
+    const breed =
+      document.createElement("p");
+
+    breed.textContent =
+      "🐾 " +
+      (pet.breed ||
+        "Breed not provided");
+
+    const color =
+      document.createElement("p");
+
+    color.textContent =
+      "🎨 " +
+      (pet.color ||
+        "Color not provided");
+
+    const locationText =
+      document.createElement("p");
+
+    locationText.textContent =
+      "📍 " +
+      (location ||
+        "Location not provided");
+
+    const actions =
+      document.createElement("div");
+
+    actions.className =
+      "ai-result-actions";
+
+    if (reportType === "lost") {
+      const spotted =
+        document.createElement("a");
+
+      spotted.className =
+        "pet-action-btn sighting-btn";
+
+      spotted.href =
+        "pet.html?id=" +
+        encodeURIComponent(
+          String(pet.id)
+        ) +
+        "&spotted=1";
+
+      spotted.textContent =
+        "👀 I Spotted This Pet";
+
+      actions.appendChild(spotted);
+    }
+
+    if (phone) {
+      const call =
+        document.createElement("a");
+
+      call.className =
+        "pet-action-btn call-btn";
+
+      call.href = "tel:" + phone;
+      call.textContent = "Call";
+
+      const whatsapp =
+        document.createElement("a");
+
+      whatsapp.className =
+        "pet-action-btn whatsapp-btn";
+
+      whatsapp.href =
+        "https://wa.me/" +
+        whatsappNumber;
+
+      whatsapp.target = "_blank";
+      whatsapp.rel =
+        "noopener noreferrer";
+
+      whatsapp.textContent =
+        "WhatsApp";
+
+      actions.append(call, whatsapp);
+
+    } else {
+      const unavailable =
+        document.createElement("span");
+
+      unavailable.className =
+        "contact-unavailable";
+
+      unavailable.textContent =
+        "Contact unavailable";
+
+      actions.appendChild(unavailable);
+    }
+
+    content.append(
+      title,
+      similarityRow,
+      track,
+      breed,
+      color,
+      locationText,
+      actions
+    );
+
+    card.append(imageBox, content);
 
     resultsGrid.appendChild(card);
   });
