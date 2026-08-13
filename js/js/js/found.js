@@ -238,7 +238,10 @@ document.addEventListener(
           .from("pet-images")
           .getPublicUrl(filePath);
 
-      return data.publicUrl;
+      return {
+        imageUrl: data.publicUrl,
+        imagePath: filePath
+      };
     }
 
 
@@ -317,11 +320,14 @@ document.addEventListener(
         "success"
       );
 
-      const imageUrl =
+      const uploadedImage =
         await uploadFoundImage(
           imageFile,
           currentUser.id
         );
+
+      const imageUrl = uploadedImage.imageUrl;
+      const imagePath = uploadedImage.imagePath;
 
       showFoundMessage(
         "Found pet report save ho rahi hai...",
@@ -391,8 +397,13 @@ document.addEventListener(
         image_url:
           imageUrl,
 
+        image_path:
+          imagePath,
+
         user_id:
-          currentUser.id
+          currentUser.id,
+
+        status: "active"
       };
 
       const { error: insertError } =
