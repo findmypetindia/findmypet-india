@@ -12,7 +12,7 @@
   <title>Pet Details | FindMyPet India</title>
 
 <link rel="stylesheet" href="../css/navbar.css?v=1">
-  <link rel="stylesheet" href="../css/pet-details.css?v=1">
+  <link rel="stylesheet" href="../css/pet-details.css?v=2">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -166,6 +166,31 @@
         </section>
 
 
+        <section
+          id="sightingSection"
+          class="details-section sighting-section"
+          hidden
+        >
+          <h2>👀 Spotted this pet?</h2>
+
+          <p id="sightingPetSummary">
+            Share where and when you saw this pet.
+          </p>
+
+          <button
+            type="button"
+            id="openSightingFormButton"
+            class="btn sighting-open-button"
+          >
+            👀 I Spotted This Pet
+          </button>
+
+          <p class="sighting-safety-note">
+            Only send a genuine sighting. Verify ownership before handing the pet over.
+          </p>
+        </section>
+
+
         <section class="details-section contact-section">
 
           <h2 id="contactHeading">
@@ -215,10 +240,110 @@
   </main>
 
 
+  <div
+    id="sightingModal"
+    class="sighting-modal"
+    aria-hidden="true"
+    hidden
+  >
+    <div
+      class="sighting-modal-backdrop"
+      data-close-sighting
+    ></div>
+
+    <section
+      class="sighting-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="sightingModalTitle"
+    >
+      <button
+        type="button"
+        class="sighting-close-button"
+        aria-label="Close sighting form"
+        data-close-sighting
+      >
+        ×
+      </button>
+
+      <span class="sighting-kicker">
+        👀 Help reunite a pet
+      </span>
+
+      <h2 id="sightingModalTitle">
+        Report a sighting
+      </h2>
+
+      <p class="sighting-dialog-intro">
+        Share the place and time you saw the pet. Your message will be prepared for the owner on WhatsApp.
+      </p>
+
+      <form id="sightingForm">
+        <label class="sighting-field">
+          <span>Where did you see the pet? *</span>
+          <input
+            id="sightingLocation"
+            type="text"
+            maxlength="160"
+            placeholder="Example: Near Central Park, Vaishali Nagar"
+            autocomplete="street-address"
+            required
+          >
+        </label>
+
+        <label class="sighting-field">
+          <span>When did you see the pet? *</span>
+          <input
+            id="sightingDateTime"
+            type="datetime-local"
+            required
+          >
+        </label>
+
+        <label class="sighting-field">
+          <span>Helpful details (optional)</span>
+          <textarea
+            id="sightingNote"
+            maxlength="700"
+            placeholder="Example: Pet was safe, wearing a red collar, moving towards..."
+          ></textarea>
+        </label>
+
+        <p
+          id="sightingFormMessage"
+          class="sighting-form-message"
+          aria-live="polite"
+        ></p>
+
+        <div class="sighting-form-actions">
+          <button
+            type="button"
+            class="sighting-cancel-button"
+            data-close-sighting
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="sighting-submit-button"
+          >
+            Send to owner
+          </button>
+        </div>
+      </form>
+
+      <p class="sighting-dialog-note">
+        Never share OTP, bank details or money. Verify the owner before a handover.
+      </p>
+    </section>
+  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../js/supabase.js"></script>
   <script src="../js/navbar.js?v=13"></script>
-  <script src="../js/pet-details.js?v=2"></script>
+  <script src="../js/pet-details.js?v=3"></script>
 
   <div id="footer-container"></div>
 
