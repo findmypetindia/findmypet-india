@@ -16,7 +16,7 @@ content="width=device-width, initial-scale=1.0"
 <title>Dashboard | FindMyPet India</title>
 
 <link rel="stylesheet" href="../css/style.css?v=609">
-<link rel="stylesheet" href="../css/dashboard.css?v=606">
+<link rel="stylesheet" href="../css/dashboard.css?v=607">
 <link rel="stylesheet" href="../css/login.css?v=606">
 <link rel="stylesheet" href="../css/footer.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -104,7 +104,12 @@ Loading your reports...
 <script src="../js/dashboard.js?v=3"></script>
 <div id="footer-container"></div>
 
-<script src="../js/footer.js"></script>
+<script src="../js/footer.js?v=2"></script>
+<script>
+  document.querySelectorAll("footer.footer").forEach(function (footer) {
+    footer.remove();
+  });
+</script>
 </body>
 
 </html>
