@@ -72,7 +72,7 @@ async function searchHomepageReports() {
 
     const { data, error } = await supabaseClient
       .from("pet_reports")
-      .select("id, report_type, pet_name, pet_type, breed, color, city, state, report_date, mobile, image_url, created_at")
+      .select("id, report_type, pet_name, pet_type, breed, color, city, state, report_date, image_url, created_at")
       .or(filter)
       .order("created_at", { ascending: false })
       .limit(50);
