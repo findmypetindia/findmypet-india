@@ -440,7 +440,10 @@ image_path:
   imagePath,
 
 user_id:
-  currentUser.id
+  currentUser.id,
+
+          status:
+            "active"
         };
 
         const { error: insertError } =
