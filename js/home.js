@@ -207,7 +207,7 @@ actionRow.appendChild(detailsLink);
       "&spotted=1";
 
     sightingLink.textContent =
-      "👀 I Spotted This Pet";
+      "I Spotted This Pet";
 
     actionRow.appendChild(sightingLink);
   }
