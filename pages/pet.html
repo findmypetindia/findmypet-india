@@ -12,7 +12,7 @@
   <title>Pet Details | FindMyPet India</title>
 
 <link rel="stylesheet" href="../css/navbar.css?v=1">
-  <link rel="stylesheet" href="../css/pet-details.css?v=1">
+  <link rel="stylesheet" href="../css/pet-details.css?v=2">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -172,17 +172,19 @@
             👤 Contact Information
           </h2>
 
-          <p>
-            <strong>Name:</strong>
-            <span id="detailsOwnerName">Not provided</span>
-          </p>
-
-          <p>
-            <strong>Email:</strong>
-            <span id="detailsEmail">Not provided</span>
+          <p id="detailsContactStatus" class="contact-privacy-note" aria-live="polite">
+            Contact options are hidden by default to protect the person who posted this report.
           </p>
 
           <div class="details-actions">
+
+            <button
+              id="detailsRevealContactButton"
+              type="button"
+              class="btn details-contact-button"
+            >
+              Show contact options
+            </button>
 
             <a
               id="detailsCallButton"
@@ -218,7 +220,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../js/supabase.js"></script>
   <script src="../js/navbar.js?v=13"></script>
-  <script src="../js/pet-details.js?v=2"></script>
+  <script src="../js/pet-details.js?v=3"></script>
 
   <div id="footer-container"></div>
 
