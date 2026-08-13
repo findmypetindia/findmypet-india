@@ -41,6 +41,48 @@ const OFFICIAL_DELHI_NGOS = [
   }
 ];
 
+
+const OFFICIAL_HARYANA_NGOS = [
+  {
+    name: "Friendicoes SECA — Gurugram",
+    city: "Gurugram",
+    state: "Haryana",
+    phone: "7027777951",
+    whatsapp: "",
+    email: "",
+    website: "https://friendicoes.org/",
+    address:
+      "Village Gopalpur, Khera Garhi Harsaru, Sector 99, Gurugram, Haryana 122505",
+    maps_url:
+      "https://www.google.com/maps/search/?api=1&query=Friendicoes+SECA+Gurugram+Sector+99",
+    services:
+      "AWBI-recognised organisation's Gurugram centre: rescue and rehabilitation, shelter support, veterinary care, sterilisation, vaccination and re-homing",
+    emergency_available: false,
+    verified: true,
+    verification_label: "✓ AWBI-recognised centre",
+    logo_url: ""
+  },
+  {
+    name: "People For Animals Trust Faridabad",
+    city: "Faridabad",
+    state: "Haryana",
+    phone: "9213961501",
+    whatsapp: "",
+    email: "",
+    website: "https://www.pfafaridabad.com/",
+    address:
+      "Aastha Animal Hospital, Sarurpur, Sohna Road, NIT, Faridabad, Haryana",
+    maps_url:
+      "https://www.google.com/maps/search/?api=1&query=Aastha+Animal+Hospital+Sarurpur+Sohna+Road+NIT+Faridabad",
+    services:
+      "AWBI-recognised charitable trust: animal ambulance, rescue and rehabilitation, shelter support, sterilisation, anti-rabies vaccination and adoption",
+    emergency_available: true,
+    verified: true,
+    verification_label: "✓ AWBI-recognised",
+    logo_url: ""
+  }
+];
+
 document.addEventListener(
   "DOMContentLoaded",
   loadNgoDirectory
@@ -96,7 +138,10 @@ async function loadNgoDirectory() {
     allNgos =
       mergeNgoDirectory(
         Array.isArray(data) ? data : [],
-        OFFICIAL_DELHI_NGOS
+        [
+          ...OFFICIAL_DELHI_NGOS,
+          ...OFFICIAL_HARYANA_NGOS
+        ]
       );
 
     updateCityOptions(allNgos);
