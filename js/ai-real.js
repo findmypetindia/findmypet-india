@@ -297,6 +297,7 @@ const reports = await fetchPetReports(requiredReportType);
 async function fetchPetReports(requiredReportType) {
   const { data, error } = await supabaseClient
     .from("pet_reports")
+    .eq("status", "active")
     .select("*")
     .eq("report_type", requiredReportType)
     .not("image_url", "is", null)
