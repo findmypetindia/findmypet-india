@@ -22,6 +22,17 @@
       "has": [
         {
           "type": "host",
+          "value": "www.findmypetindia.com"
+        }
+      ],
+      "destination": "https://findmypetindia.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
           "value": "findmypet-india.vercel.app"
         }
       ],
