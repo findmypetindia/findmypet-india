@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "findmypet-india.vercel.app"
+        }
+      ],
+      "destination": "https://findmypetindia.com/:path*",
+      "permanent": true
+    }
+  ]
+}
