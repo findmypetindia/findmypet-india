@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
   <script>document.documentElement.classList.add("auth-checking");</script>
   <style>html.auth-checking body{visibility:hidden!important;}</style>
   <script src="../js/auth-guard.js?v=2"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Report Found Pet | FindMyPet India</title>
+  <title>Report & Search Found Pets in India | FindMyPet India</title>
+  <meta name="description" content="Found a dog, cat or other pet? Report it on FindMyPet India and browse recent found pet reports across India to help reunite pets with their owners.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://findmypetindia.com/pages/found.html">
+  <meta property="og:title" content="Found Pets in India | FindMyPet India">
+  <meta property="og:description" content="Report a found pet and browse recent found pet reports across India.">
+  <meta property="og:url" content="https://findmypetindia.com/pages/found.html">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="../css/navbar.css?v=1">
 <link rel="stylesheet" href="../css/style.css?v=611">
   <link rel="stylesheet" href="../css/pet-pages.css?v=1">
@@ -15,96 +22,16 @@
 </head>
 <body class="found-theme">
   <header id="siteHeader"></header>
-
   <main class="page-main">
-    <section class="page-hero">
-      <div class="hero-inner container">
-        <div class="hero-content">
-          <span class="hero-chip">🐾 Found Pet Report</span>
-          <h1 class="hero-title">Report a Found Pet</h1>
-          <p class="hero-text">Share where and when you found the pet so the owner can identify and contact you quickly.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="form-section container">
-      <form class="form-card-shell found-form" id="foundPetForm">
-        <div class="progress-bar">
-          <div class="progress-step active" data-target="finderSection">1. Finder</div>
-          <div class="progress-step" data-target="foundPetSection">2. Pet</div>
-          <div class="progress-step" data-target="foundLocationSection">3. Location</div>
-          <div class="progress-step" data-target="foundPhotoSection">4. Photo</div>
-        </div>
-
-        <div class="form-body">
-
-          <section id="finderSection" class="section-card">
-            <h2>👤 Finder Details</h2>
-            <div class="form-grid">
-              <div class="field"><label for="finderName">Your Name *</label><input type="text" id="finderName" placeholder="Enter your name" required></div>
-              <div class="field"><label for="finderMobile">Mobile Number *</label><input type="tel" id="finderMobile" placeholder="Enter mobile number" maxlength="10" required></div>
-              <div class="field"><label for="finderEmail">Email</label><input type="email" id="finderEmail" placeholder="Enter email address"></div>
-              <div class="field"><label for="finderWhatsapp">WhatsApp</label><input type="tel" id="finderWhatsapp" placeholder="Enter WhatsApp number" maxlength="10"></div>
-            </div>
-          </section>
-
-          <section id="foundPetSection" class="section-card">
-            <h2>🐶 Found Pet Details</h2>
-            <div class="form-grid">
-              <div class="field"><label for="foundPetName">Pet Name</label><input type="text" id="foundPetName" placeholder="Enter name if known"></div>
-              <div class="field"><label for="foundPetType">Pet Type *</label><select id="foundPetType" required><option value="">Select pet type</option><option>Dog</option><option>Cat</option><option>Bird</option><option>Rabbit</option><option>Cow</option><option>Horse</option><option>Other</option></select></div>
-              <div class="field"><label for="foundBreed">Breed</label><input type="text" id="foundBreed" placeholder="Example: Labrador"></div>
-              <div class="field"><label for="foundColor">Color *</label><input type="text" id="foundColor" placeholder="Example: Brown and white" required></div>
-              <div class="field"><label for="foundGender">Gender</label><select id="foundGender"><option value="">Unknown</option><option>Male</option><option>Female</option></select></div>
-              <div class="field"><label for="foundAge">Approx Age</label><input type="text" id="foundAge" placeholder="Example: 2 years"></div>
-            </div>
-          </section>
-
-          <section id="foundLocationSection" class="section-card">
-            <h2>📍 Found Location</h2>
-            <div class="form-grid">
-              <div class="field"><label for="foundCity">City *</label><input type="text" id="foundCity" placeholder="Example: Jaipur" required></div>
-              <div class="field"><label for="foundState">State *</label><input type="text" id="foundState" placeholder="Example: Rajasthan" required></div>
-              <div class="field"><label for="foundArea">Area / Landmark *</label><input type="text" id="foundArea" placeholder="Example: Vaishali Nagar" required></div>
-              <div class="field"><label for="foundDate">Date Found *</label><input type="date" id="foundDate" required></div>
-              <div class="field"><label for="foundTime">Time Found</label><input type="time" id="foundTime"></div>
-              <div class="field full"><label for="foundDetails">Additional Details</label><textarea id="foundDetails" placeholder="Behaviour, injuries, collar details, special marks, etc."></textarea></div>
-            </div>
-          </section>
-
-          <section id="foundPhotoSection" class="section-card">
-            <h2>📸 Upload Pet Photo</h2>
-            <div class="upload-box">
-              <div class="upload-icon">📷</div>
-              <h3>Upload a clear photo</h3>
-              <p>Front view or full body photo is recommended.</p>
-              <input type="file" id="foundPetImage" accept="image/jpeg,image/png,image/webp" required>
-              <img id="foundImagePreview" class="preview-image" alt="Selected pet preview">
-            </div>
-          </section>
-
-          <p id="foundFormMessage" class="form-message"></p>
-          <div class="form-actions">
-            <a href="../index.html" class="btn btn-light">Cancel</a>
-            <button type="submit" class="btn btn-accent" id="submitFoundButton">Submit Found Report</button>
-          </div>
-        </div>
-      </form>
-    </section>
-
-    <section class="reports-section container">
-      <div class="section-heading"><h2>Recently Reported Found Pets</h2><p>Pets recently found by our community</p></div>
-      <div class="pet-grid reports-page-grid" data-report-type="found"></div>
-    </section>
+    <section class="page-hero"><div class="hero-inner container"><div class="hero-content"><span class="hero-chip">🐾 Found Pet Report</span><h1 class="hero-title">Report a Found Pet</h1><p class="hero-text">Share where and when you found the pet so the owner can identify and contact you quickly.</p></div></div></section>
+    <section class="form-section container"><form class="form-card-shell found-form" id="foundPetForm"><div class="progress-bar"><div class="progress-step active" data-target="finderSection">1. Finder</div><div class="progress-step" data-target="foundPetSection">2. Pet</div><div class="progress-step" data-target="foundLocationSection">3. Location</div><div class="progress-step" data-target="foundPhotoSection">4. Photo</div></div><div class="form-body">
+      <section id="finderSection" class="section-card"><h2>👤 Finder Details</h2><div class="form-grid"><div class="field"><label for="finderName">Your Name *</label><input type="text" id="finderName" placeholder="Enter your name" required></div><div class="field"><label for="finderMobile">Mobile Number *</label><input type="tel" id="finderMobile" placeholder="Enter mobile number" maxlength="10" required></div><div class="field"><label for="finderEmail">Email</label><input type="email" id="finderEmail" placeholder="Enter email address"></div><div class="field"><label for="finderWhatsapp">WhatsApp</label><input type="tel" id="finderWhatsapp" placeholder="Enter WhatsApp number" maxlength="10"></div></div></section>
+      <section id="foundPetSection" class="section-card"><h2>🐶 Found Pet Details</h2><div class="form-grid"><div class="field"><label for="foundPetName">Pet Name</label><input type="text" id="foundPetName" placeholder="Enter name if known"></div><div class="field"><label for="foundPetType">Pet Type *</label><select id="foundPetType" required><option value="">Select pet type</option><option>Dog</option><option>Cat</option><option>Bird</option><option>Rabbit</option><option>Cow</option><option>Horse</option><option>Other</option></select></div><div class="field"><label for="foundBreed">Breed</label><input type="text" id="foundBreed" placeholder="Example: Labrador"></div><div class="field"><label for="foundColor">Color *</label><input type="text" id="foundColor" placeholder="Example: Brown and white" required></div><div class="field"><label for="foundGender">Gender</label><select id="foundGender"><option value="">Unknown</option><option>Male</option><option>Female</option></select></div><div class="field"><label for="foundAge">Approx Age</label><input type="text" id="foundAge" placeholder="Example: 2 years"></div></div></section>
+      <section id="foundLocationSection" class="section-card"><h2>📍 Found Location</h2><div class="form-grid"><div class="field"><label for="foundCity">City *</label><input type="text" id="foundCity" placeholder="Example: Jaipur" required></div><div class="field"><label for="foundState">State *</label><input type="text" id="foundState" placeholder="Example: Rajasthan" required></div><div class="field"><label for="foundArea">Area / Landmark *</label><input type="text" id="foundArea" placeholder="Example: Vaishali Nagar" required></div><div class="field"><label for="foundDate">Date Found *</label><input type="date" id="foundDate" required></div><div class="field"><label for="foundTime">Time Found</label><input type="time" id="foundTime"></div><div class="field full"><label for="foundDetails">Additional Details</label><textarea id="foundDetails" placeholder="Behaviour, injuries, collar details, special marks, etc."></textarea></div></div></section>
+      <section id="foundPhotoSection" class="section-card"><h2>📸 Upload Pet Photo</h2><div class="upload-box"><div class="upload-icon">📷</div><h3>Upload a clear photo</h3><p>Front view or full body photo is recommended.</p><input type="file" id="foundPetImage" accept="image/jpeg,image/png,image/webp" required><img id="foundImagePreview" class="preview-image" alt="Selected found pet photo preview"></div></section>
+      <p id="foundFormMessage" class="form-message"></p><div class="form-actions"><a href="../index.html" class="btn btn-light">Cancel</a><button type="submit" class="btn btn-accent" id="submitFoundButton">Submit Found Report</button></div></div></form></section>
+    <section class="reports-section container"><div class="section-heading"><h2>Recently Reported Found Pets</h2><p>Pets recently found by our community</p></div><div class="pet-grid reports-page-grid" data-report-type="found"></div></section>
   </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase.js"></script>
-  <script src="../js/navbar.js?v=15"></script>
-  <script src="../js/search.js?v=6"></script>
-  <script src="../js/js/js/found.js?v=202"></script>
-<div id="footer-container"></div>
-
-<script src="../js/footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase.js"></script><script src="../js/navbar.js?v=15"></script><script src="../js/search.js?v=6"></script><script src="../js/js/js/found.js?v=202"></script><div id="footer-container"></div><script src="../js/footer.js"></script>
 </body>
 </html>
