@@ -1,7 +1,47 @@
-document.addEventListener(
-  "DOMContentLoaded",
-  loadSuccessStories
-);
+document.addEventListener("DOMContentLoaded", function () {
+  applySuccessStoriesSeo();
+  loadSuccessStories();
+});
+
+function applySuccessStoriesSeo() {
+  document.documentElement.lang = "en-IN";
+  document.title = "Pet Reunion Success Stories in India | FindMyPet India";
+
+  upsertMeta("description", "Read pet reunion success stories from FindMyPet India and see how lost and found pet reports can help families and rescuers reconnect pets with their homes.");
+  upsertMeta("robots", "index, follow");
+  upsertProperty("og:title", "Pet Reunion Success Stories | FindMyPet India");
+  upsertProperty("og:description", "Discover reunion stories from the FindMyPet India lost and found pet community.");
+  upsertProperty("og:url", "https://findmypetindia.com/pages/success-stories.html");
+  upsertProperty("og:type", "website");
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    document.head.appendChild(canonical);
+  }
+  canonical.href = "https://findmypetindia.com/pages/success-stories.html";
+}
+
+function upsertMeta(name, content) {
+  let tag = document.querySelector(`meta[name="${name}"]`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.name = name;
+    document.head.appendChild(tag);
+  }
+  tag.content = content;
+}
+
+function upsertProperty(property, content) {
+  let tag = document.querySelector(`meta[property="${property}"]`);
+  if (!tag) {
+    tag = document.createElement("meta");
+    tag.setAttribute("property", property);
+    document.head.appendChild(tag);
+  }
+  tag.content = content;
+}
 
 async function loadSuccessStories() {
   const storiesGrid =
@@ -83,7 +123,7 @@ console.log("ERROR =", error);
 
           <img
             src="${imageUrl}"
-            alt="${petName}"
+            alt="${petName} reunited pet story"
             onerror="
               this.onerror=null;
               this.src='https://placehold.co/600x420?text=Pet+Photo';
