@@ -1,356 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en-IN">
 <head>
   <script>document.documentElement.classList.add("auth-checking");</script>
   <style>html.auth-checking body{visibility:hidden!important;}</style>
   <script src="../js/auth-guard.js?v=2"></script>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Pet Details | FindMyPet India</title>
-
-<link rel="stylesheet" href="../css/navbar.css?v=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Report | FindMyPet India</title>
+  <meta name="description" content="View a lost or found pet report on FindMyPet India, including pet details, location and safe contact options.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:site_name" content="FindMyPet India">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Pet Report | FindMyPet India">
+  <meta property="og:description" content="View this lost or found pet report on FindMyPet India.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../css/navbar.css?v=1">
   <link rel="stylesheet" href="../css/pet-details.css?v=2">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
-
 <body>
-
   <header id="siteHeader"></header>
-
-
   <main class="pet-details-page">
-
-    <div id="petDetailsLoading" class="details-state">
-      <div class="details-spinner"></div>
-      <p>Pet details load ho rahi hain...</p>
-    </div>
-
-
-    <div
-      id="petDetailsError"
-      class="details-state details-error"
-      hidden
-    >
-      <h2>Pet report nahi mili</h2>
-
-      <p id="petDetailsErrorMessage">
-        Please try again.
-      </p>
-
-      <a href="../index.html" class="btn btn-primary">
-        Back to Home
-      </a>
-    </div>
-
-
-    <article
-      id="petDetailsCard"
-      class="pet-details-card"
-      hidden
-    >
-
-      <div class="details-image-column">
-
-        <div class="details-image-box">
-
-          <span
-            id="detailsStatus"
-            class="details-status"
-          >
-            LOST
-          </span>
-
-          <img
-            id="detailsImage"
-            src=""
-            alt="Pet report photo"
-          >
-
-        </div>
-
-      </div>
-
-
+    <nav aria-label="Breadcrumb" style="max-width:1120px;margin:0 auto 18px;padding:0 16px;font-size:14px;">
+      <a href="../index.html">Home</a> <span aria-hidden="true">›</span>
+      <a id="petBreadcrumbListing" href="lost.html">Lost Pets</a> <span aria-hidden="true">›</span>
+      <span id="petBreadcrumbCurrent" aria-current="page">Pet Report</span>
+    </nav>
+    <div id="petDetailsLoading" class="details-state"><div class="details-spinner"></div><p>Pet details load ho rahi hain...</p></div>
+    <div id="petDetailsError" class="details-state details-error" hidden><h2>Pet report nahi mili</h2><p id="petDetailsErrorMessage">Please try again.</p><a href="../index.html" class="btn btn-primary">Back to Home</a></div>
+    <article id="petDetailsCard" class="pet-details-card" hidden>
+      <div class="details-image-column"><div class="details-image-box"><span id="detailsStatus" class="details-status">LOST</span><img id="detailsImage" src="" alt="Pet report photo"></div></div>
       <div class="details-content-column">
-
-        <div class="details-heading">
-
-          <div>
-            <span id="detailsPetType" class="details-chip">
-              Pet
-            </span>
-
-            <h1 id="detailsPetName">
-              Pet Name
-            </h1>
-
-            <p id="detailsBreed">
-              Breed
-            </p>
-          </div>
-
-        </div>
-
-
+        <div class="details-heading"><div><span id="detailsPetType" class="details-chip">Pet</span><h1 id="detailsPetName">Pet Name</h1><p id="detailsBreed">Breed</p></div></div>
         <div class="details-info-grid">
-
-          <div class="details-info-item">
-            <span>🐾 Pet Type</span>
-            <strong id="detailsTypeValue">—</strong>
-          </div>
-
-          <div class="details-info-item">
-            <span>🎨 Color</span>
-            <strong id="detailsColor">—</strong>
-          </div>
-
-          <div class="details-info-item">
-            <span>🚻 Gender</span>
-            <strong id="detailsGender">—</strong>
-          </div>
-
-          <div class="details-info-item">
-            <span>🎂 Age</span>
-            <strong id="detailsAge">—</strong>
-          </div>
-
-          <div class="details-info-item">
-            <span>📅 Report Date</span>
-            <strong id="detailsDate">—</strong>
-          </div>
-
-          <div class="details-info-item">
-            <span>🕐 Report Time</span>
-            <strong id="detailsTime">—</strong>
-          </div>
-
+          <div class="details-info-item"><span>🐾 Pet Type</span><strong id="detailsTypeValue">—</strong></div><div class="details-info-item"><span>🎨 Color</span><strong id="detailsColor">—</strong></div><div class="details-info-item"><span>🚻 Gender</span><strong id="detailsGender">—</strong></div><div class="details-info-item"><span>🎂 Age</span><strong id="detailsAge">—</strong></div><div class="details-info-item"><span>📅 Report Date</span><strong id="detailsDate">—</strong></div><div class="details-info-item"><span>🕐 Report Time</span><strong id="detailsTime">—</strong></div>
         </div>
-
-
-        <section class="details-section">
-
-          <h2>📍 Location</h2>
-
-          <p id="detailsLocation">
-            Location not provided
-          </p>
-
-        </section>
-
-
-        <section
-          id="rewardSection"
-          class="details-section reward-section"
-          hidden
-        >
-
-          <h2>💰 Reward</h2>
-
-          <p id="detailsReward"></p>
-
-        </section>
-
-
-        <section class="details-section">
-
-          <h2>📝 Identification Details</h2>
-
-          <p id="detailsDescription">
-            No additional details provided.
-          </p>
-
-        </section>
-
-
-        <section
-          id="sightingSection"
-          class="details-section sighting-section"
-          hidden
-        >
-          <h2>👀 Spotted this pet?</h2>
-
-          <p id="sightingPetSummary">
-            Share where and when you saw this pet.
-          </p>
-
-          <button
-            type="button"
-            id="openSightingFormButton"
-            class="btn sighting-open-button"
-          >
-            I Spotted This Pet
-          </button>
-
-          <p class="sighting-safety-note">
-            Only send a genuine sighting. Verify ownership before handing the pet over.
-          </p>
-        </section>
-
-
-        <section class="details-section contact-section">
-
-          <h2 id="contactHeading">
-            👤 Contact Information
-          </h2>
-
-          <p>
-            <strong>Name:</strong>
-            <span id="detailsOwnerName">Not provided</span>
-          </p>
-
-          <p>
-            <strong>Email:</strong>
-            <span id="detailsEmail">Not provided</span>
-          </p>
-
-          <div class="details-actions">
-
-            <a
-              id="detailsCallButton"
-              href="#"
-              class="btn details-call-button"
-              hidden
-            >
-              📞 Call Now
-            </a>
-
-            <a
-              id="detailsWhatsappButton"
-              href="#"
-              class="btn details-whatsapp-button"
-              target="_blank"
-              rel="noopener noreferrer"
-              hidden
-            >
-              💬 WhatsApp
-            </a>
-
-          </div>
-
-        </section>
-
+        <section class="details-section"><h2>📍 Location</h2><p id="detailsLocation">Location not provided</p></section>
+        <section id="rewardSection" class="details-section reward-section" hidden><h2>💰 Reward</h2><p id="detailsReward"></p></section>
+        <section class="details-section"><h2>📝 Identification Details</h2><p id="detailsDescription">No additional details provided.</p></section>
+        <section id="sightingSection" class="details-section sighting-section" hidden><h2>👀 Spotted this pet?</h2><p id="sightingPetSummary">Share where and when you saw this pet.</p><button type="button" id="openSightingFormButton" class="btn sighting-open-button">I Spotted This Pet</button><p class="sighting-safety-note">Only send a genuine sighting. Verify ownership before handing the pet over.</p></section>
+        <section class="details-section contact-section"><h2 id="contactHeading">👤 Contact Information</h2><p><strong>Name:</strong> <span id="detailsOwnerName">Not provided</span></p><p><strong>Email:</strong> <span id="detailsEmail">Not provided</span></p><div class="details-actions"><a id="detailsCallButton" href="#" class="btn details-call-button" hidden>📞 Call Now</a><a id="detailsWhatsappButton" href="#" class="btn details-whatsapp-button" target="_blank" rel="noopener noreferrer" hidden>💬 WhatsApp</a></div></section>
       </div>
-
     </article>
-
   </main>
-
-
-  <div
-    id="sightingModal"
-    class="sighting-modal"
-    aria-hidden="true"
-    hidden
-  >
-    <div
-      class="sighting-modal-backdrop"
-      data-close-sighting
-    ></div>
-
-    <section
-      class="sighting-dialog"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="sightingModalTitle"
-    >
-      <button
-        type="button"
-        class="sighting-close-button"
-        aria-label="Close sighting form"
-        data-close-sighting
-      >
-        ×
-      </button>
-
-      <span class="sighting-kicker">
-        👀 Help reunite a pet
-      </span>
-
-      <h2 id="sightingModalTitle">
-        Report a sighting
-      </h2>
-
-      <p class="sighting-dialog-intro">
-        Share the place and time you saw the pet. Your message will be prepared for the owner on WhatsApp.
-      </p>
-
-      <form id="sightingForm">
-        <label class="sighting-field">
-          <span>Where did you see the pet? *</span>
-          <input
-            id="sightingLocation"
-            type="text"
-            maxlength="160"
-            placeholder="Example: Near Central Park, Vaishali Nagar"
-            autocomplete="street-address"
-            required
-          >
-        </label>
-
-        <label class="sighting-field">
-          <span>When did you see the pet? *</span>
-          <input
-            id="sightingDateTime"
-            type="datetime-local"
-            required
-          >
-        </label>
-
-        <label class="sighting-field">
-          <span>Helpful details (optional)</span>
-          <textarea
-            id="sightingNote"
-            maxlength="700"
-            placeholder="Example: Pet was safe, wearing a red collar, moving towards..."
-          ></textarea>
-        </label>
-
-        <p
-          id="sightingFormMessage"
-          class="sighting-form-message"
-          aria-live="polite"
-        ></p>
-
-        <div class="sighting-form-actions">
-          <button
-            type="button"
-            class="sighting-cancel-button"
-            data-close-sighting
-          >
-            Cancel
-          </button>
-
-          <button
-            type="submit"
-            class="sighting-submit-button"
-          >
-            Send to owner
-          </button>
-        </div>
-      </form>
-
-      <p class="sighting-dialog-note">
-        Never share OTP, bank details or money. Verify the owner before a handover.
-      </p>
-    </section>
-  </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase.js"></script>
-  <script src="../js/navbar.js?v=13"></script>
-  <script src="../js/pet-details.js?v=4"></script>
-
-  <div id="footer-container"></div>
-
-<script src="../js/footer.js"></script>
+  <div id="sightingModal" class="sighting-modal" aria-hidden="true" hidden><div class="sighting-modal-backdrop" data-close-sighting></div><section class="sighting-dialog" role="dialog" aria-modal="true" aria-labelledby="sightingModalTitle"><button type="button" class="sighting-close-button" aria-label="Close sighting form" data-close-sighting>×</button><span class="sighting-kicker">👀 Help reunite a pet</span><h2 id="sightingModalTitle">Report a sighting</h2><p class="sighting-dialog-intro">Share the place and time you saw the pet. Your message will be prepared for the owner on WhatsApp.</p><form id="sightingForm"><label class="sighting-field"><span>Where did you see the pet? *</span><input id="sightingLocation" type="text" maxlength="160" placeholder="Example: Near Central Park, Vaishali Nagar" autocomplete="street-address" required></label><label class="sighting-field"><span>When did you see the pet? *</span><input id="sightingDateTime" type="datetime-local" required></label><label class="sighting-field"><span>Helpful details (optional)</span><textarea id="sightingNote" maxlength="700" placeholder="Example: Pet was safe, wearing a red collar, moving towards..."></textarea></label><p id="sightingFormMessage" class="sighting-form-message" aria-live="polite"></p><div class="sighting-form-actions"><button type="button" class="sighting-cancel-button" data-close-sighting>Cancel</button><button type="submit" class="sighting-submit-button">Send to owner</button></div></form><p class="sighting-dialog-note">Never share OTP, bank details or money. Verify the owner before a handover.</p></section></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase.js"></script><script src="../js/navbar.js?v=13"></script><script src="../js/pet-details.js?v=5"></script><div id="footer-container"></div><script src="../js/footer.js"></script>
 </body>
-
 </html>
