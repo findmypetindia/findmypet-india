@@ -18,7 +18,30 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="FindMyPet India | Lost & Found Pets in India">
   <meta name="twitter:description" content="Report and search for lost and found pets across India with community reports and AI-assisted search.">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FindMyPet India","url":"https://findmypetindia.com/","description":"Lost and found pet reporting and search platform for India."}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://findmypetindia.com/#organization",
+        "name": "FindMyPet India",
+        "url": "https://findmypetindia.com/",
+        "sameAs": [
+          "https://www.instagram.com/findmypet.india/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://findmypetindia.com/#website",
+        "name": "FindMyPet India",
+        "url": "https://findmypetindia.com/",
+        "description": "Lost and found pet reporting and search platform for India.",
+        "publisher": {"@id": "https://findmypetindia.com/#organization"}
+      }
+    ]
+  }
+  </script>
 
   <meta name="theme-color" content="#2457f5">
   <link rel="manifest" href="/manifest.webmanifest">
