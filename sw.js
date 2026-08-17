@@ -1,7 +1,5 @@
-const CACHE_NAME = "findmypet-india-shell-v11";
+const CACHE_NAME = "findmypet-india-shell-v12";
 const APP_SHELL = [
-  "/",
-  "/index.html",
   "/manifest.webmanifest",
   "/images/pwa-icon.svg",
   "/css/style.css",
@@ -36,6 +34,18 @@ self.addEventListener("fetch", (event) => {
 
   if (requestUrl.origin !== self.location.origin) return;
 
+  // Never serve stale HTML/navigation pages from the old PWA cache.
+  if (
+    event.request.mode === "navigate" ||
+    requestUrl.pathname === "/" ||
+    requestUrl.pathname.endsWith(".html")
+  ) {
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" })
+    );
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {
@@ -46,8 +56,7 @@ self.addEventListener("fetch", (event) => {
         return response;
       })
       .catch(async () => {
-        const cachedResponse = await caches.match(event.request);
-        return cachedResponse || caches.match("/index.html");
+        return caches.match(event.request);
       })
   );
 });
