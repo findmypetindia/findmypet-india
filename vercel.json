@@ -37,7 +37,7 @@
         }
       ],
       "destination": "https://findmypetindia.com/:path*",
-      "permanent": true
+      "statusCode": 301
     }
   ]
 }
