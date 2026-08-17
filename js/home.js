@@ -28,6 +28,32 @@ function cleanPhoneNumber(value) {
 }
 
 /**
+ * Signed-out visitors ko public homepage dikhni chahiye,
+ * lekin private/live report data sirf login ke baad load hoga.
+ */
+async function getHomepageSession() {
+  if (
+    typeof supabaseClient === "undefined" ||
+    !supabaseClient.auth
+  ) {
+    return null;
+  }
+
+  try {
+    const { data, error } = await supabaseClient.auth.getSession();
+
+    if (error) {
+      throw error;
+    }
+
+    return data?.session || null;
+  } catch (error) {
+    console.warn("Homepage session check error:", error);
+    return null;
+  }
+}
+
+/**
  * Latest Lost aur Found reports Supabase se load karta hai.
  */
 async function loadHomepageReports() {
@@ -43,6 +69,19 @@ async function loadHomepageReports() {
       <p>Latest pet reports load ho rahi hain...</p>
     </div>
   `;
+
+  const session = await getHomepageSession();
+
+  if (!session) {
+    petGrid.innerHTML = `
+      <div class="homepage-empty">
+        <h3>Live community reports dekhne ke liye log in karein</h3>
+        <p>Homepage public hai, lekin live Lost/Found reports aur contact details account login ke baad available hain.</p>
+        <a class="btn btn-primary" href="/pages/login.html?next=%2Findex.html">Log In</a>
+      </div>
+    `;
+    return;
+  }
 
   try {
     const { data, error } = await supabaseClient
@@ -180,21 +219,13 @@ function createHomepagePetCard(pet) {
   dateText.textContent = `📅 ${date}`;
 
   const actionRow = document.createElement("div");
-actionRow.className = "pet-card-actions";
+  actionRow.className = "pet-card-actions";
 
-const detailsLink =
-document.createElement("a");
-
-detailsLink.className =
-"pet-action-btn details-btn";
-
-detailsLink.href =
-`pages/pet.html?id=${pet.id}`;
-
-detailsLink.textContent =
-"View Details";
-
-actionRow.appendChild(detailsLink);
+  const detailsLink = document.createElement("a");
+  detailsLink.className = "pet-action-btn details-btn";
+  detailsLink.href = `pages/pet.html?id=${pet.id}`;
+  detailsLink.textContent = "View Details";
+  actionRow.appendChild(detailsLink);
 
   if (reportType === "lost") {
     const sightingLink = document.createElement("a");
@@ -207,13 +238,12 @@ actionRow.appendChild(detailsLink);
       encodeURIComponent(String(pet.id)) +
       "&spotted=1";
 
-    sightingLink.textContent =
-      "I Spotted This Pet";
+    sightingLink.textContent = "I Spotted This Pet";
 
-sightingLink.setAttribute(
-  "style",
-  "display:flex!important;width:100%!important;min-height:52px!important;margin:8px 0!important;padding:14px 16px!important;align-items:center!important;justify-content:center!important;flex:0 0 100%!important;background:#f97316!important;color:#ffffff!important;border:0!important;border-radius:12px!important;font-size:16px!important;font-weight:800!important;line-height:1.2!important;text-align:center!important;text-decoration:none!important;visibility:visible!important;opacity:1!important;box-sizing:border-box!important;"
-);
+    sightingLink.setAttribute(
+      "style",
+      "display:flex!important;width:100%!important;min-height:52px!important;margin:8px 0!important;padding:14px 16px!important;align-items:center!important;justify-content:center!important;flex:0 0 100%!important;background:#f97316!important;color:#ffffff!important;border:0!important;border-radius:12px!important;font-size:16px!important;font-weight:800!important;line-height:1.2!important;text-align:center!important;text-decoration:none!important;visibility:visible!important;opacity:1!important;box-sizing:border-box!important;"
+    );
 
     actionRow.appendChild(sightingLink);
   }
@@ -310,10 +340,6 @@ async function updateHomepageStatistics() {
         foundCount.toLocaleString("en-IN");
     }
 
-    /*
-     * Reunited aur Active Members ke liye abhi database
-     * columns nahi hain. Isliye temporary 0 rakha gaya hai.
-     */
     if (statNumbers[2]) {
       statNumbers[2].textContent = "0";
     }
