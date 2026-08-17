@@ -5,11 +5,27 @@
 // ==========================================
 
 (function () {
-  async function checkHomepageSession() {
-    const loginUrl = "/pages/login.html?next=%2Findex.html";
+  const loginUrl = "/pages/login.html?next=%2Findex.html";
 
+  function revealHomepage() {
+    const prepaintStyle = document.getElementById("homepageAuthPrepaint");
+
+    if (prepaintStyle) {
+      prepaintStyle.remove();
+    }
+
+    if (document.body) {
+      document.body.style.visibility = "visible";
+    }
+  }
+
+  function goToLogin() {
+    window.location.replace(loginUrl);
+  }
+
+  async function checkHomepageSession() {
     if (typeof supabaseClient === "undefined") {
-      window.location.replace(loginUrl);
+      goToLogin();
       return;
     }
 
@@ -21,11 +37,14 @@
       }
 
       if (!data?.session) {
-        window.location.replace(loginUrl);
+        goToLogin();
+        return;
       }
+
+      revealHomepage();
     } catch (error) {
       console.warn("Homepage session check error:", error);
-      window.location.replace(loginUrl);
+      goToLogin();
     }
   }
 
