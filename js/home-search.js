@@ -38,6 +38,28 @@ async function searchHomepageReports() {
     return;
   }
 
+  // Homepage itself is public for Google/SEO, but real report search
+  // remains an authenticated feature.
+  try {
+    const { data: sessionData, error: sessionError } =
+      await supabaseClient.auth.getSession();
+
+    if (sessionError) {
+      throw sessionError;
+    }
+
+    if (!sessionData?.session) {
+      window.location.href =
+        "/pages/login.html?next=%2Findex.html";
+      return;
+    }
+  } catch (error) {
+    console.warn("Homepage search session check error:", error);
+    window.location.href =
+      "/pages/login.html?next=%2Findex.html";
+    return;
+  }
+
   // Keep only characters that are safe inside a PostgREST .or() filter.
   const safeSearchValue = searchValue
     .replace(/[^\p{L}\p{N}\s-]/gu, " ")
@@ -93,7 +115,6 @@ async function searchHomepageReports() {
 
     if (error) throw error;
 
-    // Closed/reunited/archived reports should not reappear in search results.
     const visibleReports = (Array.isArray(data) ? data : []).filter(
       function (report) {
         return !report.status || report.status === "active";
