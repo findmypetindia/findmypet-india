@@ -1,39 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="FindMyPet India dog icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="FindMyPet India premium pet location icon">
   <defs>
-    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#0b1e58"/>
-      <stop offset=".54" stop-color="#123bba"/>
-      <stop offset="1" stop-color="#2f5bf3"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08152f"/>
+      <stop offset="1" stop-color="#132a5f"/>
     </linearGradient>
-    <linearGradient id="face" x1=".25" y1="0" x2=".75" y2="1">
-      <stop stop-color="#fff3d8"/>
-      <stop offset="1" stop-color="#fce2ad"/>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff3b0"/>
+      <stop offset="0.45" stop-color="#f4c95d"/>
+      <stop offset="1" stop-color="#c9952e"/>
     </linearGradient>
-    <linearGradient id="ear" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#b27663"/>
-      <stop offset="1" stop-color="#805047"/>
-    </linearGradient>
-    <linearGradient id="tongue" x1="0" y1="0" x2="0" y2="1">
-      <stop stop-color="#f34a9b"/>
-      <stop offset="1" stop-color="#d92476"/>
-    </linearGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="12" stdDeviation="11" flood-color="#071443" flood-opacity=".36"/>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.34"/>
     </filter>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <rect x="4" y="4" width="504" height="504" rx="108" fill="none" stroke="#4b73f7" stroke-opacity=".62" stroke-width="4"/>
-  <ellipse cx="256" cy="474" rx="137" ry="19" fill="#07164a" opacity=".32"/>
-  <g filter="url(#shadow)">
-    <path d="M183 171C137 139 93 151 83 205c-9 50 10 101 49 106 31 5 44-25 54-70z" fill="url(#ear)" stroke="#cf7650" stroke-width="6"/>
-    <path d="M329 171c46-32 90-20 100 34 9 50-10 101-49 106-31 5-44-25-54-70z" fill="url(#ear)" stroke="#cf7650" stroke-width="6"/>
-    <path d="M256 137c-71 0-116 50-116 133 0 98 41 143 116 143s116-45 116-143c0-83-45-133-116-133z" fill="url(#face)"/>
-    <ellipse cx="198" cy="272" rx="15" ry="20" fill="#202125"/>
-    <circle cx="313" cy="270" r="43" fill="#d47750"/>
-    <ellipse cx="313" cy="272" rx="16" ry="21" fill="#202125"/>
-    <ellipse cx="256" cy="322" rx="28" ry="21" fill="#202125"/>
-    <path d="M256 339c-11 13-22 17-37 17-14 0-25-6-33-15M256 339c11 13 22 17 37 17 14 0 25-6 33-15" fill="none" stroke="#202125" stroke-width="11" stroke-linecap="round"/>
-    <path d="M240 362c8 9 24 9 32 0v35c-9 16-23 16-32 0z" fill="url(#tongue)"/>
-    <path d="M256 372v15" stroke="#ff9fc8" stroke-width="6" stroke-linecap="round"/>
+
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="102" fill="none" stroke="#2d4f94" stroke-width="4" opacity="0.65"/>
+
+  <g filter="url(#shadow)" fill="none" stroke="url(#gold)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 128 C205 70 116 78 84 150 C48 230 113 327 256 412"/>
+    <path d="M256 128 C307 70 396 78 428 150 C464 230 399 327 256 412"/>
   </g>
+
+  <g fill="url(#gold)" filter="url(#shadow)">
+    <path d="M256 55c-42 0-76 33-76 74 0 58 76 129 76 129s76-71 76-129c0-41-34-74-76-74zm0 46a30 30 0 1 1 0 60 30 30 0 0 1 0-60z"/>
+
+    <path d="M164 259c0-44 29-79 69-86-2-11-7-26-16-36-18 4-37 16-51 34-12 15-21 34-24 54-17 11-28 29-28 49 0 13 5 25 13 34-4 11-6 24-6 36v36h104v-74c0-26-10-49-27-66-6 5-13 11-18 19-10 14-16 31-16 50v71h-20v-71z"/>
+    <circle cx="187" cy="230" r="7" fill="#08152f"/>
+
+    <path d="M286 213c12-24 33-40 58-45 24 14 40 42 40 75v18l28 19-21 8c-3 16-11 31-22 43-15 16-35 25-57 25h-52v-70c0-28 9-53 26-73zm33 13 17-18 8 25zm46 1 9-24 13 24z"/>
+    <circle cx="349" cy="254" r="7" fill="#08152f"/>
+  </g>
+
+  <path d="M242 413h28" stroke="url(#gold)" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="430" cy="83" r="5" fill="#fff4c4" opacity="0.9"/>
+  <circle cx="447" cy="101" r="3" fill="#fff4c4" opacity="0.7"/>
 </svg>
