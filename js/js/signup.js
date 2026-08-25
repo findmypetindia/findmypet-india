@@ -1,312 +1,149 @@
 // =====================================
-// SUPABASE CONFIGURATION
+// FINDMYPET INDIA - SIGNUP
 // =====================================
 
-const SUPABASE_URL =
-  "https://vrhaagzkeyzlblgjgidg.supabase.co";
-
-const SUPABASE_ANON_KEY =
-  "sb_publishable_6qEYBNFz3SddtxvOxiCLGg__NAMfQS1";
+const SUPABASE_URL = "https://vrhaagzkeyzlblgjgidg.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_6qEYBNFz3SddtxvOxiCLGg__NAMfQS1";
+// Legacy anon JWT is public by design and is used only to pass the Edge Function gateway.
+const EDGE_ANON_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyaGFhZ3prZXl6bGJsZ2pnaWRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxNjQ3MjMsImV4cCI6MjA5ODc0MDcyM30.LNyXb81nGsvCTyzdMWmu3wSfHJAb_KXa-ThyqAY45WU";
 
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
-  SUPABASE_ANON_KEY
+  SUPABASE_PUBLISHABLE_KEY
 );
 
-
-// =====================================
-// HTML ELEMENTS
-// =====================================
-
-const signupForm =
-  document.getElementById("signupForm");
-
-const signupName =
-  document.getElementById("signupName");
-
-const signupEmail =
-  document.getElementById("signupEmail");
-
-const signupPassword =
-  document.getElementById("signupPassword");
-
-const confirmPassword =
-  document.getElementById("confirmPassword");
-
-const showSignupPassword =
-  document.getElementById("showSignupPassword");
-
-const showConfirmPassword =
-  document.getElementById("showConfirmPassword");
-
-const signupButton =
-  document.getElementById("signupButton");
-
-const signupMessage =
-  document.getElementById("signupMessage");
-
-
-// =====================================
-// SHOW MESSAGE
-// =====================================
+const signupForm = document.getElementById("signupForm");
+const signupName = document.getElementById("signupName");
+const signupEmail = document.getElementById("signupEmail");
+const signupPassword = document.getElementById("signupPassword");
+const confirmPassword = document.getElementById("confirmPassword");
+const showSignupPassword = document.getElementById("showSignupPassword");
+const showConfirmPassword = document.getElementById("showConfirmPassword");
+const signupButton = document.getElementById("signupButton");
+const signupMessage = document.getElementById("signupMessage");
 
 function showSignupMessage(message, type = "error") {
   if (!signupMessage) return;
-
   signupMessage.textContent = message;
   signupMessage.className = `message ${type}`;
 }
 
-
-// =====================================
-// SHOW / HIDE PASSWORD
-// =====================================
-
-if (showSignupPassword && signupPassword) {
-  showSignupPassword.addEventListener(
-    "click",
-    function () {
-
-      const isHidden =
-        signupPassword.type === "password";
-
-      signupPassword.type =
-        isHidden ? "text" : "password";
-
-      showSignupPassword.textContent =
-        isHidden ? "Hide" : "Show";
-
-    }
-  );
+function wirePasswordToggle(button, input) {
+  if (!button || !input) return;
+  button.addEventListener("click", function () {
+    const hidden = input.type === "password";
+    input.type = hidden ? "text" : "password";
+    button.textContent = hidden ? "Hide" : "Show";
+  });
 }
 
+wirePasswordToggle(showSignupPassword, signupPassword);
+wirePasswordToggle(showConfirmPassword, confirmPassword);
 
-// =====================================
-// SHOW / HIDE CONFIRM PASSWORD
-// =====================================
+async function createAccountWithoutAuthEmail(fullName, email, password) {
+  const response = await fetch(`${SUPABASE_URL}/functions/v1/public-signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": EDGE_ANON_JWT,
+      "Authorization": `Bearer ${EDGE_ANON_JWT}`
+    },
+    body: JSON.stringify({
+      full_name: fullName,
+      email,
+      password,
+      website: ""
+    })
+  });
 
-if (showConfirmPassword && confirmPassword) {
-  showConfirmPassword.addEventListener(
-    "click",
-    function () {
+  let payload = {};
+  try {
+    payload = await response.json();
+  } catch (_) {}
 
-      const isHidden =
-        confirmPassword.type === "password";
+  if (!response.ok) {
+    throw new Error(payload.error || "Account could not be created. Please try again.");
+  }
 
-      confirmPassword.type =
-        isHidden ? "text" : "password";
-
-      showConfirmPassword.textContent =
-        isHidden ? "Hide" : "Show";
-
-    }
-  );
+  return payload;
 }
-
-
-// =====================================
-// SIGNUP FORM
-// =====================================
 
 if (signupForm) {
-
-  signupForm.addEventListener(
-    "submit",
-    async function (event) {
-
-      event.preventDefault();
-
-      const fullName =
-        signupName.value.trim();
-
-      const email =
-        signupEmail.value.trim();
-
-      const password =
-        signupPassword.value;
-
-      const confirmedPassword =
-        confirmPassword.value;
-
-
-      // EMPTY FIELDS CHECK
-
-      if (
-        !fullName ||
-        !email ||
-        !password ||
-        !confirmedPassword
-      ) {
-
-        showSignupMessage(
-          "Please fill in all the details."
-        );
-
-        return;
-      }
-
-
-      // PASSWORD LENGTH CHECK
-
-      if (password.length < 6) {
-
-        showSignupMessage(
-          "Password must contain at least 6 characters."
-        );
-
-        return;
-      }
-
-
-      // PASSWORD MATCH CHECK
-
-      if (password !== confirmedPassword) {
-
-        showSignupMessage(
-          "Password and Confirm Password do not match."
-        );
-
-        return;
-      }
-
-
-      try {
-
-        signupButton.disabled = true;
-
-        signupButton.textContent =
-          "Creating Account...";
-
-        showSignupMessage("", "success");
-
-
-        const { data, error } =
-          await supabaseClient.auth.signUp({
-
-            email: email,
-
-            password: password,
-
-            options: {
-
-              data: {
-                full_name: fullName
-              },
-
-              emailRedirectTo:
-                `${window.location.origin}/pages/login.html`
-
-            }
-
-          });
-
-
-        if (error) {
-          throw error;
-        }
-
-
-        // EMAIL CONFIRMATION ON
-
-        if (!data.session) {
-            localStorage.setItem(
-  "signupEmail",
-  email
-);
-
-          showSignupMessage(
-            "Account created! Please check your email and confirm your account.",
-            "success"
-          );
-
-          signupForm.reset();
-setTimeout(function () {
-
-  window.location.href =
-    "verify-email.html";
-
-}, 1500);
-
-          return;
-        }
-
-
-        // EMAIL CONFIRMATION OFF
-
-        showSignupMessage(
-          "Account created successfully! Opening FindMyPet India...",
-          "success"
-        );
-
-        signupForm.reset();
-
-        setTimeout(function () {
-
-          window.location.href = "../index.html";
-
-        }, 1500);
-
-      } catch (error) {
-
-        console.error(
-          "Signup error:",
-          error
-        );
-
-        let message =
-          error.message ||
-          "Account could not be created.";
-
-        const lowerMessage =
-          message.toLowerCase();
-
-
-        if (
-          lowerMessage.includes("already registered") ||
-          lowerMessage.includes("already exists")
-        ) {
-
-          message =
-            "This email is already registered. Please log in.";
-
-        }
-
-
-        if (
-          lowerMessage.includes("invalid email")
-        ) {
-
-          message =
-            "Please enter a valid email address.";
-
-        }
-
-
-        if (
-          lowerMessage.includes("password")
-        ) {
-
-          message =
-            "Please create a password with at least 6 characters.";
-
-        }
-
-
-        showSignupMessage(
-          message,
-          "error"
-        );
-
-      } finally {
-
-        signupButton.disabled = false;
-
-        signupButton.textContent =
-          "Create Account";
-
-      }
-
+  signupForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const fullName = signupName.value.trim();
+    const email = signupEmail.value.trim().toLowerCase();
+    const password = signupPassword.value;
+    const confirmedPassword = confirmPassword.value;
+
+    if (!fullName || !email || !password || !confirmedPassword) {
+      showSignupMessage("Please fill in all the details.");
+      return;
     }
-  );
 
+    if (password.length < 6) {
+      showSignupMessage("Password must contain at least 6 characters.");
+      return;
+    }
+
+    if (password !== confirmedPassword) {
+      showSignupMessage("Password and Confirm Password do not match.");
+      return;
+    }
+
+    signupButton.disabled = true;
+    signupButton.textContent = "Creating Account...";
+    showSignupMessage("", "success");
+
+    try {
+      // Production-safe fallback while Supabase's built-in email sender is rate-limited.
+      // Account creation is performed server-side and protected by origin + IP rate limiting.
+      await createAccountWithoutAuthEmail(fullName, email, password);
+
+      const { data: loginData, error: loginError } =
+        await supabaseClient.auth.signInWithPassword({ email, password });
+
+      if (loginError) throw loginError;
+      if (!loginData || !loginData.session) {
+        throw new Error("Account created, but login session could not be started. Please log in.");
+      }
+
+      showSignupMessage(
+        "Account created successfully! Opening FindMyPet India...",
+        "success"
+      );
+
+      signupForm.reset();
+
+      setTimeout(function () {
+        window.location.href = "../index.html";
+      }, 900);
+
+    } catch (error) {
+      console.error("Signup error:", error);
+
+      let message = error && error.message
+        ? error.message
+        : "Account could not be created. Please try again.";
+
+      const lower = message.toLowerCase();
+
+      if (lower.includes("already registered") || lower.includes("already exists")) {
+        message = "This email is already registered. Please log in.";
+      } else if (lower.includes("invalid email")) {
+        message = "Please enter a valid email address.";
+      } else if (lower.includes("too many signup attempts")) {
+        message = "Too many signup attempts. Please wait and try again later.";
+      } else if (lower.includes("failed to fetch")) {
+        message = "Signup service se connection nahi ho pa raha. Internet check karke dobara try karein.";
+      }
+
+      showSignupMessage(message, "error");
+
+    } finally {
+      signupButton.disabled = false;
+      signupButton.textContent = "Create Account";
+    }
+  });
 }
