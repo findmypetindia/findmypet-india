@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>document.documentElement.classList.add("auth-checking");</script>
+  <style>html.auth-checking body{visibility:hidden!important;}</style>
+  <script src="../js/auth-guard.js?v=2"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registered Users | FindMyPet India</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="../css/style.css?v=609">
+  <link rel="stylesheet" href="../css/admin-users.css?v=1">
+</head>
+<body>
+  <header id="siteHeader"></header>
+  <main class="admin-users-page">
+    <section class="admin-users-header">
+      <div>
+        <p class="admin-label">ADMIN ONLY</p>
+        <h1>Registered Users</h1>
+        <p>Secure overview of FindMyPet India accounts.</p>
+      </div>
+      <a class="back-button" href="dashboard.html">← Back to Dashboard</a>
+    </section>
+
+    <section class="admin-stats" aria-label="User totals">
+      <article><span id="totalUsers">—</span><small>Total accounts</small></article>
+      <article><span id="signedInUsers">—</span><small>Users who logged in</small></article>
+    </section>
+
+    <section class="users-panel">
+      <div class="users-toolbar">
+        <h2>User Details</h2>
+        <input id="userSearch" type="search" placeholder="Search name or email" aria-label="Search users">
+      </div>
+      <p id="usersMessage" class="users-message">Loading users...</p>
+      <div class="users-table-wrap">
+        <table id="usersTable" hidden>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Signup date</th>
+              <th>Last login</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase.js?v=2"></script>
+  <script src="../js/navbar.js?v=15"></script>
+  <script src="../js/admin-users.js?v=1"></script>
+</body>
+</html>
