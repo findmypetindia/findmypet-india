@@ -35,6 +35,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       return;
     }
 
+    const adminUsersCard = document.getElementById("adminUsersCard");
+    if (adminUsersCard && user.app_metadata && user.app_metadata.role === "admin") {
+      adminUsersCard.hidden = false;
+    }
+
     const { data, error } =
       await supabaseClient
         .from("pet_reports")
