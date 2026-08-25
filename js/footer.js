@@ -52,7 +52,9 @@
         "/pages/signup.html",
         "/pages/dashboard.html",
         "/pages/edit-report.html",
-        "/pages/verify-email.html"
+        "/pages/verify-email.html",
+        "/pages/reset-password.html",
+        "/pages/admin-users.html"
     ];
 
     function setMeta(selector, attribute, value) {
