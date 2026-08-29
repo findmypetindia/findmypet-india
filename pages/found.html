@@ -3,7 +3,9 @@
 <head>
   <script>document.documentElement.classList.add("auth-checking");</script>
   <style>html.auth-checking body{visibility:hidden!important;}</style>
-  <script src="../js/auth-guard.js?v=2"></script>
+  <!-- Supabase MUST load before auth-guard.js. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/auth-guard.js?v=3"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report & Search Found Pets in India | FindMyPet India</title>
@@ -15,7 +17,7 @@
   <meta property="og:url" content="https://findmypetindia.com/pages/found.html">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="../css/navbar.css?v=1">
-<link rel="stylesheet" href="../css/style.css?v=611">
+  <link rel="stylesheet" href="../css/style.css?v=611">
   <link rel="stylesheet" href="../css/pet-pages.css?v=1">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -32,6 +34,10 @@
       <p id="foundFormMessage" class="form-message"></p><div class="form-actions"><a href="../index.html" class="btn btn-light">Cancel</a><button type="submit" class="btn btn-accent" id="submitFoundButton">Submit Found Report</button></div></div></form></section>
     <section class="reports-section container"><div class="section-heading"><h2>Recently Reported Found Pets</h2><p>Pets recently found by our community</p></div><div class="pet-grid reports-page-grid" data-report-type="found"></div></section>
   </main>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase.js"></script><script src="../js/navbar.js?v=15"></script><script src="../js/search.js?v=6"></script><script src="../js/js/js/found.js?v=202"></script><div id="footer-container"></div><script src="../js/footer.js"></script>
+  <script src="../js/supabase.js"></script>
+  <script src="../js/navbar.js?v=15"></script>
+  <script src="../js/search.js?v=7"></script>
+  <script src="../js/js/js/found.js?v=203"></script>
+  <div id="footer-container"></div><script src="../js/footer.js"></script>
 </body>
 </html>
