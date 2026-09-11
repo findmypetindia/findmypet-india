@@ -1,34 +1,19 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const reportsContainer =
-    document.getElementById("dashboardReports");
+  const reportsContainer = document.getElementById("dashboardReports");
+  const lostCount = document.getElementById("lostCount");
+  const foundCount = document.getElementById("foundCount");
 
-  const lostCount =
-    document.getElementById("lostCount");
+  if (!reportsContainer || !lostCount || !foundCount) return;
 
-  const foundCount =
-    document.getElementById("foundCount");
-
-  if (
-    !reportsContainer ||
-    !lostCount ||
-    !foundCount
-  ) {
-    return;
-  }
-
-  reportsContainer.innerHTML =
-    "Loading your reports...";
+  reportsContainer.textContent = "Loading your reports...";
 
   try {
     const {
       data: { user },
       error: userError
-    } =
-      await supabaseClient.auth.getUser();
+    } = await supabaseClient.auth.getUser();
 
-    if (userError) {
-      throw userError;
-    }
+    if (userError) throw userError;
 
     if (!user) {
       window.location.href = "login.html";
@@ -36,337 +21,224 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     const adminUsersCard = document.getElementById("adminUsersCard");
-    if (adminUsersCard && user.app_metadata && user.app_metadata.role === "admin") {
+    if (adminUsersCard && user.app_metadata?.role === "admin") {
       adminUsersCard.hidden = false;
     }
 
-    const { data, error } =
-      await supabaseClient
-        .from("pet_reports")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("created_at", {
-          ascending: false
-        });
+    const { data, error } = await supabaseClient
+      .from("pet_reports")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false });
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
-    const reports =
-      Array.isArray(data) ? data : [];
+    const reports = Array.isArray(data) ? data : [];
+    const lostReports = reports.filter((report) => report.report_type === "lost");
+    const foundReports = reports.filter((report) => report.report_type === "found");
 
-    const lostReports =
-      reports.filter(function (report) {
-        return report.report_type === "lost";
-      });
-
-    const foundReports =
-      reports.filter(function (report) {
-        return report.report_type === "found";
-      });
-
-    lostCount.textContent =
-      `${lostReports.length} Reports`;
-
-    foundCount.textContent =
-      `${foundReports.length} Reports`;
+    lostCount.textContent = `${lostReports.length} Reports`;
+    foundCount.textContent = `${foundReports.length} Reports`;
 
     if (reports.length === 0) {
-      reportsContainer.innerHTML = `
-        <div class="empty-dashboard">
-          <h3>No Reports Yet</h3>
-          <p>
-            You have not submitted any lost or found pet reports.
-          </p>
-        </div>
-      `;
+      const empty = document.createElement("div");
+      empty.className = "empty-dashboard";
 
+      const heading = document.createElement("h3");
+      heading.textContent = "No Reports Yet";
+
+      const text = document.createElement("p");
+      text.textContent = "You have not submitted any lost or found pet reports.";
+
+      empty.append(heading, text);
+      reportsContainer.replaceChildren(empty);
       return;
     }
 
-    reportsContainer.innerHTML = "";
+    reportsContainer.replaceChildren();
 
-    reports.forEach(function (report) {
-      const card =
-        document.createElement("article");
+    reports.forEach((report) => {
+      const card = document.createElement("article");
+      card.className = "dashboard-report-card";
 
-      card.className =
-        "dashboard-report-card";
+      const petName = report.pet_name || report.pet_type || "Unnamed Pet";
+      const location = [report.city, report.state].filter(Boolean).join(", ");
+      const imageUrl = report.image_url || "https://placehold.co/500x350?text=Pet+Photo";
+      const reportType = report.report_type === "found" ? "FOUND" : "LOST";
+      const currentStatus = report.status || "active";
+      const statusButtonText = currentStatus === "reunited" ? "Mark as Active" : "Mark as Reunited";
 
-      const petName =
-        report.pet_name ||
-        report.pet_type ||
-        "Unnamed Pet";
+      const image = document.createElement("img");
+      image.src = imageUrl;
+      image.alt = petName;
+      image.addEventListener("error", function () {
+        image.onerror = null;
+        image.src = "https://placehold.co/500x350?text=Pet+Photo";
+      });
 
-      const location =
-        [report.city, report.state]
-          .filter(Boolean)
-          .join(", ");
+      const info = document.createElement("div");
+      info.className = "dashboard-report-info";
 
-      const imageUrl =
-        report.image_url ||
-        "https://placehold.co/500x350?text=Pet+Photo";
+      const tag = document.createElement("span");
+      tag.className = `dashboard-tag ${report.report_type === "found" ? "found" : "lost"}`;
+      tag.textContent = reportType;
 
-      const reportType =
-        report.report_type === "found"
-          ? "FOUND"
-          : "LOST";
+      const heading = document.createElement("h3");
+      heading.textContent = petName;
 
-      const currentStatus =
-        report.status || "active";
+      const type = document.createElement("p");
+      type.textContent = `🐾 ${report.pet_type || "Pet type not provided"}`;
 
-      const statusButtonText =
-        currentStatus === "reunited"
-          ? "Mark as Active"
-          : "Mark as Reunited";
+      const place = document.createElement("p");
+      place.textContent = `📍 ${location || "Location not provided"}`;
 
-      card.innerHTML = `
-        <img
-          src="${imageUrl}"
-          alt="${petName}"
-          onerror="
-            this.onerror=null;
-            this.src='https://placehold.co/500x350?text=Pet+Photo';
-          "
-        >
+      const date = document.createElement("p");
+      date.textContent = `📅 ${report.report_date || "Date not provided"}`;
 
-        <div class="dashboard-report-info">
+      const detailsLink = document.createElement("a");
+      detailsLink.href = `pet.html?id=${encodeURIComponent(report.id)}`;
+      detailsLink.className = "btn btn-primary";
+      detailsLink.textContent = "View Details";
 
-          <span class="dashboard-tag ${report.report_type}">
-            ${reportType}
-          </span>
+      const editLink = document.createElement("a");
+      editLink.href = `edit-report.html?id=${encodeURIComponent(report.id)}`;
+      editLink.className = "btn btn-warning";
+      editLink.textContent = "Edit Report";
 
-          <h3>${petName}</h3>
+      const reunitedButton = document.createElement("button");
+      reunitedButton.type = "button";
+      reunitedButton.className = "btn reunited-report-button";
+      reunitedButton.dataset.reportId = report.id;
+      reunitedButton.dataset.currentStatus = currentStatus;
+      reunitedButton.textContent = statusButtonText;
 
-          <p>
-            🐾 ${report.pet_type || "Pet type not provided"}
-          </p>
+      const archiveButton = document.createElement("button");
+      archiveButton.type = "button";
+      archiveButton.className = "btn delete-report-button";
+      archiveButton.dataset.reportId = report.id;
+      archiveButton.textContent = "Archive Report";
 
-          <p>
-            📍 ${location || "Location not provided"}
-          </p>
-
-          <p>
-            📅 ${report.report_date || "Date not provided"}
-          </p>
-
-          <a
-            href="pet.html?id=${report.id}"
-            class="btn btn-primary"
-          >
-            View Details
-          </a>
-
-          <a
-            href="edit-report.html?id=${report.id}"
-            class="btn btn-warning"
-          >
-            Edit Report
-          </a>
-
-          <button
-            type="button"
-            class="btn reunited-report-button"
-            data-report-id="${report.id}"
-            data-current-status="${currentStatus}"
-          >
-            ${statusButtonText}
-          </button>
-
-          <button
-            type="button"
-            class="btn delete-report-button"
-            data-report-id="${report.id}"
-          >
-            Archive Report
-          </button>
-
-        </div>
-      `;
-
+      info.append(tag, heading, type, place, date, detailsLink, editLink, reunitedButton, archiveButton);
+      card.append(image, info);
       reportsContainer.appendChild(card);
     });
-
   } catch (error) {
-    console.error(
-      "Dashboard load error:",
-      error
-    );
+    console.error("Dashboard load error:", error);
 
-    reportsContainer.innerHTML = `
-      <div class="empty-dashboard">
-        <h3>Unable to load reports</h3>
-        <p>
-          ${error.message || "Please try again."}
-        </p>
-      </div>
-    `;
+    const empty = document.createElement("div");
+    empty.className = "empty-dashboard";
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Unable to load reports";
+
+    const text = document.createElement("p");
+    text.textContent = "Please try again.";
+
+    empty.append(heading, text);
+    reportsContainer.replaceChildren(empty);
   }
 });
 
-
 // =====================================
-// DELETE REPORT
+// ARCHIVE REPORT
 // =====================================
 
-document.addEventListener(
-  "click",
-  async function (event) {
-    const deleteButton =
-      event.target.closest(
-        ".delete-report-button"
-      );
+document.addEventListener("click", async function (event) {
+  const archiveButton = event.target.closest(".delete-report-button");
+  if (!archiveButton) return;
 
-    if (!deleteButton) return;
+  const reportId = archiveButton.dataset.reportId;
+  const confirmed = window.confirm(
+    "Kya aap is report ko archive karna chahte hain? Report aur photo recovery ke liye safe rahenge."
+  );
 
-    const reportId =
-      deleteButton.dataset.reportId;
+  if (!confirmed) return;
 
-    const confirmed =
-      window.confirm(
-        "Kya aap is report ko archive karna chahte hain? Report aur photo recovery ke liye safe rahenge."
-      );
+  archiveButton.disabled = true;
+  archiveButton.textContent = "Archiving...";
 
-    if (!confirmed) return;
+  try {
+    const {
+      data: { user },
+      error: userError
+    } = await supabaseClient.auth.getUser();
 
-    deleteButton.disabled = true;
-    deleteButton.textContent =
-      "Archiving...";
-
-    try {
-      const { error } =
-        await supabaseClient
-          .from("pet_reports")
-          .update({ status: "archived" })
-          .eq("id", reportId);
-
-      if (error) {
-        throw error;
-      }
-
-      alert(
-        "Report archived ho gayi. Data recovery ke liye safe hai."
-      );
-
-      window.location.reload();
-
-    } catch (error) {
-      console.error(
-        "Delete report error:",
-        error
-      );
-
-      alert(
-        error.message ||
-        "Report delete nahi ho saki."
-      );
-
-      deleteButton.disabled = false;
-      deleteButton.textContent =
-        "Archive Report";
+    if (userError) throw userError;
+    if (!user) {
+      window.location.replace("login.html");
+      return;
     }
-  }
-);
 
+    const { error } = await supabaseClient
+      .from("pet_reports")
+      .update({ status: "archived", updated_at: new Date().toISOString() })
+      .eq("id", reportId)
+      .eq("user_id", user.id);
+
+    if (error) throw error;
+
+    alert("Report archived ho gayi. Data recovery ke liye safe hai.");
+    window.location.reload();
+  } catch (error) {
+    console.error("Archive report error:", error);
+    alert("Report archive nahi ho saki. Please try again.");
+    archiveButton.disabled = false;
+    archiveButton.textContent = "Archive Report";
+  }
+});
 
 // =====================================
 // MARK AS REUNITED / ACTIVE
 // =====================================
 
-document.addEventListener(
-  "click",
-  async function (event) {
-    const reunitedButton =
-      event.target.closest(
-        ".reunited-report-button"
-      );
+document.addEventListener("click", async function (event) {
+  const reunitedButton = event.target.closest(".reunited-report-button");
+  if (!reunitedButton) return;
 
-    if (!reunitedButton) return;
+  const reportId = reunitedButton.dataset.reportId;
+  const currentStatus = reunitedButton.dataset.currentStatus;
+  const newStatus = currentStatus === "reunited" ? "active" : "reunited";
+  const confirmMessage = newStatus === "reunited"
+    ? "Kya pet mil gaya hai? Is report ko Reunited mark karna hai?"
+    : "Kya is report ko dobara Active karna hai?";
 
-    const reportId =
-      reunitedButton.dataset.reportId;
+  if (!window.confirm(confirmMessage)) return;
 
-    const currentStatus =
-      reunitedButton.dataset.currentStatus;
+  reunitedButton.disabled = true;
+  reunitedButton.textContent = "Updating...";
 
-    const newStatus =
-      currentStatus === "reunited"
-        ? "active"
-        : "reunited";
+  try {
+    const {
+      data: { user },
+      error: userError
+    } = await supabaseClient.auth.getUser();
 
-    const confirmMessage =
-      newStatus === "reunited"
-        ? "Kya pet mil gaya hai? Is report ko Reunited mark karna hai?"
-        : "Kya is report ko dobara Active karna hai?";
-
-    const confirmed =
-      window.confirm(confirmMessage);
-
-    if (!confirmed) return;
-
-    reunitedButton.disabled = true;
-    reunitedButton.textContent =
-      "Updating...";
-
-    try {
-      const {
-        data: { user },
-        error: userError
-      } =
-        await supabaseClient.auth.getUser();
-
-      if (userError) {
-        throw userError;
-      }
-
-      if (!user) {
-        window.location.replace(
-          "login.html"
-        );
-        return;
-      }
-
-      const { error } =
-        await supabaseClient
-          .from("pet_reports")
-          .update({
-            status: newStatus,
-            updated_at:
-              new Date().toISOString()
-          })
-          .eq("id", reportId)
-          .eq("user_id", user.id);
-
-      if (error) {
-        throw error;
-      }
-
-      alert(
-        newStatus === "reunited"
-          ? "🎉 Pet successfully marked as Reunited!"
-          : "✅ Report successfully marked as Active."
-      );
-
-      window.location.reload();
-
-    } catch (error) {
-      console.error(
-        "Status update error:",
-        error
-      );
-
-      alert(
-        error.message ||
-        "Status update nahi ho saka."
-      );
-
-      reunitedButton.disabled = false;
-
-      reunitedButton.textContent =
-        currentStatus === "reunited"
-          ? "Mark as Active"
-          : "Mark as Reunited";
+    if (userError) throw userError;
+    if (!user) {
+      window.location.replace("login.html");
+      return;
     }
+
+    const { error } = await supabaseClient
+      .from("pet_reports")
+      .update({ status: newStatus, updated_at: new Date().toISOString() })
+      .eq("id", reportId)
+      .eq("user_id", user.id);
+
+    if (error) throw error;
+
+    alert(
+      newStatus === "reunited"
+        ? "🎉 Pet successfully marked as Reunited!"
+        : "✅ Report successfully marked as Active."
+    );
+    window.location.reload();
+  } catch (error) {
+    console.error("Status update error:", error);
+    alert("Status update nahi ho saka. Please try again.");
+    reunitedButton.disabled = false;
+    reunitedButton.textContent = currentStatus === "reunited"
+      ? "Mark as Active"
+      : "Mark as Reunited";
   }
-);
+});
