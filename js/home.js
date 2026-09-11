@@ -57,8 +57,7 @@ async function getHomepageSession() {
  * Latest Lost aur Found reports Supabase se load karta hai.
  */
 async function loadHomepageReports() {
-  const petGrid =
-  document.getElementById("homepageReportsGrid");
+  const petGrid = document.getElementById("homepageReportsGrid");
   if (!petGrid) {
     return;
   }
@@ -99,7 +98,8 @@ async function loadHomepageReports() {
           report_date,
           mobile,
           image_url,
-          created_at
+          created_at,
+          status
         `
       )
       .or("status.eq.active,status.is.null")
@@ -133,7 +133,7 @@ async function loadHomepageReports() {
     petGrid.innerHTML = `
       <div class="homepage-error">
         <h3>Reports load nahi ho paayi</h3>
-        <p>${safeText(error.message, "Please refresh the page.")}</p>
+        <p>Reports abhi load nahi ho pa rahi hain. Please refresh karke dobara try karein.</p>
         <button type="button" id="retryReportsBtn">
           Try Again
         </button>
@@ -223,7 +223,7 @@ function createHomepagePetCard(pet) {
 
   const detailsLink = document.createElement("a");
   detailsLink.className = "pet-action-btn details-btn";
-  detailsLink.href = `pages/pet.html?id=${pet.id}`;
+  detailsLink.href = `pages/pet.html?id=${encodeURIComponent(String(pet.id))}`;
   detailsLink.textContent = "View Details";
   actionRow.appendChild(detailsLink);
 
@@ -305,13 +305,14 @@ function formatReportDate(value) {
 }
 
 /**
- * Homepage statistics ko database values se update karta hai.
+ * Homepage statistics ko active database reports se update karta hai.
  */
 async function updateHomepageStatistics() {
   try {
     const { data, error } = await supabaseClient
       .from("pet_reports")
-      .select("report_type");
+      .select("report_type, status")
+      .or("status.eq.active,status.is.null");
 
     if (error) {
       throw error;
