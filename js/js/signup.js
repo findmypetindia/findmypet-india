@@ -4,14 +4,9 @@
 
 const SUPABASE_URL = "https://vrhaagzkeyzlblgjgidg.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_6qEYBNFz3SddtxvOxiCLGg__NAMfQS1";
-// Legacy anon JWT is public by design and is used only to pass the Edge Function gateway.
 const EDGE_ANON_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyaGFhZ3prZXl6bGJsZ2pnaWRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxNjQ3MjMsImV4cCI6MjA5ODc0MDcyM30.LNyXb81nGsvCTyzdMWmu3wSfHJAb_KXa-ThyqAY45WU";
 
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const signupForm = document.getElementById("signupForm");
 const signupName = document.getElementById("signupName");
 const signupEmail = document.getElementById("signupEmail");
@@ -48,23 +43,12 @@ async function createAccountWithoutAuthEmail(fullName, email, password) {
       "apikey": EDGE_ANON_JWT,
       "Authorization": `Bearer ${EDGE_ANON_JWT}`
     },
-    body: JSON.stringify({
-      full_name: fullName,
-      email,
-      password,
-      website: ""
-    })
+    body: JSON.stringify({ full_name: fullName, email, password, website: "" })
   });
 
   let payload = {};
-  try {
-    payload = await response.json();
-  } catch (_) {}
-
-  if (!response.ok) {
-    throw new Error(payload.error || "Account could not be created. Please try again.");
-  }
-
+  try { payload = await response.json(); } catch (_) {}
+  if (!response.ok) throw new Error(payload.error || "Account could not be created. Please try again.");
   return payload;
 }
 
@@ -81,12 +65,10 @@ if (signupForm) {
       showSignupMessage("Please fill in all the details.");
       return;
     }
-
     if (password.length < 6) {
       showSignupMessage("Password must contain at least 6 characters.");
       return;
     }
-
     if (password !== confirmedPassword) {
       showSignupMessage("Password and Confirm Password do not match.");
       return;
@@ -97,38 +79,21 @@ if (signupForm) {
     showSignupMessage("", "success");
 
     try {
-      // Production-safe fallback while Supabase's built-in email sender is rate-limited.
-      // Account creation is performed server-side and protected by origin + IP rate limiting.
       await createAccountWithoutAuthEmail(fullName, email, password);
-
-      const { data: loginData, error: loginError } =
-        await supabaseClient.auth.signInWithPassword({ email, password });
-
+      const { data: loginData, error: loginError } = await supabaseClient.auth.signInWithPassword({ email, password });
       if (loginError) throw loginError;
-      if (!loginData || !loginData.session) {
-        throw new Error("Account created, but login session could not be started. Please log in.");
-      }
+      if (!loginData?.session) throw new Error("Account created, but login session could not be started. Please log in.");
 
-      showSignupMessage(
-        "Account created successfully! Opening FindMyPet India...",
-        "success"
-      );
-
+      showSignupMessage("Account created successfully! Opening FindMyPet India...", "success");
       signupForm.reset();
 
       setTimeout(function () {
-        window.location.href = "../index.html";
+        window.location.replace("../");
       }, 900);
-
     } catch (error) {
       console.error("Signup error:", error);
-
-      let message = error && error.message
-        ? error.message
-        : "Account could not be created. Please try again.";
-
+      let message = error?.message || "Account could not be created. Please try again.";
       const lower = message.toLowerCase();
-
       if (lower.includes("already registered") || lower.includes("already exists")) {
         message = "This email is already registered. Please log in.";
       } else if (lower.includes("invalid email")) {
@@ -138,9 +103,7 @@ if (signupForm) {
       } else if (lower.includes("failed to fetch")) {
         message = "Signup service se connection nahi ho pa raha. Internet check karke dobara try karein.";
       }
-
       showSignupMessage(message, "error");
-
     } finally {
       signupButton.disabled = false;
       signupButton.textContent = "Create Account";
