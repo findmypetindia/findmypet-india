@@ -14,6 +14,16 @@ if (searchBtn && searchInput) {
       searchHomepageReports();
     }
   });
+
+  // Restore a search that was interrupted by the login gate.
+  const pendingSearch = new URLSearchParams(window.location.search).get("search");
+  if (pendingSearch) {
+    searchInput.value = pendingSearch;
+    window.history.replaceState({}, document.title, window.location.pathname);
+    setTimeout(function () {
+      searchHomepageReports();
+    }, 0);
+  }
 }
 
 async function searchHomepageReports() {
@@ -49,14 +59,18 @@ async function searchHomepageReports() {
     }
 
     if (!sessionData?.session) {
-      window.location.href =
-        "/pages/login.html?next=%2Findex.html";
+      const next = encodeURIComponent(
+        "/index.html?search=" + encodeURIComponent(searchValue)
+      );
+      window.location.href = `/pages/login.html?next=${next}`;
       return;
     }
   } catch (error) {
     console.warn("Homepage search session check error:", error);
-    window.location.href =
-      "/pages/login.html?next=%2Findex.html";
+    const next = encodeURIComponent(
+      "/index.html?search=" + encodeURIComponent(searchValue)
+    );
+    window.location.href = `/pages/login.html?next=${next}`;
     return;
   }
 
