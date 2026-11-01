@@ -71,7 +71,7 @@
     message.textContent = "";
     message.className = "rescue-form-message";
     if (!form.reportValidity()) return;
-    if (!window.supabaseClient || !window.supabaseClient.functions) {
+    if (typeof supabaseClient === "undefined" || !supabaseClient.functions) {
       message.textContent = "Report service is temporarily unavailable. Please contact a local rescue organisation directly.";
       message.classList.add("error");
       return;
@@ -85,7 +85,7 @@
     submit.textContent = "Submitting…";
 
     try {
-      const { data: result, error } = await window.supabaseClient.functions.invoke("animal-rescue-intake", { body: data });
+      const { data: result, error } = await supabaseClient.functions.invoke("animal-rescue-intake", { body: data });
       if (error) throw error;
       if (!result || !result.ok || !result.complaint_id) throw new Error(result?.error || "Submission could not be confirmed.");
       message.innerHTML = "";
