@@ -129,3 +129,24 @@
 .partner-disclaimer { display:block; margin-top:12px; color:#64748b; font-size:11px; line-height:1.5; }
 @media(max-width:850px) { .rescue-partner-join { grid-template-columns:1fr; gap:10px; padding:28px; } .rescue-partner-visual { min-height:190px; } .partner-orbit { width:170px; height:170px; }.partner-orbit-two { width:130px; height:130px; } }
 @media(max-width:600px) { .rescue-partner-join { padding:23px 18px; border-radius:20px; } .rescue-partner-visual { min-height:165px; } .partner-emblem { width:104px; height:104px; border-radius:30px; }.partner-emblem span { font-size:51px; }.partner-emblem b { width:46px; height:46px; border-radius:15px; font-size:22px; } .partner-benefits { grid-template-columns:1fr; gap:8px; } .partner-benefits>div { min-height:0; display:grid; grid-template-columns:34px 1fr; align-items:center; column-gap:10px; } .partner-benefits>div>span { grid-row:span 2; } .partner-benefits small { grid-column:2; } .partner-join-actions { align-items:stretch; flex-direction:column; } .partner-apply-btn { width:100%; } .partner-review-note { align-items:flex-start; } }
+
+
+/* Homepage: two distinct entry points for public rescue and partner applications */
+.rescue-choice-grid { padding:58px 6%; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; background:#fff; }
+.rescue-choice-card { position:relative; min-height:310px; padding:30px; display:grid; grid-template-columns:130px minmax(0,1fr); align-items:center; gap:24px; overflow:hidden; border:1px solid #dbe5f2; border-radius:24px; box-shadow:0 14px 34px rgba(15,23,42,.07); }
+.rescue-choice-public { background:linear-gradient(135deg,#fff7f7,#fff 72%); }
+.rescue-choice-partner { background:linear-gradient(135deg,#eff6ff,#f7fff9 100%); }
+.rescue-choice-art { position:relative; width:126px; height:126px; display:grid; place-items:center; border-radius:34px; background:rgba(255,255,255,.85); box-shadow:0 12px 28px rgba(15,23,42,.09); }
+.rescue-choice-art span { position:absolute; font-size:53px; }
+.rescue-choice-art span:first-child { left:10px; bottom:17px; transform:rotate(-9deg); }
+.rescue-choice-art span:nth-child(2) { right:8px; top:13px; transform:rotate(8deg); }
+.rescue-choice-art i { position:absolute; top:-15px; right:-12px; color:#ef476f; font-size:32px; font-style:normal; }
+.rescue-choice-partner .rescue-choice-art span:first-child { left:14px; bottom:15px; }
+.rescue-choice-partner .rescue-choice-art span:nth-child(2) { right:8px; top:12px; }
+.rescue-choice-partner .rescue-choice-art i { color:#2563eb; }
+.rescue-choice-copy .animal-rescue-chip { margin-bottom:10px; }
+.rescue-choice-copy h2 { margin:0 0 10px; color:#10213d; font-size:clamp(22px,2.4vw,29px); line-height:1.15; }
+.rescue-choice-copy p { margin:0 0 18px; color:#52627a; font-size:14px; line-height:1.7; }
+.rescue-choice-copy .btn { display:inline-flex; align-items:center; gap:10px; }
+@media(max-width:900px) { .rescue-choice-grid { grid-template-columns:1fr; padding:42px 5%; } .rescue-choice-card { min-height:250px; } }
+@media(max-width:600px) { .rescue-choice-grid { padding:30px 16px; gap:15px; } .rescue-choice-card { grid-template-columns:1fr; justify-items:center; padding:24px 20px; text-align:center; gap:18px; } .rescue-choice-art { width:112px; height:112px; } .rescue-choice-art span { font-size:47px; } .rescue-choice-copy .btn { width:100%; justify-content:center; } }
