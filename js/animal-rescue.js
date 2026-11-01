@@ -23,10 +23,10 @@
 
   function chooseCategory(category) {
     categorySelect.value = category;
-    guidanceTitle.textContent = category + " — safety first";
-    guidanceCopy.textContent = guidance[category] || "Stay safe, note the location and contact an appropriate local animal welfare service.";
-    guidanceBox.hidden = false;
-    guidanceBox.scrollIntoView({ behavior: "smooth", block: "center" });
+    // Open the report form immediately; keep category-specific safety guidance separate.
+    guidanceBox.hidden = true;
+    document.getElementById("emergency-report").scrollIntoView({ behavior: "smooth", block: "start" });
+    categorySelect.focus({ preventScroll: true });
   }
 
   document.querySelectorAll(".rescue-need-card[data-category]").forEach((button) => {
