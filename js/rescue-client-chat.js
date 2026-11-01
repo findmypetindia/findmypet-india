@@ -69,5 +69,9 @@
   finally{$("client-chat-submit").disabled=false;$("client-chat-submit").textContent="Send message";}
  });
  $("chat-sign-out").addEventListener("click",()=>{chatKey="";keyField.value="";workspace.hidden=true;identity.hidden=false;setStatus($("chat-access-status"),"You have left the private case chat.");});
- const params=new URLSearchParams(location.search);if(params.get("complaint_id"))idField.value=params.get("complaint_id");
+ const params=new URLSearchParams(location.search);
+ if(params.get("complaint_id")){
+  idField.value=params.get("complaint_id");
+  supabaseClient.auth.getSession().then(({data})=>{if(data?.session)identity.requestSubmit();});
+ }
 })();
