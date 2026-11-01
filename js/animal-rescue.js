@@ -20,6 +20,27 @@
   const message = document.getElementById("rescue-form-message");
   const submit = document.getElementById("rescue-submit");
   const mediaInput = document.getElementById("rescue-media");
+  const partnerSelect = document.getElementById("rescue-partner-select");
+  const partnerStatus = document.getElementById("rescue-partner-status");
+  let partnerLookupSequence = 0;
+  async function loadRescuePartners() {
+    const city=form.elements.city.value.trim(), state=form.elements.state.value.trim(), animalType=form.elements.animal_type.value.trim();
+    const sequence=++partnerLookupSequence;
+    partnerSelect.innerHTML="";
+    const automatic=document.createElement("option"); automatic.value=""; automatic.textContent="No preference — automatically match a suitable team"; partnerSelect.append(automatic);
+    if(!city||!state||!animalType){partnerStatus.textContent="Enter city, state and animal type to see available verified teams.";return;}
+    partnerStatus.textContent="Checking verified rescue teams…"; partnerSelect.disabled=true;
+    try{
+      const lookup=new FormData(); lookup.append("action","list_partners"); lookup.append("city",city); lookup.append("state",state); lookup.append("animal_type",animalType);
+      const {data,error}=await supabaseClient.functions.invoke("animal-rescue-intake",{body:lookup}); if(error)throw error;
+      if(sequence!==partnerLookupSequence)return;
+      const partners=Array.isArray(data?.partners)?data.partners:[];
+      partners.forEach(partner=>{const option=document.createElement("option");option.value=partner.id;option.textContent=partner.organization_name+" — "+partner.city+", "+partner.state;partnerSelect.append(option);});
+      partnerStatus.textContent=partners.length?partners.length+" verified team(s) available for this location and animal type.":"No verified team is currently listed for this location and animal type. Automatic matching will still be attempted.";
+    }catch(error){if(sequence!==partnerLookupSequence)return;console.warn("Rescue partner list unavailable:",error);partnerStatus.textContent="Team list is temporarily unavailable. You can still submit using automatic matching.";}
+    finally{if(sequence===partnerLookupSequence)partnerSelect.disabled=false;}
+  }
+  ["city","state","animal_type"].forEach(name=>{form.elements[name].addEventListener("change",loadRescuePartners);form.elements[name].addEventListener("blur",loadRescuePartners);});
 
   function chooseCategory(category) {
     categorySelect.value = category;
@@ -93,12 +114,16 @@
       success.textContent = "Report received. Complaint ID: " + result.complaint_id;
       const detail = document.createElement("span");
       const matched = Number(result.matched_partners || 0);
-      detail.textContent = matched > 0
+      const selectedPartner = partnerSelect.value;
+      if (selectedPartner) detail.textContent = " Your selected rescue organisation has received the request in its secure dashboard. This does not confirm acceptance or dispatch.";
+      else detail.textContent = matched > 0
         ? " " + matched + " verified partner dashboard(s) received a matched request. This is not confirmation that a team has accepted or dispatched."
         : " No matching verified on-call partner was found. Please contact local rescue help directly.";
       message.append(success, detail);
       message.classList.add("success");
       form.reset();
+      partnerSelect.innerHTML = '<option value="">No preference — automatically match a suitable team</option>';
+      partnerStatus.textContent = "Enter city, state and animal type to see available verified teams.";
       document.getElementById("gps-status").textContent = "";
       guidanceBox.hidden = true;
     } catch (error) {
