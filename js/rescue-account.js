@@ -27,8 +27,18 @@
    const place=[r.area,r.city,r.state].filter(Boolean).join(", ");
    const date=r.created_at?new Date(r.created_at).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}):"";
    const status=label(r.status);
-   return '<article class="rescue-account-case"><div class="rescue-account-case-top"><span class="rescue-account-case-id">'+esc(r.complaint_id)+'</span><span class="rescue-account-status '+String(r.status).replace(/[^a-z_]/g,"")+'">'+label(r.status)+'</span></div><h3>'+label(r.animal_type)+' · '+label(r.incident_type)+'</h3><p>'+esc(place)+'</p><div class="rescue-account-case-bottom"><small>'+esc(date)+' · '+label(r.severity)+'</small><a href="client-chat.html?complaint_id='+encodeURIComponent(r.complaint_id)+'">View complaint &amp; chat →</a></div></article>';
+   return '<article class="rescue-account-case"><div class="rescue-account-case-top"><span class="rescue-account-case-id">'+esc(r.complaint_id)+'</span><span class="rescue-account-status '+String(r.status).replace(/[^a-z_]/g,"")+'">'+label(r.status)+'</span></div><h3>'+label(r.animal_type)+' · '+label(r.incident_type)+'</h3><p>'+esc(place)+'</p><div class="rescue-account-case-bottom"><small>'+esc(date)+' · '+label(r.severity)+'</small><a href="client-chat.html?complaint_id='+encodeURIComponent(r.complaint_id)+'">View complaint &amp; chat →</a></div><button type="button" class="rescue-case-delete" data-complaint-id="'+esc(r.complaint_id)+'">Delete case</button></article>';
   }).join("");
+  list.querySelectorAll(".rescue-case-delete").forEach(btn=>btn.addEventListener("click",async()=>{
+   const complaintId=btn.dataset.complaintId;
+   if(!confirm("Permanently delete complaint "+complaintId+"? Its chat history and uploaded media will also be removed. This cannot be undone."))return;
+   btn.disabled=true;btn.textContent="Deleting…";
+   try{
+    const {data,error}=await supabaseClient.functions.invoke("animal-rescue-client-chat",{body:{action:"delete_case",complaint_id:complaintId}});
+    if(error)throw error;if(!data?.ok)throw new Error(data?.error||"Could not delete this case.");
+    await refresh();
+   }catch(err){alert(err.message||"Could not delete this case.");btn.disabled=false;btn.textContent="Delete case";}
+  }));
  }
  async function refresh(){
   const {data,error}=await supabaseClient.auth.getUser();
