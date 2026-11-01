@@ -92,7 +92,10 @@
       const success = document.createElement("strong");
       success.textContent = "Report received. Complaint ID: " + result.complaint_id;
       const detail = document.createElement("span");
-      detail.textContent = " Keep this ID for reference. No rescue team has been confirmed or dispatched yet.";
+      const matched = Number(result.matched_partners || 0);
+      detail.textContent = matched > 0
+        ? " " + matched + " verified partner dashboard(s) received a matched request. This is not confirmation that a team has accepted or dispatched."
+        : " No matching verified on-call partner was found. Please contact local rescue help directly.";
       message.append(success, detail);
       message.classList.add("success");
       form.reset();
