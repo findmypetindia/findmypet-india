@@ -5,7 +5,7 @@
 <title>Join the Animal Rescue Network | FindMyPet India</title>
 <meta name="description" content="NGOs, gaushalas, animal ambulances, veterinary clinics and rescuers can apply to join the FindMyPet India rescue network.">
 <link rel="canonical" href="https://findmypetindia.com/pages/rescue-partner.html">
-<link rel="stylesheet" href="../css/navbar.css?v=1"><link rel="stylesheet" href="../css/style.css?v=611"><link rel="stylesheet" href="../css/animal-rescue.css?v=3"><link rel="stylesheet" href="../css/rescue-partner.css?v=1"><link rel="stylesheet" href="../css/footer.css">
+<link rel="stylesheet" href="../css/navbar.css?v=1"><link rel="stylesheet" href="../css/style.css?v=611"><link rel="stylesheet" href="../css/animal-rescue.css?v=3"><link rel="stylesheet" href="../css/rescue-partner.css?v=2"><link rel="stylesheet" href="../css/footer.css">
 </head><body><header id="siteHeader"></header>
 <main class="animal-rescue-page">
 <section class="rescue-report-section">
@@ -19,7 +19,7 @@
 <label>Contact person <span>*</span><input name="contact_person" required maxlength="80"></label>
 <label>Mobile number <span>*</span><input name="mobile" required inputmode="numeric" pattern="[+]?[0-9\s-]{10,15}" maxlength="16"></label>
 <label>WhatsApp number<input name="whatsapp" inputmode="tel" maxlength="20"></label>
-<label>Email<input name="email" type="email" maxlength="120"></label>
+<label>Email for Partner Dashboard <span>*</span><input name="email" type="email" maxlength="120" required placeholder="Use this same email when signing in"></label>
 <label>City <span>*</span><input name="city" required maxlength="80"></label>
 <label>State <span>*</span><input name="state" required maxlength="80"></label>
 <label>PIN code<input name="pincode" inputmode="numeric" pattern="[0-9]{6}" maxlength="6"></label>
@@ -31,11 +31,13 @@
 <div class="partner-checks"><label><input type="checkbox" name="services" value="Emergency rescue"> Emergency rescue</label><label><input type="checkbox" name="services" value="Ambulance / transport"> Ambulance / transport</label><label><input type="checkbox" name="services" value="First aid / treatment"> First aid / treatment</label><label><input type="checkbox" name="services" value="Shelter / admission"> Shelter / admission</label><label><input type="checkbox" name="services" value="Feeding / water"> Feeding / water</label><label><input type="checkbox" name="services" value="Sterilisation / vaccination"> Sterilisation / vaccination</label></div></fieldset>
 <label>Charges <span>*</span><select name="cost_model" required><option value="">Select clearly</option><option>Free service</option><option>Donation based</option><option>Paid service</option><option>Mixed / depends on case</option></select></label>
 <label class="partner-inline"><input type="checkbox" name="emergency_available" value="true"> Emergency / urgent calls may be accepted</label>
+<label class="rescue-consent partner-listing-consent"><input type="checkbox" name="public_listing_consent" value="true"> I separately agree that my organisation name, service area, services and contact details may appear in the public Rescue Partner Directory after verification.</label>
 <label class="rescue-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
 </div>
 <label class="rescue-consent"><input type="checkbox" name="consent" required> I confirm I am authorised to submit these details and agree that FindMyPet India may contact us to verify the services, coverage and availability before listing us.</label>
 <button type="submit" class="btn btn-danger rescue-submit-btn" id="partner-submit">Submit Partner Application</button>
 <p id="partner-message" class="rescue-form-message" role="status" aria-live="polite"></p>
-<p class="rescue-privacy-note">Your contact details are kept private during review. Submission does not make you a verified partner and does not automatically assign emergency cases. We will contact you to verify details and obtain your agreement before activating alerts.</p>
+<div class="partner-after-submit"><a href="rescue-partners.html">View Verified Rescue Partners</a><span>Already approved? <a href="partner-dashboard.html">Open Partner Dashboard</a></span></div>
+<p class="rescue-privacy-note">Your application remains private while it is reviewed. Public listing is optional and requires the separate consent above. After approval, sign in using the same email address to view matched emergency requests in the Partner Dashboard. A dashboard request is not confirmation that a rescue team has been dispatched.</p>
 </form></section></main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase.js"></script><script src="../js/rescue-partner.js?v=1"></script><script src="../js/navbar.js?v=18"></script><div id="footer-container"></div><script src="../js/footer.js"></script></body></html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase.js"></script><script src="../js/rescue-partner.js?v=2"></script><script src="../js/navbar.js?v=19"></script><div id="footer-container"></div><script src="../js/footer.js"></script></body></html>
