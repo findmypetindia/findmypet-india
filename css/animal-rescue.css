@@ -1,56 +1,82 @@
-/* Animal Rescue page - uses FindMyPet India existing palette and typography */
-.animal-rescue-page { padding: 38px 6% 70px; color: #0f172a; }
-.animal-rescue-hero { max-width: 1240px; min-height: 440px; margin: 0 auto 34px; padding: 54px 5%; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 34px; overflow: hidden; border: 1px solid #dce6fb; border-radius: 26px; background: radial-gradient(circle at 88% 18%, rgba(37,99,235,.12), transparent 30%), linear-gradient(135deg,#eef4ff,#fff); box-shadow: 0 18px 45px rgba(15,23,42,.08); }
-.animal-rescue-chip { display: inline-flex; align-items: center; padding: 8px 16px; margin-bottom: 15px; border-radius: 999px; color: #2457f5; background: #e8efff; font-size: 13px; font-weight: 800; }
-.animal-rescue-hero h1 { margin-bottom: 16px; color: #0f172a; font-size: clamp(38px,5vw,58px); line-height: 1.06; letter-spacing: -1.5px; }
-.animal-rescue-hero h1 span { color: #2457f5; }
-.animal-rescue-hero-copy > p { max-width: 620px; margin-bottom: 22px; color: #475569; font-size: 17px; line-height: 1.7; }
-.animal-rescue-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 17px; }
-.animal-rescue-note { color: #64748b !important; font-size: 14px !important; font-weight: 700; }
-.animal-rescue-hero-art { position: relative; min-height: 310px; display: grid; place-items: center; }
-.rescue-art-circle { position: relative; width: min(310px,75vw); aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg,#dbeafe,#f1f5ff); box-shadow: inset 0 0 55px rgba(37,87,245,.09); }
-.rescue-art-circle::before { position: absolute; inset: -18px; border: 2px dashed rgba(37,87,245,.2); border-radius: 50%; content: ""; }
-.rescue-paw { position: absolute; width: 142px; height: 160px; display: grid; place-items: center; border: 8px solid #fff; border-radius: 36px; background: #fff; box-shadow: 0 18px 40px rgba(15,23,42,.13); font-size: 76px; }
-.rescue-paw-one { left: 22px; bottom: 32px; transform: rotate(-7deg); }
-.rescue-paw-two { right: 20px; bottom: 34px; transform: rotate(7deg); }
-.rescue-heart { position: absolute; top: 26px; right: 36px; color: #ef233c; font-size: 64px; font-weight: 900; }
-.rescue-float-card { position: absolute; right: 0; bottom: 10px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 15px; background: #fff; box-shadow: 0 12px 30px rgba(15,23,42,.12); }
-.rescue-float-card span { color: #64748b; font-size: 12px; }
-.rescue-need-section,.rescue-what-to-do { max-width: 1240px; margin: 0 auto; padding: 42px 0; }
-.rescue-section-heading { margin-bottom: 24px; text-align: center; }
-.rescue-section-heading h2 { margin-bottom: 8px; color: #0f172a; font-size: clamp(25px,3vw,34px); }
-.rescue-section-heading p { color: #64748b; line-height: 1.6; }
-.rescue-need-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 17px; }
-.rescue-need-card { min-height: 150px; padding: 22px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px solid #e2e8f0; border-radius: 17px; color: #0f172a; background: #fff; text-align: center; text-decoration: none; box-shadow: 0 10px 26px rgba(15,23,42,.06); transition: transform .2s ease,box-shadow .2s ease; }
-.rescue-need-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(15,23,42,.1); }
-.rescue-need-card > span { font-size: 34px; }
-.rescue-need-card strong { font-size: 16px; }
-.rescue-need-card small { color: #64748b; line-height: 1.4; }
-.rescue-what-to-do { padding-top: 30px; }
-.rescue-steps-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 17px; }
-.rescue-step { position: relative; min-height: 180px; padding: 28px 20px 20px; border: 1px solid #dfe5ef; border-radius: 15px; background: #fff; box-shadow: 0 10px 22px rgba(5,25,68,.08); }
-.rescue-step > span { width: 34px; height: 34px; margin-bottom: 14px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #2457f5; font-weight: 900; }
-.rescue-step h3 { margin-bottom: 8px; font-size: 17px; }
-.rescue-step p { color: #64748b; font-size: 14px; line-height: 1.6; }
-.rescue-free-first { max-width: 1240px; margin: 28px auto; padding: 25px 28px; display: flex; align-items: center; gap: 18px; border: 1px solid #bfdbfe; border-radius: 20px; background: linear-gradient(135deg,#eff6ff,#fff); }
-.rescue-free-icon { width: 58px; height: 58px; flex: 0 0 58px; display: grid; place-items: center; border-radius: 16px; background: #fff1f2; font-size: 28px; }
-.rescue-free-first > div:nth-child(2) { flex: 1; }
-.rescue-free-first .animal-rescue-chip { margin-bottom: 7px; }
-.rescue-free-first h2 { margin-bottom: 6px; font-size: 22px; }
-.rescue-free-first p { color: #64748b; font-size: 14px; line-height: 1.6; }
-.rescue-coming-soon { max-width: 1240px; margin: 24px auto 0; padding: 22px 24px; border: 1px solid #e2e8f0; border-radius: 17px; background: #fff; }
-.rescue-coming-soon h2 { margin-bottom: 7px; font-size: 19px; }
-.rescue-coming-soon p { color: #64748b; font-size: 14px; line-height: 1.65; }
-.animal-rescue-home { padding: 68px 6%; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 34px; background: linear-gradient(135deg,#eef6ff,#fff); }
-.animal-rescue-home-copy { max-width: 650px; }
-.animal-rescue-home h2 { margin-bottom: 12px; font-size: clamp(28px,3.5vw,40px); color: #0f172a; }
-.animal-rescue-home-copy > p { margin-bottom: 18px; color: #475569; line-height: 1.7; }
-.animal-rescue-home .animal-rescue-note { margin-top: 14px; }
-.animal-rescue-home-art { min-height: 240px; display: grid; place-items: center; }
-.animal-rescue-home .rescue-art-circle { width: min(250px,70vw); }
-.animal-rescue-home .rescue-paw { width: 112px; height: 126px; font-size: 58px; border-width: 6px; border-radius: 28px; }
-.animal-rescue-home .rescue-paw-one { left: 16px; bottom: 25px; }
-.animal-rescue-home .rescue-paw-two { right: 16px; bottom: 25px; }
-.animal-rescue-home .rescue-heart { top: 18px; right: 25px; font-size: 48px; }
-@media(max-width:900px) { .animal-rescue-hero,.animal-rescue-home { grid-template-columns:1fr; text-align:center; } .animal-rescue-hero-copy > p,.animal-rescue-home-copy { margin-left:auto; margin-right:auto; } .animal-rescue-actions { justify-content:center; } .rescue-need-grid,.rescue-steps-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .rescue-free-first { align-items:flex-start; flex-wrap:wrap; } }
-@media(max-width:600px) { .animal-rescue-page { padding:20px 14px 45px; } .animal-rescue-hero { padding:32px 20px; border-radius:19px; } .animal-rescue-hero-copy > p { font-size:15px; } .animal-rescue-hero-art { min-height:260px; } .rescue-art-circle { width:240px; } .rescue-paw { width:112px; height:130px; font-size:58px; border-width:6px; border-radius:27px; } .rescue-paw-one { left:12px; } .rescue-paw-two { right:12px; } .rescue-float-card { right:-2px; bottom:0; } .rescue-need-section,.rescue-what-to-do { padding:28px 0; } .rescue-need-grid,.rescue-steps-grid { grid-template-columns:1fr 1fr; gap:10px; } .rescue-need-card { min-height:140px; padding:16px 10px; } .rescue-need-card strong { font-size:14px; } .rescue-need-card small { font-size:12px; } .rescue-step { min-height:0; padding:18px 14px; } .rescue-step h3 { font-size:15px; } .rescue-step p { font-size:13px; } .rescue-free-first { padding:20px; } .rescue-free-first .btn { width:100%; } .animal-rescue-home { padding:42px 18px; } }
+/* Animal Rescue page - isolated styles */
+.animal-rescue-page { padding:38px 6% 70px; color:#0f172a; }
+.animal-rescue-hero { max-width:1240px; min-height:440px; margin:0 auto 34px; padding:54px 5%; display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:34px; overflow:hidden; border:1px solid #dce6fb; border-radius:26px; background:radial-gradient(circle at 88% 18%,rgba(37,99,235,.12),transparent 30%),linear-gradient(135deg,#eef4ff,#fff); box-shadow:0 18px 45px rgba(15,23,42,.08); }
+.animal-rescue-chip { display:inline-flex; align-items:center; padding:8px 16px; margin-bottom:15px; border-radius:999px; color:#2457f5; background:#e8efff; font-size:13px; font-weight:800; }
+.animal-rescue-hero h1 { margin-bottom:16px; color:#0f172a; font-size:clamp(38px,5vw,58px); line-height:1.06; letter-spacing:-1.5px; }
+.animal-rescue-hero h1 span { color:#2457f5; }
+.animal-rescue-hero-copy>p { max-width:620px; margin-bottom:22px; color:#475569; font-size:17px; line-height:1.7; }
+.animal-rescue-actions { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:17px; }
+.animal-rescue-note { color:#64748b!important; font-size:14px!important; font-weight:700; }
+.animal-rescue-hero-art { position:relative; min-height:310px; display:grid; place-items:center; }
+.rescue-art-circle { position:relative; width:min(310px,75vw); aspect-ratio:1; display:grid; place-items:center; border-radius:50%; background:linear-gradient(135deg,#dbeafe,#f1f5ff); box-shadow:inset 0 0 55px rgba(37,87,245,.09); }
+.rescue-art-circle:before { position:absolute; inset:-18px; border:2px dashed rgba(37,87,245,.2); border-radius:50%; content:""; }
+.rescue-paw { position:absolute; width:142px; height:160px; display:grid; place-items:center; border:8px solid #fff; border-radius:36px; background:#fff; box-shadow:0 18px 40px rgba(15,23,42,.13); font-size:76px; }
+.rescue-paw-one { left:22px; bottom:32px; transform:rotate(-7deg); }
+.rescue-paw-two { right:20px; bottom:34px; transform:rotate(7deg); }
+.rescue-heart { position:absolute; top:26px; right:36px; color:#ef233c; font-size:64px; font-weight:900; }
+.rescue-float-card { position:absolute; right:0; bottom:10px; display:flex; flex-direction:column; gap:4px; padding:14px 18px; border-radius:15px; background:#fff; box-shadow:0 12px 30px rgba(15,23,42,.12); }
+.rescue-float-card span { color:#64748b; font-size:12px; }
+.rescue-need-section,.rescue-what-to-do { max-width:1240px; margin:0 auto; padding:42px 0; }
+.rescue-section-heading { margin-bottom:24px; text-align:center; }
+.rescue-section-heading h2 { margin-bottom:8px; color:#0f172a; font-size:clamp(25px,3vw,34px); }
+.rescue-section-heading p { color:#64748b; line-height:1.6; }
+.rescue-need-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:17px; }
+.rescue-need-card { min-height:150px; padding:22px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:1px solid #e2e8f0; border-radius:17px; color:#0f172a; background:#fff; text-align:center; text-decoration:none; box-shadow:0 10px 26px rgba(15,23,42,.06); cursor:pointer; font:inherit; transition:transform .2s ease,box-shadow .2s ease; }
+.rescue-need-card:hover,.rescue-need-card:focus-visible { transform:translateY(-4px); box-shadow:0 16px 34px rgba(15,23,42,.1); outline:2px solid #2457f5; outline-offset:2px; }
+.rescue-need-card>span { font-size:34px; }
+.rescue-need-card strong { font-size:16px; }
+.rescue-need-card small { color:#64748b; line-height:1.4; }
+.rescue-category-guidance { max-width:900px; margin:22px auto 0; padding:20px; display:flex; align-items:center; justify-content:space-between; gap:20px; border:1px solid #bfdbfe; border-radius:16px; background:#eff6ff; }
+.rescue-category-guidance[hidden] { display:none; }
+.rescue-category-guidance p { margin-top:7px; color:#475569; line-height:1.6; }
+.rescue-what-to-do { padding-top:30px; }
+.rescue-steps-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:17px; }
+.rescue-step { min-height:180px; padding:28px 20px 20px; border:1px solid #dfe5ef; border-radius:15px; background:#fff; box-shadow:0 10px 22px rgba(5,25,68,.08); }
+.rescue-step>span { width:34px; height:34px; margin-bottom:14px; display:grid; place-items:center; border-radius:50%; color:#fff; background:#2457f5; font-weight:900; }
+.rescue-step h3 { margin-bottom:8px; font-size:17px; }
+.rescue-step p { color:#64748b; font-size:14px; line-height:1.6; }
+.rescue-report-section { max-width:1100px; margin:35px auto; padding:34px 30px; border:1px solid #dbe4f0; border-radius:22px; background:#fff; box-shadow:0 15px 35px rgba(15,23,42,.06); }
+.rescue-report-form { max-width:900px; margin:auto; }
+.rescue-form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; }
+.rescue-form-grid label { display:flex; flex-direction:column; gap:7px; color:#1e293b; font-size:14px; font-weight:700; }
+.rescue-form-grid label>span { display:inline; color:#dc2626; }
+.rescue-form-grid input,.rescue-form-grid select,.rescue-form-grid textarea { width:100%; min-height:44px; padding:11px 12px; border:1px solid #cbd5e1; border-radius:9px; background:#fff; color:#0f172a; font:inherit; font-weight:400; }
+.rescue-form-grid textarea { resize:vertical; }
+.rescue-form-grid input:focus,.rescue-form-grid select:focus,.rescue-form-grid textarea:focus { outline:2px solid #93c5fd; border-color:#2563eb; }
+.rescue-form-wide { grid-column:1/-1; }
+.rescue-form-grid small { color:#64748b; font-weight:400; line-height:1.5; }
+.rescue-location-row { display:flex; align-items:center; flex-wrap:wrap; gap:12px; padding:14px; border:1px dashed #cbd5e1; border-radius:12px; background:#f8fafc; }
+.rescue-location-row>div { display:flex; flex:1; flex-direction:column; gap:4px; }
+.rescue-location-row #gps-status { width:100%; color:#475569; font-size:13px; }
+.rescue-honeypot { position:absolute!important; left:-10000px!important; width:1px!important; height:1px!important; overflow:hidden!important; }
+.rescue-consent { margin:20px 0; display:flex; align-items:flex-start; gap:10px; color:#475569; font-size:13px; line-height:1.5; }
+.rescue-consent input { margin-top:3px; flex:0 0 auto; }
+.rescue-submit-btn { min-width:230px; }
+.rescue-submit-btn:disabled { opacity:.65; cursor:wait; }
+.rescue-form-message { min-height:20px; margin-top:14px; line-height:1.6; }
+.rescue-form-message.success { padding:14px; border-radius:10px; color:#166534; background:#f0fdf4; }
+.rescue-form-message.error { color:#b91c1c; }
+.rescue-form-message strong,.rescue-form-message span { display:block; }
+.rescue-privacy-note { margin-top:14px; color:#64748b; font-size:12px; line-height:1.6; }
+.rescue-free-first { max-width:1240px; margin:28px auto; padding:25px 28px; display:flex; align-items:center; gap:18px; border:1px solid #bfdbfe; border-radius:20px; background:linear-gradient(135deg,#eff6ff,#fff); }
+.rescue-free-icon { width:58px; height:58px; flex:0 0 58px; display:grid; place-items:center; border-radius:16px; background:#fff1f2; font-size:28px; }
+.rescue-free-first>div:nth-child(2) { flex:1; }
+.rescue-free-first .animal-rescue-chip { margin-bottom:7px; }
+.rescue-free-first h2 { margin-bottom:6px; font-size:22px; }
+.rescue-free-first p { color:#64748b; font-size:14px; line-height:1.6; }
+.rescue-coming-soon { max-width:1240px; margin:24px auto 0; padding:22px 24px; border:1px solid #e2e8f0; border-radius:17px; background:#fff; }
+.rescue-coming-soon h2 { margin-bottom:7px; font-size:19px; }
+.rescue-coming-soon p { color:#64748b; font-size:14px; line-height:1.65; }
+.animal-rescue-home { padding:68px 6%; display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:34px; background:linear-gradient(135deg,#eef6ff,#fff); }
+.animal-rescue-home-copy { max-width:650px; }
+.animal-rescue-home h2 { margin-bottom:12px; font-size:clamp(28px,3.5vw,40px); color:#0f172a; }
+.animal-rescue-home-copy>p { margin-bottom:18px; color:#475569; line-height:1.7; }
+.animal-rescue-home .animal-rescue-note { margin-top:14px; }
+.animal-rescue-home-art { min-height:240px; display:grid; place-items:center; }
+.animal-rescue-home .rescue-art-circle { width:min(250px,70vw); }
+.animal-rescue-home .rescue-paw { width:112px; height:126px; font-size:58px; border-width:6px; border-radius:28px; }
+.animal-rescue-home .rescue-paw-one { left:16px; bottom:25px; }
+.animal-rescue-home .rescue-paw-two { right:16px; bottom:25px; }
+.animal-rescue-home .rescue-heart { top:18px; right:25px; font-size:48px; }
+@media(max-width:900px) { .animal-rescue-hero,.animal-rescue-home { grid-template-columns:1fr; text-align:center; } .animal-rescue-hero-copy>p,.animal-rescue-home-copy { margin-left:auto; margin-right:auto; } .animal-rescue-actions { justify-content:center; } .rescue-need-grid,.rescue-steps-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .rescue-free-first { align-items:flex-start; flex-wrap:wrap; } }
+@media(max-width:600px) { .animal-rescue-page { padding:20px 14px 45px; } .animal-rescue-hero { padding:32px 20px; border-radius:19px; } .animal-rescue-hero-copy>p { font-size:15px; } .animal-rescue-hero-art { min-height:260px; } .rescue-art-circle { width:240px; } .rescue-paw { width:112px; height:130px; font-size:58px; border-width:6px; border-radius:27px; } .rescue-paw-one { left:12px; } .rescue-paw-two { right:12px; } .rescue-float-card { right:-2px; bottom:0; } .rescue-need-section,.rescue-what-to-do { padding:28px 0; } .rescue-need-grid,.rescue-steps-grid { grid-template-columns:1fr 1fr; gap:10px; } .rescue-need-card { min-height:140px; padding:16px 10px; } .rescue-need-card strong { font-size:14px; } .rescue-need-card small { font-size:12px; } .rescue-step { min-height:0; padding:18px 14px; } .rescue-step h3 { font-size:15px; } .rescue-step p { font-size:13px; } .rescue-report-section { padding:25px 16px; } .rescue-form-grid { grid-template-columns:1fr; } .rescue-form-wide { grid-column:auto; } .rescue-category-guidance { align-items:stretch; flex-direction:column; } .rescue-free-first { padding:20px; } .rescue-free-first .btn,.rescue-submit-btn { width:100%; } .animal-rescue-home { padding:42px 18px; } }

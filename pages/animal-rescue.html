@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animal Rescue & Welfare in India | FindMyPet India</title>
-  <meta name="description" content="Find practical guidance and animal rescue organisation contacts for injured, sick, trapped or distressed animals across India.">
+  <meta name="description" content="Get practical guidance and submit an animal rescue report for injured, sick, trapped or distressed animals across India.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://findmypetindia.com/pages/animal-rescue.html">
   <meta property="og:title" content="Animal Rescue & Welfare | FindMyPet India">
-  <meta property="og:description" content="Help injured and distressed animals connect with rescue organisations and welfare support.">
+  <meta property="og:description" content="Report an animal emergency and find suitable welfare support.">
   <meta property="og:url" content="https://findmypetindia.com/pages/animal-rescue.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="FindMyPet India">
   <link rel="stylesheet" href="../css/navbar.css?v=1">
   <link rel="stylesheet" href="../css/style.css?v=611">
-  <link rel="stylesheet" href="../css/animal-rescue.css?v=1">
+  <link rel="stylesheet" href="../css/animal-rescue.css?v=2">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -25,10 +25,10 @@
       <div class="animal-rescue-hero-copy">
         <span class="animal-rescue-chip">🐾 Animal Rescue & Welfare</span>
         <h1>Every Life <span>Deserves Help.</span></h1>
-        <p>When an animal is injured, sick, trapped or in distress, finding the right help quickly can make a difference. FindMyPet India aims to connect people with animal welfare organisations and local rescue support.</p>
+        <p>Seen an animal in distress? Choose the situation, read the safety guidance and submit an emergency report with your location and photos or videos.</p>
         <div class="animal-rescue-actions">
           <a href="ngos.html" class="btn btn-danger">Find Rescue Organisations</a>
-          <a href="#what-to-do" class="btn btn-primary">What Should I Do?</a>
+          <a href="#emergency-report" class="btn btn-primary">Report an Emergency</a>
         </div>
         <p class="animal-rescue-note">पैसों से पहले, जानवर की जान। ❤️</p>
       </div>
@@ -46,17 +46,21 @@
       <div class="rescue-section-heading">
         <span class="animal-rescue-chip">How can we help?</span>
         <h2>What kind of help does the animal need?</h2>
-        <p>Choose the situation to find the right next step and rescue contact.</p>
+        <p>Select a category to see specific safety guidance and open a pre-filled report.</p>
       </div>
       <div class="rescue-need-grid">
-        <a class="rescue-need-card" href="ngos.html"><span>🚗</span><strong>Road Accident</strong><small>Animal hit or injured on the road</small></a>
-        <a class="rescue-need-card" href="ngos.html"><span>🩹</span><strong>Injured Animal</strong><small>Wounds, bleeding or visible pain</small></a>
-        <a class="rescue-need-card" href="ngos.html"><span>🐕</span><strong>Sick or Weak</strong><small>Unwell, dehydrated or unable to move</small></a>
-        <a class="rescue-need-card" href="ngos.html"><span>🪢</span><strong>Trapped Animal</strong><small>Stuck, entangled or unable to escape</small></a>
-        <a class="rescue-need-card" href="ngos.html"><span>🐄</span><strong>Stray Cattle</strong><small>Cattle needing safe assistance</small></a>
-        <a class="rescue-need-card" href="ngos.html"><span>🕊️</span><strong>Bird Rescue</strong><small>Birds needing careful support</small></a>
-        <a class="rescue-need-card" href="ngos.html"><span>🏠</span><strong>Abandoned Animal</strong><small>Animal left without care or shelter</small></a>
-        <a class="rescue-need-card" href="ngos.html"><span>🌿</span><strong>Wildlife Emergency</strong><small>Wild animal requiring authorised help</small></a>
+        <button type="button" class="rescue-need-card" data-category="Road Accident"><span>🚗</span><strong>Road Accident</strong><small>Animal hit or injured on the road</small></button>
+        <button type="button" class="rescue-need-card" data-category="Injured Animal"><span>🩹</span><strong>Injured Animal</strong><small>Wounds, bleeding or visible pain</small></button>
+        <button type="button" class="rescue-need-card" data-category="Sick or Weak"><span>🐕</span><strong>Sick or Weak</strong><small>Unwell, dehydrated or unable to move</small></button>
+        <button type="button" class="rescue-need-card" data-category="Trapped Animal"><span>🪢</span><strong>Trapped Animal</strong><small>Stuck, entangled or unable to escape</small></button>
+        <button type="button" class="rescue-need-card" data-category="Stray Cattle"><span>🐄</span><strong>Stray Cattle</strong><small>Cattle needing safe assistance</small></button>
+        <button type="button" class="rescue-need-card" data-category="Bird Rescue"><span>🕊️</span><strong>Bird Rescue</strong><small>Birds needing careful support</small></button>
+        <button type="button" class="rescue-need-card" data-category="Abandoned Animal"><span>🏠</span><strong>Abandoned Animal</strong><small>Animal left without care or shelter</small></button>
+        <button type="button" class="rescue-need-card" data-category="Wildlife Emergency"><span>🌿</span><strong>Wildlife Emergency</strong><small>Wild animal requiring authorised help</small></button>
+      </div>
+      <div class="rescue-category-guidance" id="category-guidance" hidden aria-live="polite">
+        <div><strong id="guidance-title">Safety guidance</strong><p id="guidance-copy"></p></div>
+        <button type="button" class="btn btn-primary" id="guidance-report">Report this situation</button>
       </div>
     </section>
 
@@ -74,6 +78,56 @@
       </div>
     </section>
 
+    <section class="rescue-report-section" id="emergency-report">
+      <div class="rescue-section-heading">
+        <span class="animal-rescue-chip">Emergency reporting</span>
+        <h2>Report an animal in need</h2>
+        <p>Submit the details below. Your mobile number is required so an authorised responder can contact you if a team is available.</p>
+      </div>
+      <form id="animal-rescue-form" class="rescue-report-form">
+        <div class="rescue-form-grid">
+          <label>Animal type <span>*</span>
+            <select name="animal_type" required>
+              <option value="">Select animal</option><option>Dog</option><option>Cat</option><option>Cow / Cattle</option><option>Bird</option><option>Monkey</option><option>Other domestic animal</option><option>Wild animal</option><option>Unknown</option>
+            </select>
+          </label>
+          <label>Emergency category <span>*</span>
+            <select name="incident_type" id="incident-type" required>
+              <option value="">Select situation</option><option>Road Accident</option><option>Injured Animal</option><option>Sick or Weak</option><option>Trapped Animal</option><option>Stray Cattle</option><option>Bird Rescue</option><option>Abandoned Animal</option><option>Wildlife Emergency</option><option>Other</option>
+            </select>
+          </label>
+          <label>Urgency <span>*</span>
+            <select name="severity" required>
+              <option value="">Select urgency</option><option value="low">Needs attention</option><option value="moderate">Urgent</option><option value="urgent">Very urgent</option><option value="critical">Critical / life-threatening</option>
+            </select>
+          </label>
+          <label>Your name (optional)<input name="reporter_name" type="text" maxlength="80" placeholder="Enter your name"></label>
+          <label>Mobile number <span>*</span><input name="reporter_mobile" type="tel" inputmode="numeric" autocomplete="tel" pattern="[+]?[0-9\s-]{10,15}" maxlength="16" required placeholder="10-digit mobile number"></label>
+          <label>City <span>*</span><input name="city" type="text" maxlength="80" required placeholder="City"></label>
+          <label>State <span>*</span><input name="state" type="text" maxlength="80" required placeholder="State"></label>
+          <label>Area / locality <span>*</span><input name="area" type="text" maxlength="120" required placeholder="Area or locality"></label>
+          <label>PIN code<input name="pincode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit PIN code"></label>
+          <label class="rescue-form-wide">Nearby landmark / exact spot<input name="landmark" type="text" maxlength="160" placeholder="Road name, landmark or direction"></label>
+          <div class="rescue-form-wide rescue-location-row">
+            <div><strong>Optional GPS location</strong><small>Exact coordinates are private and are not shown publicly.</small></div>
+            <button type="button" class="btn btn-outline" id="get-rescue-location">Use my current location</button>
+            <span id="gps-status" aria-live="polite"></span>
+            <input type="hidden" name="latitude"><input type="hidden" name="longitude">
+          </div>
+          <label class="rescue-form-wide">What happened? <span>*</span><textarea name="description" rows="4" maxlength="1500" required placeholder="Describe the animal's condition and what help may be needed."></textarea></label>
+          <label class="rescue-form-wide">Add photos or videos (up to 4 files; 10 MB each)
+            <input id="rescue-media" name="media" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime" multiple>
+            <small>Allowed: JPG, PNG, WEBP, MP4, WEBM and MOV. Avoid putting yourself in danger to take media.</small>
+          </label>
+          <label class="rescue-honeypot" aria-hidden="true">Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <label class="rescue-consent"><input type="checkbox" required> I confirm these details are accurate and agree that my contact details and precise location may be shared privately with an authorised rescue responder for this case.</label>
+        <button type="submit" class="btn btn-danger rescue-submit-btn" id="rescue-submit">Submit Emergency Report</button>
+        <p class="rescue-form-message" id="rescue-form-message" role="status" aria-live="polite"></p>
+        <p class="rescue-privacy-note">Privacy: Your mobile number, GPS coordinates and uploaded media are stored privately. This report does not guarantee that a rescue team is available or has accepted the case. If there is immediate danger, contact local emergency or animal welfare services directly.</p>
+      </form>
+    </section>
+
     <section class="rescue-free-first">
       <div class="rescue-free-icon">❤️</div>
       <div>
@@ -83,14 +137,14 @@
       </div>
       <a href="ngos.html" class="btn btn-primary">Browse Rescue Directory</a>
     </section>
-
     <section class="rescue-coming-soon">
-      <h2>Rescue reporting and case updates</h2>
-      <p>Online emergency reporting, complaint IDs, nearby-team matching and rescue-status updates are planned for the next development phase. Until these features are connected, this page does not automatically send alerts or confirm that a rescue team has accepted a case.</p>
+      <h2>What happens after submission?</h2>
+      <p>You will receive a complaint ID confirming that the report was received. Nearby-team matching, responder notifications, acceptance and live case-status updates are not connected yet. Please contact a local rescue organisation directly as well; submission alone does not mean help has been dispatched.</p>
     </section>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../js/supabase.js"></script>
+  <script src="../js/animal-rescue.js?v=1"></script>
   <script src="../js/navbar.js?v=16"></script>
   <div id="footer-container"></div>
   <script src="../js/footer.js"></script>
