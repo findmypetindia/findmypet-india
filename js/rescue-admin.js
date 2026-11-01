@@ -25,7 +25,7 @@
         <p><strong>Email:</strong> ${esc(row.email || 'Not provided')} · <strong>Coverage:</strong> ${esc(row.service_areas)}</p>
         <p><strong>Animals:</strong> ${esc((row.animal_categories||[]).join(', '))}</p><p><strong>Services:</strong> ${esc((row.services||[]).join(', '))}</p>
         <p><strong>Hours:</strong> ${esc(row.operating_hours || 'Not specified')} · <strong>Charges:</strong> ${esc(row.cost_model)} · <strong>Emergency calls:</strong> ${row.emergency_available?'Yes':'No'}</p>
-        <p><strong>Submitted:</strong> ${esc(new Date(row.created_at).toLocaleString('en-IN'))} · <strong>Consent:</strong> ${row.consent?'Confirmed':'Not confirmed'}</p>
+        <p><strong>Submitted:</strong> ${esc(new Date(row.created_at).toLocaleString('en-IN'))} · <strong>Application consent:</strong> ${row.consent?'Confirmed':'Not confirmed'} · <strong>Public directory consent:</strong> ${row.public_listing_consent?'Yes':'No'}</p>
         <div class="rescue-admin-actions"><label>Review status <select class="admin-status">${statusOptions.map(s=>'<option value="'+s+'" '+(row.status===s?'selected':'')+'>'+labels[s]+'</option>').join('')}</select></label><button type="button" class="btn btn-danger admin-save">Save status</button></div>
       </article>`).join('');
     list.querySelectorAll('.admin-save').forEach(button=>button.addEventListener('click', async ()=>{
