@@ -35,7 +35,7 @@
       const {data,error}=await supabaseClient.functions.invoke("animal-rescue-intake",{body:lookup}); if(error)throw error;
       if(sequence!==partnerLookupSequence)return;
       const partners=Array.isArray(data?.partners)?data.partners:[];
-      partners.forEach(partner=>{const option=document.createElement("option");option.value=partner.id;option.textContent=partner.organization_name+" — "+partner.city+", "+partner.state;partnerSelect.append(option);});
+      partners.forEach(partner=>{const option=document.createElement("option");option.value=partner.id;option.textContent=partner.organization_name.replace(/_/g," ")+" — "+partner.city+", "+partner.state;partnerSelect.append(option);});
       partnerStatus.textContent=partners.length?partners.length+" verified team(s) available for this location and animal type.":"No verified team is currently listed for this location and animal type. Automatic matching will still be attempted.";
     }catch(error){if(sequence!==partnerLookupSequence)return;console.warn("Rescue partner list unavailable:",error);partnerStatus.textContent="Team list is temporarily unavailable. You can still submit using automatic matching.";}
     finally{if(sequence===partnerLookupSequence)partnerSelect.disabled=false;}
