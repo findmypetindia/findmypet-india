@@ -100,12 +100,12 @@
 
     const {data:authState,error:authCheckError}=await supabaseClient.auth.getUser();
     if(authCheckError||!authState?.user){
-      message.textContent="Please log in or create your free Rescue Account before submitting. Your form details are still here — open the account in a new tab, log in, then return and submit again. ";
+      message.textContent="Please log in or create your free FindMyPet India account before submitting. Your form details will remain open here — log in in a new tab, then return and submit again. ";
       const accountLink=document.createElement("a");
-      accountLink.href="rescue-account.html";
+      accountLink.href="login.html?next=%2Fpages%2Fdashboard.html";
       accountLink.target="_blank";
       accountLink.rel="noopener";
-      accountLink.textContent="Open Rescue Account";
+      accountLink.textContent="Open FindMyPet India Login";
       accountLink.className="rescue-account-submit-link";
       message.append(accountLink);
       message.classList.add("error");
