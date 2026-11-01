@@ -119,7 +119,11 @@
       else detail.textContent = matched > 0
         ? " " + matched + " verified partner dashboard(s) received a matched request. This is not confirmation that a team has accepted or dispatched."
         : " No matching verified on-call partner was found. Please contact local rescue help directly.";
-      message.append(success, detail);
+      const chatLink = document.createElement("a");
+      chatLink.href = "client-chat.html?complaint_id=" + encodeURIComponent(result.complaint_id);
+      chatLink.className = "rescue-client-chat-link";
+      chatLink.textContent = "Open your secure rescue chat / case updates";
+      message.append(success, detail, chatLink);
       message.classList.add("success");
       form.reset();
       partnerSelect.innerHTML = '<option value="">No preference — automatically match a suitable team</option>';
