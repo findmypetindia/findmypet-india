@@ -21,12 +21,13 @@
    .eq("reporter_user_id",user.id).order("created_at",{ascending:false});
   if(error){list.textContent="Your complaints could not be loaded. Please refresh the page.";return;}
   if(!data?.length){list.innerHTML='<div class="rescue-account-empty"><span>🐾</span><h3>No rescue complaints yet</h3><p>When you submit a rescue report while logged in, it will appear here automatically.</p><a class="btn btn-primary" href="animal-rescue.html#emergency-report">Submit your first complaint</a></div>';return;}
-  const label=v=>String(v||"Not specified").replace(/_/g," ").replace(/\b\w/g,c=>c.toUpperCase());
+  const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const label=v=>esc(String(v||"Not specified").replace(/_/g," ").replace(/\b\w/g,c=>c.toUpperCase()));
   list.innerHTML=data.map(r=>{
    const place=[r.area,r.city,r.state].filter(Boolean).join(", ");
    const date=r.created_at?new Date(r.created_at).toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}):"";
    const status=label(r.status);
-   return '<article class="rescue-account-case"><div class="rescue-account-case-top"><span class="rescue-account-case-id">'+r.complaint_id+'</span><span class="rescue-account-status '+String(r.status).replace(/[^a-z_]/g,"")+'">'+status+'</span></div><h3>'+label(r.animal_type)+' · '+label(r.incident_type)+'</h3><p>'+place.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))+'</p><div class="rescue-account-case-bottom"><small>'+date+' · '+label(r.severity)+'</small><a href="client-chat.html?complaint_id='+encodeURIComponent(r.complaint_id)+'">View complaint &amp; chat →</a></div></article>';
+   return '<article class="rescue-account-case"><div class="rescue-account-case-top"><span class="rescue-account-case-id">'+esc(r.complaint_id)+'</span><span class="rescue-account-status '+String(r.status).replace(/[^a-z_]/g,"")+'">'+label(r.status)+'</span></div><h3>'+label(r.animal_type)+' · '+label(r.incident_type)+'</h3><p>'+esc(place)+'</p><div class="rescue-account-case-bottom"><small>'+esc(date)+' · '+label(r.severity)+'</small><a href="client-chat.html?complaint_id='+encodeURIComponent(r.complaint_id)+'">View complaint &amp; chat →</a></div></article>';
   }).join("");
  }
  async function refresh(){
