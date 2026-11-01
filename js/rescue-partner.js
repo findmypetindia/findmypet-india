@@ -12,7 +12,7 @@
   payload.public_listing_consent=fd.get("public_listing_consent")==="true";
   payload.consent=fd.get("consent")==="on";
   payload.website=String(fd.get("website")||"");
-  btn.disabled=true;btn.textContent="Submitting…";msg.textContent="";
+  btn.disabled=true;btn.textContent="Submitting…";form.setAttribute("aria-busy","true");msg.textContent="Submitting your application securely. This may take a few seconds—please keep this page open.";msg.classList.remove("success","error");
   try{
    const {data,error}=await supabaseClient.functions.invoke("animal-rescue-partner-apply",{body:payload});
    if(error)throw error;
@@ -20,6 +20,6 @@
    msg.textContent="Application received. Reference ID: "+data.application_id+". Status: Pending review. Save this ID. After approval, sign in with the same email address to use your Partner Dashboard.";
    msg.classList.add("success");form.reset();
   }catch(err){console.error("Partner application failed",err);msg.textContent="We could not submit your application. Please try again later.";msg.classList.add("error");}
-  finally{btn.disabled=false;btn.textContent="Submit Partner Application";}
+  finally{btn.disabled=false;btn.textContent="Submit Partner Application";form.removeAttribute("aria-busy");}
  });
 })();
