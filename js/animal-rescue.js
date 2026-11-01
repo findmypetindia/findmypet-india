@@ -160,7 +160,7 @@
       download.type = "button"; download.className = "btn btn-outline";
       download.textContent = "Download Complaint Details (PDF)";
       download.addEventListener("click", () => {
-        const safe = value => String(value || "").replace(/[\\()]/g, "\\$&").replace(/[^\\x20-\\x7E]/g, " ");
+        const safe = value => String(value || "").replace(/[\\()]/g, "\\$&").replace(/[^\x20-\x7E]/g, " ");
         const lines = [
           "FindMyPet India - Rescue Complaint",
           "Complaint ID: " + result.complaint_id,
