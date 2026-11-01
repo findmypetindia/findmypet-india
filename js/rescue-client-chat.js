@@ -49,7 +49,7 @@
  identity.addEventListener("submit",async e=>{
   e.preventDefault();complaintId=idField.value.trim().toUpperCase();chatKey=keyField.value.trim();
   if(!/^FMP-\d{8}-[A-F0-9]{6}$/.test(complaintId)){setStatus($("chat-access-status"),"Enter a valid Complaint ID.",true);return;}
-  if(!/^\d{6}$/.test(chatKey)){setStatus($("chat-access-status"),"Enter your 6-digit numeric Chat Key.",true);return;}
+  if(chatKey&&!/^\d{6}$/.test(chatKey)){setStatus($("chat-access-status"),"Chat Key must contain exactly 6 digits.",true);return;}
   $("chat-open-case").disabled=true;$("chat-open-case").textContent="Verifying…";
   try{
    const details=await call("details");
