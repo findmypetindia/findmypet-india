@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Rescue Case & Secure Chat | FindMyPet India</title><meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../css/navbar.css?v=1"><link rel="stylesheet" href="../css/style.css?v=611"><link rel="stylesheet" href="../css/rescue-network.css?v=4"><link rel="stylesheet" href="../css/rescue-chat.css?v=1"><link rel="stylesheet" href="../css/footer.css">
+</head><body><header id="siteHeader"></header>
+<main class="animal-rescue-page rescue-chat-page"><section class="rescue-report-section">
+<div class="rescue-section-heading"><span class="animal-rescue-chip">🔐 Private rescue support</span><h1>My Rescue Case</h1><p>Verify the mobile number used in your report to view updates and chat privately with the verified rescue organisation handling your case.</p></div>
+<div class="rescue-chat-access" id="rescue-chat-access">
+<form id="rescue-chat-identity">
+<label>Complaint ID<input id="chat-complaint-id" name="complaint_id" required maxlength="40" placeholder="Example: FMP-XXXXXXXX"></label>
+<label>Registered mobile number<input id="chat-mobile" type="tel" inputmode="numeric" autocomplete="tel" pattern="[0-9]{10}" maxlength="10" required placeholder="10-digit mobile number"></label>
+<button class="btn btn-primary" id="chat-send-otp" type="submit">Send OTP</button><p class="rescue-form-message" id="chat-access-status" role="status" aria-live="polite"></p>
+</form>
+<form id="rescue-chat-otp" hidden>
+<label>Enter 6-digit OTP<input id="chat-otp" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required placeholder="6-digit OTP"></label>
+<button class="btn btn-primary" id="chat-verify-otp" type="submit">Verify & Open Case</button><button class="btn btn-outline" id="chat-back" type="button">Change mobile number</button><p class="rescue-form-message" id="chat-otp-status" role="status" aria-live="polite"></p>
+</form></div>
+<section id="rescue-chat-workspace" class="rescue-chat-workspace" hidden>
+<div class="rescue-chat-case-head"><div><span class="animal-rescue-chip">Case conversation</span><h2 id="chat-case-title">Rescue case</h2><p id="chat-case-status"></p></div><button type="button" class="btn btn-outline" id="chat-refresh">↻ Refresh</button></div>
+<p id="chat-case-notice" class="rescue-form-message" role="status" aria-live="polite"></p><div id="client-chat-messages" class="client-chat-messages"></div>
+<form id="client-chat-send" class="client-chat-send"><textarea id="client-chat-text" rows="3" maxlength="2000" placeholder="Write a message to the rescue team…" required></textarea><button class="btn btn-primary" id="client-chat-submit" type="submit">Send message</button></form>
+<p class="rescue-privacy-note">Your conversation is private to you and the verified organisation assigned to this case. Do not share passwords, OTPs or payment details in chat. For immediate danger, contact local emergency services directly.</p>
+<button type="button" class="btn btn-outline" id="chat-sign-out">Sign out of case chat</button>
+</section></section></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../js/supabase.js"></script><script src="../js/rescue-client-chat.js?v=1"></script><script src="../js/navbar.js?v=20"></script><div id="footer-container"></div><script src="../js/footer.js"></script>
+</body></html>
