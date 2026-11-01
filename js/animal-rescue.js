@@ -122,25 +122,87 @@
       const keyCard = document.createElement("div");
       keyCard.className = "rescue-chat-key-card";
       const keyTitle = document.createElement("strong");
-      keyTitle.textContent = "Your 6-digit Chat Key";
+      keyTitle.textContent = "Your Rescue Complaint Details";
+      const idLabel = document.createElement("small");
+      idLabel.textContent = "Complaint ID";
+      const idValue = document.createElement("code");
+      idValue.textContent = result.complaint_id;
+      const keyLabel = document.createElement("small");
+      keyLabel.textContent = "6-digit Chat Key";
       const keyValue = document.createElement("code");
       keyValue.textContent = result.chat_key || "";
       const keyHint = document.createElement("small");
-      keyHint.textContent = "Save this key now. For security, it will not be shown again.";
+      keyHint.textContent = "Save both details now. Your Chat Key is shown only once. Keep it private.";
+      const actions = document.createElement("div");
+      actions.className = "rescue-chat-key-actions";
+      async function copyDetail(value, button, label) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(value);
+          else {
+            const temporary = document.createElement("textarea");
+            temporary.value = value; temporary.style.position = "fixed"; temporary.style.opacity = "0";
+            document.body.appendChild(temporary); temporary.select();
+            const copied = document.execCommand("copy"); temporary.remove();
+            if (!copied) throw new Error("Clipboard unavailable");
+          }
+          button.textContent = label + " Copied";
+        } catch (_) { button.textContent = "Copy unavailable — please note it"; }
+      }
+      const copyId = document.createElement("button");
+      copyId.type = "button"; copyId.className = "btn btn-outline";
+      copyId.textContent = "Copy Complaint ID";
+      copyId.addEventListener("click", () => copyDetail(result.complaint_id, copyId, "Complaint ID"));
       const copyKey = document.createElement("button");
-      copyKey.type = "button";
-      copyKey.className = "btn btn-outline";
-      copyKey.textContent = "Copy Complaint ID & Chat Key";
-      copyKey.addEventListener("click", async () => {
-        const saved = "FindMyPet India Rescue\nComplaint ID: " + result.complaint_id + "\nChat Key: " + (result.chat_key || "");
-        try { await navigator.clipboard.writeText(saved); copyKey.textContent = "Copied"; }
-        catch (_) { copyKey.textContent = "Please note the key manually"; }
+      copyKey.type = "button"; copyKey.className = "btn btn-outline";
+      copyKey.textContent = "Copy Chat Key";
+      copyKey.addEventListener("click", () => copyDetail(result.chat_key || "", copyKey, "Chat Key"));
+      const download = document.createElement("button");
+      download.type = "button"; download.className = "btn btn-outline";
+      download.textContent = "Download Complaint Details (PDF)";
+      download.addEventListener("click", () => {
+        const safe = value => String(value || "").replace(/[\\()]/g, "\\$&").replace(/[^\\x20-\\x7E]/g, " ");
+        const lines = [
+          "FindMyPet India - Rescue Complaint",
+          "Complaint ID: " + result.complaint_id,
+          "6-digit Chat Key: " + (result.chat_key || ""),
+          "Date: " + new Date().toLocaleString("en-IN"),
+          "",
+          "Keep the Chat Key private. It is shown only once.",
+          "Open your secure chat: " + new URL("client-chat.html?complaint_id=" + encodeURIComponent(result.complaint_id), window.location.href).href,
+          "",
+          "For immediate danger, contact local emergency services."
+        ];
+        const commands = ["BT", "/F1 12 Tf", "50 790 Td"];
+        lines.forEach((line, index) => { if (index) commands.push("0 -27 Td"); commands.push("(" + safe(line) + ") Tj"); });
+        commands.push("ET");
+        const stream = commands.join("\n");
+        const objects = [
+          "<< /Type /Catalog /Pages 2 0 R >>",
+          "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+          "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>",
+          "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+          "<< /Length " + stream.length + " >>\nstream\n" + stream + "\nendstream"
+        ];
+        let pdf = "%PDF-1.4\n";
+        const offsets = [0];
+        objects.forEach((object, index) => { offsets.push(pdf.length); pdf += (index + 1) + " 0 obj\n" + object + "\nendobj\n"; });
+        const xref = pdf.length;
+        pdf += "xref\n0 " + (objects.length + 1) + "\n0000000000 65535 f \n";
+        offsets.slice(1).forEach(offset => { pdf += String(offset).padStart(10, "0") + " 00000 n \n"; });
+        pdf += "trailer\n<< /Size " + (objects.length + 1) + " /Root 1 0 R >>\nstartxref\n" + xref + "\n%%EOF";
+        const url = URL.createObjectURL(new Blob([pdf], { type: "application/pdf" }));
+        const anchor = document.createElement("a");
+        anchor.href = url; anchor.download = "FindMyPet-Rescue-" + result.complaint_id + ".pdf";
+        document.body.appendChild(anchor); anchor.click(); anchor.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1500);
+        download.textContent = "PDF Downloaded";
       });
-      keyCard.append(keyTitle, keyValue, keyHint, copyKey);
+      actions.append(copyId, copyKey, download);
+      keyCard.append(keyTitle, idLabel, idValue, keyLabel, keyValue, keyHint, actions);
       const chatLink = document.createElement("a");
       chatLink.href = "client-chat.html?complaint_id=" + encodeURIComponent(result.complaint_id);
       chatLink.className = "rescue-client-chat-link";
-      chatLink.textContent = "Open your secure rescue chat / case updates";
+      chatLink.textContent = "Open My Rescue Chat";
       message.append(success, detail, keyCard, chatLink);
       message.classList.add("success");
       form.reset();
