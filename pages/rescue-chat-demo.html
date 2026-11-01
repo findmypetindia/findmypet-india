@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rescue Chat Demo | FindMyPet India</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../css/navbar.css?v=1"><link rel="stylesheet" href="../css/style.css?v=611"><link rel="stylesheet" href="../css/rescue-network.css?v=5"><link rel="stylesheet" href="../css/rescue-chat.css?v=2"><link rel="stylesheet" href="../css/footer.css">
+<style>
+.demo-wrap{max-width:850px;margin:35px auto;padding:20px}.demo-warning{padding:15px 17px;border:1px solid #f2cf86;background:#fff8e8;border-radius:14px;color:#704b08;margin:18px 0}.demo-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}.demo-controls select,.demo-controls button,.demo-compose textarea{font:inherit}.demo-controls select{padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff}.demo-chat{background:#fff;border:1px solid #dbe4f0;border-radius:16px;padding:18px}.demo-meta{color:#64748b;font-size:14px;margin:5px 0 14px}.demo-compose{display:grid;gap:10px;margin-top:15px}.demo-compose textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:12px;resize:vertical}.demo-bubble{max-width:85%;padding:11px 13px;border-radius:13px;margin:10px 0;background:#f1f5f9;overflow-wrap:anywhere}.demo-bubble.reporter{margin-left:auto;background:#eaf2ff}.demo-bubble small{display:block;color:#64748b;margin-top:5px}.demo-empty{color:#64748b;padding:18px 0}.demo-label{font-weight:700;color:#334155}
+</style>
+</head>
+<body><header id="siteHeader"></header>
+<main class="demo-wrap">
+<div class="rescue-section-heading"><span class="animal-rescue-chip">🧪 Safe preview</span><h1>Rescue Chat Demo</h1><p>Try a sample conversation between a reporter and a rescue partner.</p></div>
+<div class="demo-warning"><strong>Demo only — no real rescue case.</strong><br>This page does not connect to Supabase, create a complaint, send notifications, or contact any rescue organisation. Messages stay only in this page and disappear when you reset or reload it.</div>
+<div class="demo-controls"><label class="demo-label" for="demo-role">Acting as</label><select id="demo-role"><option value="reporter">Reporter / Pet owner</option><option value="partner">Rescue partner</option></select><button class="btn btn-outline" id="demo-reset" type="button">Reset demo chat</button></div>
+<section class="demo-chat" aria-label="Sample rescue conversation">
+<span class="animal-rescue-chip">Sample case FMP-DEMO-0001</span><h2>Rescue case conversation</h2><p class="demo-meta">Status: Partner accepted · Sample data only</p>
+<div id="demo-messages" class="client-chat-messages" aria-live="polite"><p class="demo-empty">No messages yet. Send a sample message to begin.</p></div>
+<form id="demo-form" class="demo-compose"><label class="demo-label" for="demo-message">Your message</label><textarea id="demo-message" rows="3" maxlength="500" required placeholder="Type a sample message…"></textarea><button class="btn btn-primary" type="submit">Send demo message</button></form>
+</section>
+<p class="rescue-privacy-note">This preview helps check the chat layout and two-way message flow only. It does not verify the live Chat Key, database, partner assignment, or delivery system.</p>
+<a class="btn btn-outline" href="client-chat.html">Go to real case chat</a>
+</main>
+<script>
+(function(){
+ const role=document.getElementById("demo-role"),messages=document.getElementById("demo-messages"),form=document.getElementById("demo-form"),input=document.getElementById("demo-message"),reset=document.getElementById("demo-reset");
+ let rows=[];
+ function render(){messages.innerHTML="";if(!rows.length){messages.innerHTML='<p class="demo-empty">No messages yet. Send a sample message to begin.</p>';return;}rows.forEach(row=>{const bubble=document.createElement("div");bubble.className="demo-bubble "+row.role;const who=document.createElement("strong");who.textContent=row.role==="reporter"?"Reporter / Pet owner":"Rescue partner";const body=document.createElement("p");body.textContent=row.text;const time=document.createElement("small");time.textContent=row.time;bubble.append(who,body,time);messages.append(bubble);});messages.scrollTop=messages.scrollHeight;}
+ form.addEventListener("submit",function(event){event.preventDefault();const text=input.value.trim();if(!text)return;rows.push({role:role.value,text,time:"Just now · Demo"});input.value="";render();});
+ reset.addEventListener("click",function(){rows=[];render();input.value="";});
+})();
+</script>
+<script src="../js/navbar.js?v=20"></script><div id="footer-container"></div><script src="../js/footer.js"></script>
+</body></html>
