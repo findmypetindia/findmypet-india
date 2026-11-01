@@ -1,0 +1,10 @@
+.dashboard-rescue-intro{color:#64748b;margin:0 0 18px}
+.dashboard-rescue-case{margin:14px 0}
+.dashboard-rescue-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.dashboard-rescue-delete{background:#fff1f2!important;color:#be123c!important;border:1px solid #fecdd3!important}
+.dashboard-rescue-claim{margin-top:24px;padding:20px;border:1px solid #e2e8f0;border-radius:14px;background:#f8fafc}
+.dashboard-rescue-claim h3{margin-top:0}
+.dashboard-rescue-claim form{display:grid;gap:10px;max-width:460px}
+.dashboard-rescue-claim input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font:inherit}
+.dashboard-rescue-claim form button{justify-self:start}
+#dashboardRescueClaimMessage{margin-top:10px;color:#166534}
