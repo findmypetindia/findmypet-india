@@ -1,0 +1,41 @@
+.rescue-account-page{max-width:1040px;margin:0 auto;padding:clamp(20px,5vw,56px) 18px 70px}
+.rescue-account-hero{text-align:center;max-width:720px;margin:12px auto 30px}
+.rescue-account-kicker{display:inline-block;color:#16836b;font-size:11px;font-weight:900;letter-spacing:1.5px}
+.rescue-account-hero h1{font-size:clamp(32px,5vw,48px);line-height:1.08;letter-spacing:-1.5px;color:#183444;margin:12px 0}
+.rescue-account-hero p{color:#657681;line-height:1.65}
+.rescue-account-panel{max-width:510px;margin:0 auto;padding:clamp(20px,4vw,32px);border:1px solid #e1e9ed;border-radius:22px;background:#fff;box-shadow:0 18px 55px rgba(22,48,64,.08)}
+.rescue-auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:13px;background:#f1f5f6;margin-bottom:25px}
+.rescue-auth-tabs button{border:0;border-radius:10px;padding:12px;background:transparent;color:#62737d;font-weight:800;cursor:pointer}
+.rescue-auth-tabs button.active{background:#fff;color:#176d58;box-shadow:0 2px 9px rgba(18,45,55,.08)}
+.rescue-account-form{display:grid;gap:15px}
+.rescue-account-form h2{margin:0;color:#183444;font-size:24px}
+.rescue-account-form>p{margin:-8px 0 3px;color:#71808a;font-size:14px}
+.rescue-account-form label,.rescue-claim-panel label{display:grid;gap:7px;color:#344c59;font-size:13px;font-weight:800}
+.rescue-account-form input,.rescue-claim-panel input{width:100%;min-height:48px;border:1px solid #d6e0e5;border-radius:11px;padding:11px 13px;font:inherit;background:#fbfdfe}
+.rescue-account-form .btn,.rescue-claim-panel .btn{min-height:48px;justify-content:center;border-radius:12px}
+.rescue-account-footnote{margin:20px 0 0;text-align:center;color:#8a989f;font-size:12px}
+.rescue-account-message{min-height:20px;margin:14px 0 0;font-size:13px;color:#18734f}
+.rescue-account-message.error{color:#b33c31}
+.rescue-account-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:10px 0 22px}
+.rescue-account-toolbar h2{font-size:clamp(25px,4vw,34px);margin:7px 0;color:#183444}
+.rescue-account-toolbar p{margin:0;color:#74828b;font-size:13px}
+.rescue-account-actions{margin:18px 0 24px}
+.rescue-account-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.rescue-account-case{padding:20px;border:1px solid #e1e9ed;border-radius:18px;background:#fff;box-shadow:0 8px 28px rgba(20,47,62,.045)}
+.rescue-account-case-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rescue-account-case-id{font-size:12px;font-weight:900;color:#17765c;letter-spacing:.4px}
+.rescue-account-status{padding:6px 10px;border-radius:30px;background:#fff4d9;color:#8b6008;font-size:11px;font-weight:850;text-transform:capitalize}
+.rescue-account-status.accepted,.rescue-account-status.in_progress,.rescue-account-status.team_notified{background:#e5f5ed;color:#18744e}
+.rescue-account-status.completed{background:#e8f0ff;color:#285d9b}
+.rescue-account-case h3{margin:15px 0 7px;color:#263e4b;font-size:18px}
+.rescue-account-case>p{color:#647681;font-size:13px;margin:0 0 18px}
+.rescue-account-case-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid #edf1f3;padding-top:13px}
+.rescue-account-case-bottom small{color:#8a989f;font-size:11px}
+.rescue-account-case-bottom a{color:#15775c;font-weight:850;font-size:12px;text-decoration:none}
+.rescue-account-empty{grid-column:1/-1;text-align:center;padding:42px 20px;border:1px dashed #cfdbdf;border-radius:18px;background:#fbfdfd}
+.rescue-account-empty>span{font-size:35px}.rescue-account-empty h3{color:#23404c}.rescue-account-empty p{color:#71808a}
+.rescue-claim-panel{margin-top:30px;padding:22px;border:1px solid #e1e9ed;border-radius:18px;background:#f8fbfb}
+.rescue-claim-panel h3{margin:0 0 7px;color:#23404c}.rescue-claim-panel>p{color:#71808a;font-size:13px;line-height:1.55}
+.rescue-claim-panel form{display:grid;grid-template-columns:1fr 1fr auto;align-items:end;gap:12px}
+.rescue-account-loading{color:#71808a}
+@media(max-width:700px){.rescue-account-list{grid-template-columns:1fr}.rescue-claim-panel form{grid-template-columns:1fr}.rescue-account-toolbar .btn{width:100%}}
