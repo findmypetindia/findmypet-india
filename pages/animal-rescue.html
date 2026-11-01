@@ -86,6 +86,11 @@
           <label>City <span>*</span><input name="city" type="text" maxlength="80" required placeholder="City"></label>
           <label>State <span>*</span><input name="state" type="text" maxlength="80" required placeholder="State"></label>
           <label>Area / locality <span>*</span><input name="area" type="text" maxlength="120" required placeholder="Area or locality"></label>
+          <label class="rescue-form-wide">Preferred verified rescue organisation (optional)
+            <select name="selected_partner_id" id="rescue-partner-select"><option value="">No preference — automatically match a suitable team</option></select>
+            <small>Only verified, emergency-available organisations covering your location and animal type will appear.</small>
+            <span id="rescue-partner-status" aria-live="polite"></span>
+          </label>
           <label>PIN code<input name="pincode" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit PIN code"></label>
           <label class="rescue-form-wide">Nearby landmark / exact spot<input name="landmark" type="text" maxlength="160" placeholder="Road name, landmark or direction"></label>
           <div class="rescue-form-wide rescue-location-row">
