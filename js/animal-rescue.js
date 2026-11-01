@@ -119,11 +119,29 @@
       else detail.textContent = matched > 0
         ? " " + matched + " verified partner dashboard(s) received a matched request. This is not confirmation that a team has accepted or dispatched."
         : " No matching verified on-call partner was found. Please contact local rescue help directly.";
+      const keyCard = document.createElement("div");
+      keyCard.className = "rescue-chat-key-card";
+      const keyTitle = document.createElement("strong");
+      keyTitle.textContent = "Your 6-digit Chat Key";
+      const keyValue = document.createElement("code");
+      keyValue.textContent = result.chat_key || "";
+      const keyHint = document.createElement("small");
+      keyHint.textContent = "Save this key now. For security, it will not be shown again.";
+      const copyKey = document.createElement("button");
+      copyKey.type = "button";
+      copyKey.className = "btn btn-outline";
+      copyKey.textContent = "Copy Complaint ID & Chat Key";
+      copyKey.addEventListener("click", async () => {
+        const saved = "FindMyPet India Rescue\nComplaint ID: " + result.complaint_id + "\nChat Key: " + (result.chat_key || "");
+        try { await navigator.clipboard.writeText(saved); copyKey.textContent = "Copied"; }
+        catch (_) { copyKey.textContent = "Please note the key manually"; }
+      });
+      keyCard.append(keyTitle, keyValue, keyHint, copyKey);
       const chatLink = document.createElement("a");
       chatLink.href = "client-chat.html?complaint_id=" + encodeURIComponent(result.complaint_id);
       chatLink.className = "rescue-client-chat-link";
       chatLink.textContent = "Open your secure rescue chat / case updates";
-      message.append(success, detail, chatLink);
+      message.append(success, detail, keyCard, chatLink);
       message.classList.add("success");
       form.reset();
       partnerSelect.innerHTML = '<option value="">No preference — automatically match a suitable team</option>';
