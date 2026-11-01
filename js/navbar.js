@@ -205,6 +205,15 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           <li>
             <a
+              href="${pagesLink}rescue-partner.html"
+              class="${activeClass("rescue-partner.html")}"
+            >
+              Become a Partner
+            </a>
+          </li>
+
+          <li>
+            <a
               href="${pagesLink}about.html"
               class="${activeClass("about.html")}"
             >
