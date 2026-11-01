@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rescue Account | FindMyPet India</title>
+<meta name="description" content="Create your private FindMyPet India Rescue Account to submit and track your animal rescue complaints.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="../css/navbar.css?v=1">
+<link rel="stylesheet" href="../css/style.css?v=611">
+<link rel="stylesheet" href="../css/rescue-network.css?v=5">
+<link rel="stylesheet" href="../css/rescue-account.css?v=1">
+<link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+<header id="siteHeader"></header>
+<main class="rescue-account-page">
+<section class="rescue-account-hero">
+<span class="rescue-account-kicker">🐾 FINDMYPET INDIA · ANIMAL RESCUE</span>
+<h1>Your Rescue Account</h1>
+<p>One secure account for your rescue complaints, updates and conversations with verified rescue teams.</p>
+</section>
+<section id="rescue-auth-panel" class="rescue-account-panel">
+<div class="rescue-auth-tabs" role="tablist" aria-label="Account access">
+<button type="button" class="active" id="rescue-login-tab">Log in</button>
+<button type="button" id="rescue-signup-tab">Create account</button>
+</div>
+<form id="rescue-login-form" class="rescue-account-form">
+<h2>Welcome back</h2>
+<p>Log in to see your rescue complaints.</p>
+<label>Email address<input type="email" id="rescue-login-email" autocomplete="email" required placeholder="you@example.com"></label>
+<label>Password<input type="password" id="rescue-login-password" autocomplete="current-password" required minlength="6" placeholder="Your password"></label>
+<button type="submit" class="btn btn-primary" id="rescue-login-submit">Log in to my account</button>
+</form>
+<form id="rescue-signup-form" class="rescue-account-form" hidden>
+<h2>Create your account</h2>
+<p>Register once. Your future rescue reports will automatically appear here.</p>
+<label>Full name<input type="text" id="rescue-signup-name" autocomplete="name" maxlength="80" required placeholder="Your full name"></label>
+<label>Email address<input type="email" id="rescue-signup-email" autocomplete="email" required placeholder="you@example.com"></label>
+<label>Create password<input type="password" id="rescue-signup-password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></label>
+<button type="submit" class="btn btn-primary" id="rescue-signup-submit">Create Rescue Account</button>
+</form>
+<p id="rescue-auth-message" class="rescue-account-message" role="status" aria-live="polite"></p>
+<p class="rescue-account-footnote">Your rescue account is separate from the Lost &amp; Found pet account area.</p>
+</section>
+<section id="rescue-account-dashboard" hidden>
+<div class="rescue-account-toolbar">
+<div><span class="rescue-account-kicker">YOUR PRIVATE SPACE</span><h2>My Rescue Complaints</h2><p id="rescue-account-welcome"></p></div>
+<button type="button" class="btn btn-outline" id="rescue-account-logout">Log out</button>
+</div>
+<div class="rescue-account-actions">
+<a class="btn btn-primary" href="animal-rescue.html#emergency-report">＋ Submit a new rescue complaint</a>
+</div>
+<div id="rescue-account-list" class="rescue-account-list" aria-live="polite"></div>
+<section class="rescue-claim-panel">
+<h3>Already submitted a complaint?</h3>
+<p>Link an older complaint to this account using the Complaint ID and the 6-digit Chat Key you received at submission.</p>
+<form id="rescue-claim-form">
+<label>Complaint ID<input id="rescue-claim-id" required maxlength="40" placeholder="FMP-YYYYMMDD-ABC123"></label>
+<label>6-digit Chat Key<input id="rescue-claim-key" required inputmode="numeric" pattern="[0-9]{6}" maxlength="6" minlength="6" placeholder="6-digit key"></label>
+<button type="submit" class="btn btn-outline" id="rescue-claim-submit">Link my complaint</button>
+</form>
+<p id="rescue-claim-message" class="rescue-account-message" role="status" aria-live="polite"></p>
+</section>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/rescue-account.js?v=1"></script>
+<script src="../js/navbar.js?v=20"></script>
+<div id="footer-container"></div><script src="../js/footer.js"></script>
+</body></html>
