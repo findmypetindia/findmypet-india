@@ -210,6 +210,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             >
               Rescue Partners
             </a>
+          </li>
 
           <li>
             <a
@@ -218,7 +219,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             >
               Become a Partner
             </a>
-          </li>
           </li>
 
           <li>
