@@ -2,18 +2,18 @@
 <html lang="en-IN">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Rescue Dashboard | FindMyPet India</title><meta name="robots" content="noindex,nofollow">
+<title>Rescue Team Chat | FindMyPet India</title><meta name="robots" content="noindex,nofollow">
 <link rel="stylesheet" href="../css/navbar.css?v=1"><link rel="stylesheet" href="../css/style.css?v=611"><link rel="stylesheet" href="../css/rescue-network.css?v=5"><link rel="stylesheet" href="../css/rescue-chat.css?v=3"><link rel="stylesheet" href="../css/footer.css">
 </head><body><header id="siteHeader"></header>
 <main class="animal-rescue-page rescue-chat-page"><section class="rescue-report-section">
-<div class="rescue-section-heading"><span class="animal-rescue-chip">🐾 Your rescue, in one place</span><h1>My Rescue Dashboard</h1><p>Track your submitted complaint, see the rescue status and message the verified team securely.</p></div>
+<div class="rescue-section-heading"><span class="animal-rescue-chip">🔐 Private case conversation</span><h1>Rescue Team Chat</h1><p>Open the conversation for one of your complaints. Sign in to your Rescue Account, or use your Complaint ID and Chat Key.</p></div>
 <div class="rescue-chat-access" id="rescue-chat-access">
 <form id="rescue-chat-identity">
 <label>Complaint ID<input id="chat-complaint-id" name="complaint_id" required maxlength="40" placeholder="Example: FMP-20261101-ABC123"></label>
-<label>6-digit Chat Key<input id="chat-access-key" name="chat_key" type="password" inputmode="numeric" autocomplete="off" pattern="[0-9]{6}" maxlength="6" minlength="6" required placeholder="Enter your 6-digit key"></label>
-<p class="rescue-privacy-note">Your Chat Key was shown once after your rescue report was submitted. Keep it private.</p>
+<label>6-digit Chat Key (optional when logged in)<input id="chat-access-key" name="chat_key" type="password" inputmode="numeric" autocomplete="off" pattern="[0-9]{6}" maxlength="6" minlength="6" placeholder="Enter your 6-digit key if not logged in"></label>
+<p class="rescue-privacy-note">If you are signed in to the Rescue Account that owns this complaint, you do not need the Chat Key.</p>
 <button class="btn btn-primary" id="chat-open-case" type="submit">View My Complaint</button><p class="rescue-form-message" id="chat-access-status" role="status" aria-live="polite"></p>
-<p class="rescue-privacy-note"><a href="rescue-chat-demo.html">🧪 Try the safe chat demo (no real complaint or notification)</a></p></form></div>
+<p class="rescue-privacy-note"><a href="rescue-account.html">🐾 Open My Rescue Account (no real complaint or notification)</a></p></form></div>
 
 <section id="rescue-chat-workspace" class="rescue-chat-workspace" hidden>
 <div id="rescue-case-details" class="rescue-case-details"></div>
