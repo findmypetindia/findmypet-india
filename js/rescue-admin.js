@@ -26,7 +26,7 @@
         <p><strong>Animals:</strong> ${esc((row.animal_categories||[]).join(', '))}</p><p><strong>Services:</strong> ${esc((row.services||[]).join(', '))}</p>
         <p><strong>Hours:</strong> ${esc(row.operating_hours || 'Not specified')} · <strong>Charges:</strong> ${esc(row.cost_model)} · <strong>Emergency calls:</strong> ${row.emergency_available?'Yes':'No'}</p>
         <p><strong>Submitted:</strong> ${esc(new Date(row.created_at).toLocaleString('en-IN'))} · <strong>Application consent:</strong> ${row.consent?'Confirmed':'Not confirmed'} · <strong>Public directory consent:</strong> ${row.public_listing_consent?'Yes':'No'}</p>
-        <div class="rescue-admin-actions"><label>Review status <select class="admin-status">${statusOptions.map(s=>'<option value="'+s+'" '+(row.status===s?'selected':'')+'>'+labels[s]+'</option>').join('')}</select></label><button type="button" class="btn btn-danger admin-save">Save status</button></div>
+        <div class="rescue-admin-actions"><label>Review status <select class="admin-status">${statusOptions.map(s=>'<option value="'+s+'" '+(row.status===s?'selected':'')+'>'+labels[s]+'</option>').join('')}</select></label><div class="admin-action-buttons"><button type="button" class="btn btn-danger admin-save">Save status</button><button type="button" class="btn admin-delete" style="background:#fff1f0;color:#b42318;border:1px solid #f3b6b2">Delete application</button></div></div>
       </article>`).join('');
     list.querySelectorAll('.admin-save').forEach(button=>button.addEventListener('click', async ()=>{
       const card=button.closest('.rescue-admin-card'); const id=card.dataset.id; const status=card.querySelector('.admin-status').value;
@@ -35,6 +35,22 @@
       button.disabled=false;
       if(result.error || !result.data?.ok) { setMessage(result.data?.error || result.error?.message || 'Status update failed.',true); return; }
       setMessage('Status updated.'); await load();
+    }));
+    list.querySelectorAll('.admin-delete').forEach(button=>button.addEventListener('click', async ()=>{
+      const card=button.closest('.rescue-admin-card');
+      const id=card.dataset.id;
+      const organisation=card.querySelector('h2')?.textContent || 'this application';
+      if(!window.confirm('Permanently delete the application for '+organisation+'? This cannot be undone.')) return;
+      button.disabled=true; button.textContent='Deleting…'; setMessage('Deleting application…');
+      try {
+        const result=await supabaseClient.functions.invoke('animal-rescue-admin',{body:{action:'delete',id}});
+        if(result.error || !result.data?.ok) throw new Error(result.data?.error || result.error?.message || 'Delete failed.');
+        setMessage('Application permanently deleted.');
+        await load();
+      } catch(error) {
+        button.disabled=false; button.textContent='Delete application';
+        setMessage(error.message || 'Could not delete application.',true);
+      }
     }));
   }
   refresh.addEventListener('click',load);
