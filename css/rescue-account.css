@@ -39,3 +39,7 @@
 .rescue-claim-panel form{display:grid;grid-template-columns:1fr 1fr auto;align-items:end;gap:12px}
 .rescue-account-loading{color:#71808a}
 @media(max-width:700px){.rescue-account-list{grid-template-columns:1fr}.rescue-claim-panel form{grid-template-columns:1fr}.rescue-account-toolbar .btn{width:100%}}
+
+.rescue-case-delete{display:inline-flex;align-items:center;justify-content:center;margin-top:13px;padding:8px 13px;border:1px solid #f0c9c9;border-radius:9px;background:#fff7f7;color:#b33a3a;font-size:12px;font-weight:800;cursor:pointer}
+.rescue-case-delete:hover{background:#ffeded}
+.rescue-case-delete:disabled{opacity:.6;cursor:wait}
