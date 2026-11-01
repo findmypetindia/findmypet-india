@@ -34,7 +34,7 @@ content="width=device-width, initial-scale=1.0"
 <h1>👋 Welcome Back</h1>
 
 <p>
-Manage all your Lost & Found Pet reports from one dashboard.
+Manage your Lost & Found pet reports and Animal Rescue complaints from one account.
 </p>
 
 </section>
@@ -76,6 +76,12 @@ Report Found Pet
 </div>
 
 
+<div class="dashboard-card">
+<h2>🚑 My Rescue Complaints</h2>
+<p id="rescueCount">Loading complaints...</p>
+<a href="#rescueCases" class="btn btn-primary">View Rescue Complaints</a>
+</div>
+
 <div class="dashboard-card" id="adminUsersCard" hidden>
 <h2>👥 Registered Users</h2>
 <p>View account and login details</p>
@@ -98,6 +104,24 @@ Loading your reports...
 
 </section>
 
+<section class="dashboard-list" id="rescueCases">
+<h2>🚑 My Rescue Complaints</h2>
+<p class="dashboard-rescue-intro">Your Animal Rescue reports, case updates and private chat with the rescue team.</p>
+<div id="dashboardRescueCases" aria-live="polite">Loading your rescue complaints...</div>
+<div class="dashboard-rescue-claim">
+<h3>Already submitted a rescue complaint?</h3>
+<p>Link an older complaint using its Complaint ID and the 6-digit Chat Key received when you submitted it.</p>
+<form id="dashboardRescueClaimForm">
+<label for="dashboardRescueClaimId">Complaint ID</label>
+<input id="dashboardRescueClaimId" required maxlength="40" placeholder="FMP-YYYYMMDD-ABC123">
+<label for="dashboardRescueClaimKey">6-digit Chat Key</label>
+<input id="dashboardRescueClaimKey" required inputmode="numeric" pattern="[0-9]{6}" maxlength="6" minlength="6" placeholder="Enter 6-digit key">
+<button type="submit" class="btn btn-primary" id="dashboardRescueClaimButton">Link complaint to my account</button>
+</form>
+<p id="dashboardRescueClaimMessage" role="status" aria-live="polite"></p>
+</div>
+</section>
+
 </main>
 
 
@@ -109,6 +133,7 @@ Loading your reports...
 <script src="../js/navbar.js?v=20"></script>
 
 <script src="../js/dashboard.js?v=3"></script>
+<script src="../js/dashboard-rescue.js?v=1"></script>
 <div id="footer-container"></div>
 
 <script src="../js/footer.js?v=2"></script>
