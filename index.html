@@ -125,24 +125,25 @@
       <div class="ai-left"><span class="section-chip">🤖 AI Powered Search</span><h2>Search lost pets by photo</h2><p>Upload a pet photo and our AI-style matching system will help compare color, breed, face pattern and location-based reports.</p><div class="ai-features"><div>✅ Face pattern scan</div><div>✅ Color matching</div><div>✅ Breed suggestion</div><div>✅ Nearby reports</div></div><a href="pages/ai-search.html" class="btn btn-primary">Start AI Search</a></div>
       <div class="ai-upload-card"><div class="upload-icon">📸</div><h3>Upload Pet Photo</h3><p>Drag and drop image here or browse from your device.</p><label class="upload-btn">Browse Image<input type="file" accept="image/*" hidden></label><div class="ai-note">⚡ AI will compare similar lost and found pet reports.</div></div>
     </section>
-    <section class="animal-rescue-home">
-      <div class="animal-rescue-home-copy">
-        <span class="animal-rescue-chip">🐾 Animal Rescue & Welfare</span>
-        <h2>Every Life Deserves Help.</h2>
-        <p>See an injured, sick or distressed animal? Find animal-help organisations and practical next steps through the FindMyPet India rescue network.</p>
-        <div class="animal-rescue-actions">
-          <a href="pages/animal-rescue.html" class="btn btn-danger">Explore Animal Rescue</a>
-          <a href="pages/ngos.html" class="btn btn-primary">Find Rescue Organisations</a>
+    <section class="rescue-choice-grid" aria-label="Animal rescue and partnership">
+      <article class="rescue-choice-card rescue-choice-public">
+        <div class="rescue-choice-art" aria-hidden="true"><span>🐕</span><span>🐈</span><i>❤️</i></div>
+        <div class="rescue-choice-copy">
+          <span class="animal-rescue-chip">🐾 HELP AN ANIMAL</span>
+          <h2>Animal Rescue & Emergency</h2>
+          <p>Seen an injured, sick, trapped or distressed animal? Find practical safety guidance, submit an emergency report and browse rescue organisations.</p>
+          <a href="pages/animal-rescue.html" class="btn btn-danger">Explore Animal Rescue <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <p class="animal-rescue-note">पैसों से पहले, जानवर की जान। ❤️ Free-help options will be clearly distinguished from paid services.</p>
-      </div>
-      <div class="animal-rescue-home-art" aria-label="Illustration of a dog and cat receiving care">
-        <div class="rescue-art-circle">
-          <span class="rescue-paw rescue-paw-one">🐶</span>
-          <span class="rescue-paw rescue-paw-two">🐱</span>
-          <span class="rescue-heart">♡</span>
+      </article>
+      <article class="rescue-choice-card rescue-choice-partner">
+        <div class="rescue-choice-art" aria-hidden="true"><span>🐾</span><span>🤝</span><i>✦</i></div>
+        <div class="rescue-choice-copy">
+          <span class="animal-rescue-chip">🤝 JOIN OUR NETWORK</span>
+          <h2>Become a Rescue Partner</h2>
+          <p>Are you an NGO, gaushala, animal ambulance, veterinary clinic or independent rescuer? Apply to join our growing animal-help network.</p>
+          <a href="pages/rescue-partner.html" class="btn btn-primary">Become a Partner <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-      </div>
+      </article>
     </section>
     <section class="stats">
       <div class="stat-card"><div class="stat-icon pink">📈</div><div><h3>0</h3><p>Lost Reports</p></div></div>
@@ -154,7 +155,7 @@
   </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
-<script src="js/navbar.js?v=15"></script>
+<script src="js/navbar.js?v=16"></script>
 <script src="js/home-search.js?v=2"></script>
 <script src="js/home-login-gate.js?v=3"></script>
 <script src="js/home.js?v=19"></script>
