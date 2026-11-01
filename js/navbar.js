@@ -205,11 +205,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           <li>
             <a
+              href="${pagesLink}rescue-partners.html"
+              class="${activeClass("rescue-partners.html")}"
+            >
+              Rescue Partners
+            </a>
+
+          <li>
+            <a
               href="${pagesLink}rescue-partner.html"
               class="${activeClass("rescue-partner.html")}"
             >
               Become a Partner
             </a>
+          </li>
           </li>
 
           <li>
