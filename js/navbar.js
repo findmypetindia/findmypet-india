@@ -65,6 +65,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.warn("Navbar session check error:", error);
   }
 
+  // Show the Admin Panel link only when the secure admin endpoint
+  // confirms that this signed-in account is authorised.
+  let adminNavLink = "";
+
+  if (currentSession) {
+    try {
+      const { data: adminCheck, error: adminCheckError } =
+        await supabaseClient.functions.invoke("animal-rescue-admin", {
+          body: { action: "list" }
+        });
+
+      if (!adminCheckError && adminCheck && adminCheck.ok === true) {
+        adminNavLink = `
+          <li>
+            <a href="${pagesLink}rescue-admin.html" class="${activeClass("rescue-admin.html")}">
+              🔒 Admin Panel
+            </a>
+          </li>
+        `;
+      }
+    } catch (error) {
+      console.warn("Admin navbar access check:", error);
+    }
+  }
+
   const accountAction = currentSession
     ? `
           <a
@@ -220,6 +245,8 @@ document.addEventListener("DOMContentLoaded", async function () {
               Become a Partner
             </a>
           </li>
+
+          ${adminNavLink}
 
           <li>
             <a
