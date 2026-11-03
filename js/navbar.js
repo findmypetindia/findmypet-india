@@ -177,6 +177,10 @@ document.addEventListener("DOMContentLoaded", async function () {
           </li>
 
 
+          <li id="navbarDashboardItem" hidden>
+            <a href="${pagesLink}dashboard.html" class="${activeClass("dashboard.html")}">My Dashboard</a>
+          </li>
+
           <li>
             <a
               href="${pagesLink}about.html"
@@ -380,13 +384,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
       console.warn("Navbar session check error:", error);
     }
-    if (!currentSession) { ensureLostPetsNavigation(); return; }
-
     const navActions = document.querySelector("#navbarContent .nav-actions");
+    const dashboardItem = document.getElementById("navbarDashboardItem");
+
+    if (!currentSession) {
+      if (dashboardItem) dashboardItem.hidden = true;
+      ensureLostPetsNavigation();
+      return;
+    }
+
+    if (dashboardItem) dashboardItem.hidden = false;
     if (navActions) {
       navActions.innerHTML = `
-        <a href="${pagesLink}dashboard.html"
-           class="btn btn-dashboard ${activeClass("dashboard.html")}">My Dashboard</a>
         <button type="button" class="btn btn-light" id="navbarLogoutButton">Logout</button>
       `;
     }
