@@ -68,9 +68,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         aria-label="Open navigation menu"
         aria-expanded="false"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        ☰
       </button>
 
       <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -215,8 +213,35 @@ document.addEventListener("DOMContentLoaded", async function () {
   const mobileMenuOverlay =
     document.getElementById("mobileMenuOverlay");
 
+  function setMobileMenuButtonVisibility() {
+    if (!mobileMenuButton) return;
+    if (window.innerWidth <= 767) {
+      mobileMenuButton.style.setProperty("display", "inline-flex", "important");
+      mobileMenuButton.style.setProperty("visibility", "visible", "important");
+      mobileMenuButton.style.setProperty("opacity", "1", "important");
+      mobileMenuButton.style.setProperty("align-items", "center", "important");
+      mobileMenuButton.style.setProperty("justify-content", "center", "important");
+      mobileMenuButton.style.setProperty("flex", "0 0 46px", "important");
+      mobileMenuButton.style.setProperty("width", "46px", "important");
+      mobileMenuButton.style.setProperty("height", "46px", "important");
+      mobileMenuButton.style.setProperty("margin-left", "auto", "important");
+      mobileMenuButton.style.setProperty("font-size", "27px", "important");
+      mobileMenuButton.style.setProperty("line-height", "1", "important");
+      mobileMenuButton.style.setProperty("color", "#172033", "important");
+      mobileMenuButton.style.setProperty("background", "#ffffff", "important");
+      mobileMenuButton.style.setProperty("border", "1px solid #dbe3f0", "important");
+      mobileMenuButton.textContent = navbarContent.classList.contains("mobile-menu-open") ? "×" : "☰";
+    } else {
+      mobileMenuButton.style.removeProperty("display");
+      mobileMenuButton.textContent = "";
+    }
+  }
+
+  setMobileMenuButtonVisibility();
+
   function openMobileMenu() {
     navbarContent.classList.add("mobile-menu-open");
+    mobileMenuButton.textContent = "×";
     mobileMenuOverlay.classList.add("mobile-menu-overlay-open");
     mobileMenuButton.classList.add("menu-button-active");
     mobileMenuButton.setAttribute("aria-expanded", "true");
@@ -228,6 +253,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     mobileMenuOverlay.classList.remove("mobile-menu-overlay-open");
     mobileMenuButton.classList.remove("menu-button-active");
     mobileMenuButton.setAttribute("aria-expanded", "false");
+    mobileMenuButton.textContent = "☰";
     document.body.classList.remove("mobile-menu-body-lock");
   }
 
@@ -273,9 +299,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   window.addEventListener(
     "resize",
     function () {
-      if (window.innerWidth > 768) {
+      if (window.innerWidth > 767) {
         closeMobileMenu();
       }
+      setMobileMenuButtonVisibility();
     }
   );
 
