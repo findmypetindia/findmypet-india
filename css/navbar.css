@@ -182,3 +182,25 @@
     font-size: 31px !important;
   }
 }
+
+
+/* Small, readable availability labels for newly added navigation sections */
+.nav-status {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 5px;
+  padding: 3px 6px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: .25px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.nav-status-new { color: #1d4ed8; background: #dbeafe; }
+.nav-status-soon { color: #92400e; background: #fef3c7; }
+.nav-status-open { color: #166534; background: #dcfce7; }
+@media (max-width: 767px) {
+  .navbar-content .nav-links a .nav-status { margin-left: 7px; }
+}
