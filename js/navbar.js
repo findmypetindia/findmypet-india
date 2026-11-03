@@ -197,6 +197,32 @@ document.addEventListener("DOMContentLoaded", async function () {
     </nav>
   `;
 
+  // Keep the Lost Pets link present and visible after auth-state updates.
+  function ensureLostPetsNavigation() {
+    const navLinks = document.querySelector("#navbarContent .nav-links");
+    if (!navLinks) return;
+    let lostItem = document.getElementById("lostPetsNavItem");
+    if (!lostItem) {
+      lostItem = document.createElement("li");
+      lostItem.id = "lostPetsNavItem";
+      lostItem.innerHTML = `<a href="${pagesLink}lost.html" class="${activeClass("lost.html")}">Lost Pets</a>`;
+      const firstItem = navLinks.querySelector("li");
+      navLinks.insertBefore(lostItem, firstItem ? firstItem.nextElementSibling : null);
+    }
+    navLinks.style.setProperty("display", "flex", "important");
+    lostItem.style.setProperty("display", "list-item", "important");
+    lostItem.style.setProperty("visibility", "visible", "important");
+    lostItem.style.setProperty("opacity", "1", "important");
+    const lostLink = lostItem.querySelector("a");
+    if (lostLink) {
+      lostLink.style.setProperty("display", "flex", "important");
+      lostLink.style.setProperty("visibility", "visible", "important");
+      lostLink.style.setProperty("opacity", "1", "important");
+    }
+  }
+
+  ensureLostPetsNavigation();
+
   // ======================================
   // MOBILE MENU
   // ======================================
@@ -317,6 +343,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   // Refresh account controls in the background after the navbar is visible.
   async function refreshAccountNavigation() {
+    ensureLostPetsNavigation();
     if (typeof supabaseClient === "undefined") {
       console.error("Supabase client is not available.");
       return;
@@ -330,7 +357,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
       console.warn("Navbar session check error:", error);
     }
-    if (!currentSession) return;
+    if (!currentSession) { ensureLostPetsNavigation(); return; }
 
     const navActions = document.querySelector("#navbarContent .nav-actions");
     if (navActions) {
@@ -340,6 +367,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         <button type="button" class="btn btn-light" id="navbarLogoutButton">Logout</button>
       `;
     }
+
+    ensureLostPetsNavigation();
 
     // Admin permission check is independent and cannot delay the menu.
     try {
