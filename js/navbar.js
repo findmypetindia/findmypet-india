@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             </a>
           </li>
 
-          <li>
+          <li id="lostPetsNavItem">
             <a
               href="${pagesLink}lost.html"
               class="${activeClass("lost.html")}"
