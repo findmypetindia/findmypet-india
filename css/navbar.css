@@ -229,3 +229,20 @@
     opacity: 1 !important;
   }
 }
+
+
+/* Last-resort selector for the Lost Pets destination, even if its id is lost. */
+@media (max-width: 767px) {
+  #siteHeader #navbarContent .nav-links a[href$="/lost.html"],
+  #siteHeader #navbarContent .nav-links a[href="lost.html"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #siteHeader #navbarContent .nav-links li:has(> a[href$="/lost.html"]),
+  #siteHeader #navbarContent .nav-links li:has(> a[href="lost.html"]) {
+    display: list-item !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
