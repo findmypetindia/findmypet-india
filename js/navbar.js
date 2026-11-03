@@ -42,78 +42,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     return currentPage === pageName ? "active" : "";
   }
 
-  // Supabase check
-  if (typeof supabaseClient === "undefined") {
-    console.error("Supabase client is not available.");
-    return;
-  }
-
-  // Public pages stay viewable without an account.
-  // Login is required only when someone submits or manages a report.
-  let currentSession = null;
-
-  try {
-    const { data, error } =
-      await supabaseClient.auth.getSession();
-
-    if (error) {
-      throw error;
-    }
-
-    currentSession = data.session || null;
-  } catch (error) {
-    console.warn("Navbar session check error:", error);
-  }
-
-  // Show the Admin Panel link only when the secure admin endpoint
-  // confirms that this signed-in account is authorised.
-  let adminNavLink = "";
-
-  if (currentSession) {
-    try {
-      const { data: adminCheck, error: adminCheckError } =
-        await supabaseClient.functions.invoke("animal-rescue-admin", {
-          body: { action: "list" }
-        });
-
-      if (!adminCheckError && adminCheck && adminCheck.ok === true) {
-        adminNavLink = `
-          <li>
-            <a href="${pagesLink}rescue-admin.html" class="${activeClass("rescue-admin.html")}">
-              🔒 Admin Panel
-            </a>
-          </li>
-        `;
-      }
-    } catch (error) {
-      console.warn("Admin navbar access check:", error);
-    }
-  }
-
-  const accountAction = currentSession
-    ? `
-          <a
-            href="${pagesLink}dashboard.html"
-            class="btn btn-dashboard ${activeClass("dashboard.html")}"
-          >
-            My Dashboard
-          </a>
-
-          <button
-            type="button"
-            class="btn btn-light"
-            id="navbarLogoutButton"
-          >
-            Logout
-          </button>
-      `
-    : `
-          <a
-            href="${pagesLink}login.html"
-            class="btn btn-dashboard ${activeClass("login.html")}"
-          >
-            Log In
-          </a>
+  // Render navigation immediately; network checks run after the menu is ready.
+  const accountAction = `
+          <a href="${pagesLink}login.html"
+             class="btn btn-dashboard ${activeClass("login.html")}">Log In</a>
       `;
 
   siteHeader.className = "site-header";
@@ -398,4 +330,76 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     }
   );
+})  // Refresh account controls in the background after the navbar is visible.
+  async function refreshAccountNavigation() {
+    if (typeof supabaseClient === "undefined") {
+      console.error("Supabase client is not available.");
+      return;
+    }
+
+    let currentSession = null;
+    try {
+      const { data, error } = await supabaseClient.auth.getSession();
+      if (error) throw error;
+      currentSession = data.session || null;
+    } catch (error) {
+      console.warn("Navbar session check error:", error);
+    }
+    if (!currentSession) return;
+
+    const navActions = document.querySelector("#navbarContent .nav-actions");
+    if (navActions) {
+      navActions.innerHTML = `
+        <a href="${pagesLink}dashboard.html"
+           class="btn btn-dashboard ${activeClass("dashboard.html")}">My Dashboard</a>
+        <button type="button" class="btn btn-light" id="navbarLogoutButton">Logout</button>
+      `;
+    }
+
+    // Admin permission check is independent and cannot delay the menu.
+    try {
+      const { data: adminCheck, error: adminCheckError } =
+        await supabaseClient.functions.invoke("animal-rescue-admin", {
+          body: { action: "list" }
+        });
+      if (!adminCheckError && adminCheck && adminCheck.ok === true) {
+        const navLinks = document.querySelector("#navbarContent .nav-links");
+        if (navLinks && !document.getElementById("navbarAdminLink")) {
+          const item = document.createElement("li");
+          item.id = "navbarAdminLink";
+          item.innerHTML = `<a href="${pagesLink}rescue-admin.html"
+            class="${activeClass("rescue-admin.html")}">🔒 Admin Panel</a>`;
+          const about = Array.from(navLinks.querySelectorAll("a"))
+            .find(link => link.getAttribute("href") === `${pagesLink}about.html`);
+          navLinks.insertBefore(item, about ? about.parentElement : null);
+          item.querySelector("a").addEventListener("click", closeMobileMenu);
+        }
+      }
+    } catch (error) {
+      console.warn("Admin navbar access check:", error);
+    }
+  }
+
+  // Delegated listener supports the Logout button added after session lookup.
+  const navActionsContainer = document.querySelector("#navbarContent .nav-actions");
+  if (navActionsContainer) {
+    navActionsContainer.addEventListener("click", async function (event) {
+      const button = event.target.closest("#navbarLogoutButton");
+      if (!button) return;
+      button.disabled = true;
+      button.textContent = "Logging out...";
+      try {
+        const { error } = await supabaseClient.auth.signOut();
+        if (error) throw error;
+        window.location.replace("/pages/login.html");
+      } catch (error) {
+        console.error("Logout error:", error);
+        alert(error.message || "Logout nahi ho saka.");
+        button.disabled = false;
+        button.textContent = "Logout";
+      }
+    });
+  }
+
+  refreshAccountNavigation();
 });
