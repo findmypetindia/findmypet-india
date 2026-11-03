@@ -2,7 +2,7 @@
 if (!document.querySelector('link[data-navbar-styles]')) {
   const navbarStyles = document.createElement("link");
   navbarStyles.rel = "stylesheet";
-  navbarStyles.href = "/css/navbar.css?v=5";
+  navbarStyles.href = "/css/navbar.css?v=6";
   navbarStyles.dataset.navbarStyles = "true";
   document.head.appendChild(navbarStyles);
 }
@@ -222,6 +222,29 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   ensureLostPetsNavigation();
+
+  // If another script rebuilds the navbar after login, restore only the Lost Pets item.
+  let lostNavRepairQueued = false;
+  const lostNavObserver = new MutationObserver(function () {
+    if (lostNavRepairQueued) return;
+    lostNavRepairQueued = true;
+    queueMicrotask(function () {
+      lostNavRepairQueued = false;
+      ensureLostPetsNavigation();
+    });
+  });
+  lostNavObserver.observe(siteHeader, { childList: true, subtree: true });
+
+  // Re-check after Supabase login/logout state notifications.
+  if (typeof supabaseClient !== "undefined" &&
+      supabaseClient.auth &&
+      typeof supabaseClient.auth.onAuthStateChange === "function") {
+    supabaseClient.auth.onAuthStateChange(function () {
+      ensureLostPetsNavigation();
+      requestAnimationFrame(ensureLostPetsNavigation);
+      setTimeout(ensureLostPetsNavigation, 250);
+    });
+  }
 
   // ======================================
   // MOBILE MENU
