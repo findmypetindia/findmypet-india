@@ -3688,18 +3688,5 @@ font-size:15px;
     display: none !important;
   }
 
-  #siteHeader button#mobileMenuButton::before,
-  #siteHeader .mobile-menu-button::before {
-    content: "☰" !important;
-    display: block !important;
-    color: #172033 !important;
-    font-size: 27px !important;
-    font-weight: 900 !important;
-    line-height: 1 !important;
-  }
-
-  #siteHeader button#mobileMenuButton.menu-button-active::before {
-    content: "×" !important;
-    font-size: 32px !important;
-  }
+  /* The hamburger glyph is supplied by navbar.js text content. */
 }
