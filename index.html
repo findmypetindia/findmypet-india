@@ -68,6 +68,14 @@
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/images/pwa-icon.svg">
   <style id="homepageAuthPrepaint">body{visibility:hidden}</style>
+  <style id="homepageHeaderFallback">
+    #siteHeader.homepage-header-fallback{display:block;background:#fff;border-bottom:1px solid #e7ebf1;position:relative;z-index:9999}
+    #siteHeader.homepage-header-fallback nav{max-width:1240px;margin:auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    #siteHeader.homepage-header-fallback .fallback-brand{font-size:19px;font-weight:700;color:#172033;text-decoration:none;white-space:nowrap}
+    #siteHeader.homepage-header-fallback .fallback-links{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    #siteHeader.homepage-header-fallback .fallback-links a{color:#172033;text-decoration:none;font-size:14px;font-weight:600}
+    @media(max-width:767px){#siteHeader.homepage-header-fallback nav{align-items:center}#siteHeader.homepage-header-fallback .fallback-links{width:100%;gap:8px 16px}#siteHeader.homepage-header-fallback .fallback-links a{font-size:13px}}
+  </style>
   <link rel="stylesheet" href="./css/navbar.css?v=3">
   <link rel="stylesheet" href="./css/style.css?v=613">
   <link rel="stylesheet" href="./css/animal-rescue.css?v=3">
@@ -76,7 +84,19 @@
   <meta name="google-site-verification" content="nmDuxF9opXnmu7u7wJkT821GYZzVvNgkVvZvaD3cB0M">
 </head>
 <body>
-  <header id="siteHeader"></header>
+  <header id="siteHeader" class="homepage-header-fallback">
+    <nav aria-label="Main navigation">
+      <a class="fallback-brand" href="/">🐶 FindMyPet India</a>
+      <div class="fallback-links">
+        <a href="/">Home</a>
+        <a href="/pages/lost.html">Lost Pets</a>
+        <a href="/pages/found.html">Found Pets</a>
+        <a href="/pages/ai-search.html">AI Search</a>
+        <a href="/pages/animal-rescue.html">Animal Rescue</a>
+        <a href="/pages/login.html">Log In</a>
+      </div>
+    </nav>
+  </header>
   <main>
     <section class="hero">
       <div class="hero-left">
