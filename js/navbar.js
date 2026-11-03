@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               href="${pagesLink}animal-rescue.html"
               class="${activeClass("animal-rescue.html")}"
             >
-              Animal Rescue
+              Animal Rescue <span class="nav-status nav-status-new">NEW</span>
             </a>
           </li>
 
@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               href="${pagesLink}rescue-partners.html"
               class="${activeClass("rescue-partners.html")}"
             >
-              Rescue Partners
+              Rescue Partners <span class="nav-status nav-status-soon">COMING SOON</span>
             </a>
           </li>
 
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               href="${pagesLink}rescue-partner.html"
               class="${activeClass("rescue-partner.html")}"
             >
-              Become a Partner
+              Become a Partner <span class="nav-status nav-status-open">APPLY NOW</span>
             </a>
           </li>
 
