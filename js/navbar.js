@@ -178,7 +178,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             </a>
           </li>
 
-          ${adminNavLink}
 
           <li>
             <a
