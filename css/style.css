@@ -3638,3 +3638,68 @@ font-size:15px;
   text-align: center !important;
   text-decoration: none !important;
 }
+
+/* FINAL OVERRIDE: keep the mobile hamburger visible above all legacy navbar rules */
+@media screen and (max-width: 767px) {
+  #siteHeader .navbar {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 68px !important;
+    height: 68px !important;
+    padding: 0 16px !important;
+    overflow: visible !important;
+  }
+
+  #siteHeader .navbar > .logo {
+    display: inline-flex !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    visibility: visible !important;
+  }
+
+  #siteHeader button#mobileMenuButton,
+  #siteHeader .mobile-menu-button {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    flex: 0 0 46px !important;
+    width: 46px !important;
+    min-width: 46px !important;
+    height: 46px !important;
+    margin: 0 0 0 auto !important;
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid #dbe3f0 !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    color: #172033 !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+    z-index: 10006 !important;
+    box-shadow: 0 2px 8px rgba(15,23,42,.10) !important;
+  }
+
+  #siteHeader button#mobileMenuButton span,
+  #siteHeader .mobile-menu-button span {
+    display: none !important;
+  }
+
+  #siteHeader button#mobileMenuButton::before,
+  #siteHeader .mobile-menu-button::before {
+    content: "☰" !important;
+    display: block !important;
+    color: #172033 !important;
+    font-size: 27px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+  }
+
+  #siteHeader button#mobileMenuButton.menu-button-active::before {
+    content: "×" !important;
+    font-size: 32px !important;
+  }
+}
