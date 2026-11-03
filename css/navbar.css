@@ -206,3 +206,26 @@
     color: #172033 !important;
   }
 }
+
+
+/* Final safeguard: keep the navigation list and Lost Pets entry visible on mobile. */
+@media (max-width: 1050px) {
+  #siteHeader #navbarContent ul.nav-links {
+    display: flex !important;
+  }
+}
+@media (max-width: 767px) {
+  #siteHeader #navbarContent ul.nav-links > li#lostPetsNavItem {
+    display: list-item !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  #siteHeader #navbarContent ul.nav-links > li#lostPetsNavItem > a {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
