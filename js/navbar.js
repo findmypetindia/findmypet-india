@@ -289,48 +289,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   );
 
-  // ======================================
-  // LOGOUT
-  // ======================================
-
-  const logoutButton =
-    document.getElementById("navbarLogoutButton");
-
-  if (!logoutButton) {
-    return;
-  }
-
-  logoutButton.addEventListener(
-    "click",
-    async function () {
-      logoutButton.disabled = true;
-      logoutButton.textContent = "Logging out...";
-
-      try {
-        const { error } =
-          await supabaseClient.auth.signOut();
-
-        if (error) {
-          throw error;
-        }
-
-        window.location.replace(
-          "/pages/login.html"
-        );
-      } catch (error) {
-        console.error("Logout error:", error);
-
-        alert(
-          error.message ||
-          "Logout nahi ho saka."
-        );
-
-        logoutButton.disabled = false;
-        logoutButton.textContent = "Logout";
-      }
-    }
-  );
-})  // Refresh account controls in the background after the navbar is visible.
+  // Refresh account controls in the background after the navbar is visible.
   async function refreshAccountNavigation() {
     if (typeof supabaseClient === "undefined") {
       console.error("Supabase client is not available.");
@@ -380,7 +339,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  // Delegated listener supports the Logout button added after session lookup.
+  // Delegated listener handles Logout even though it is added asynchronously.
   const navActionsContainer = document.querySelector("#navbarContent .nav-actions");
   if (navActionsContainer) {
     navActionsContainer.addEventListener("click", async function (event) {
