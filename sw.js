@@ -1,4 +1,4 @@
-const CACHE_NAME = "findmypet-india-shell-v15";
+const CACHE_NAME = "findmypet-india-shell-v16";
 const APP_SHELL = [
   "/manifest.webmanifest",
   "/images/pwa-icon.svg",
