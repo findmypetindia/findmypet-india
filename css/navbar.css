@@ -162,27 +162,7 @@
     overflow: hidden;
   }
 }
-/* Use a text icon so the control remains visible even when global span styles conflict. */
-@media (max-width: 767px) {
-  .mobile-menu-button span {
-    display: none !important;
-  }
-
-  .mobile-menu-button::before {
-    content: "☰";
-    display: block !important;
-    color: #0f172a !important;
-    font-size: 25px !important;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .mobile-menu-button.menu-button-active::before {
-    content: "×";
-    font-size: 31px !important;
-  }
-}
-
+/* The menu glyph is provided once by navbar.js, not by CSS pseudo-elements. */
 
 /* Small, readable availability labels for newly added navigation sections */
 .nav-status {
