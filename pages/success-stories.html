@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add("auth-checking");</script>
-  <style>html.auth-checking body{visibility:hidden!important;}</style>
-  <script src="../js/auth-guard.js?v=2"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -367,11 +364,10 @@
     <!-- INTRO -->
     <section class="success-intro">
       <div class="success-intro-card">
-        <h2>🐾 Real Families. Real Happiness.</h2>
+        <h2>🐾 Pet Reunion Stories</h2>
 
         <p>
-          Explore heartwarming reunion stories shared by pet owners,
-          rescuers and volunteers from across India.
+          Browse reunion reports that have been marked as reunited by their submitters. Each listing reflects user-submitted information.
         </p>
       </div>
     </section>
@@ -381,172 +377,27 @@
     <section class="success-stories-section">
 
       <div class="success-section-heading">
-        <span>COMMUNITY STORIES</span>
+        <span>COMMUNITY UPDATES</span>
 
-        <h2>Pets Reunited With Their Families</h2>
+        <h2>Reunited Pets</h2>
 
         <p>
-          Replace these sample stories with verified user submissions.
+          Only reports marked as reunited are displayed here. No sample or fictional stories are published.
         </p>
       </div>
 
 
       <div class="success-stories-grid" id="successStoriesGrid"></div>
-</div>
-
-      </div>
-
-    </section>
-
-
-    <!-- STATS -->
-    <section class="success-stats">
-
-      <h2>
-        ❤️ Together We Can Bring More Pets Home
-      </h2>
-
-      <div class="success-stats-grid">
-
-        <div class="success-stat-card">
-          <strong>3</strong>
-          <span>Sample Success Stories</span>
-        </div>
-
-        <div class="success-stat-card">
-          <strong>24×7</strong>
-          <span>Report Availability</span>
-        </div>
-
-        <div class="success-stat-card">
-          <strong>India</strong>
-          <span>Community Coverage</span>
-        </div>
-
-        <div class="success-stat-card">
-          <strong>100%</strong>
-          <span>Community Driven</span>
-        </div>
-
-      </div>
 
     </section>
 
 
     <div class="truth-note">
-      <strong>Important:</strong>
-      These are sample cards for layout demonstration.
-      Publish real names, photos, locations and reunion claims only after
-      receiving permission and verifying the story.
+      <strong>About these listings:</strong>
+      Reunion status is based on information submitted by users. FindMyPet India
+      does not independently verify every reunion. Please contact the report
+      submitter through the platform for details.
     </div>
-
-
-    <!-- SUBMIT STORY -->
-    <section class="success-submit">
-
-      <h2>
-        Share Your Reunion Story
-      </h2>
-
-      <p>
-        Submit your details and celebrate your pet's safe return.
-      </p>
-
-      <form id="successStoryForm">
-
-        <div class="success-form-grid">
-
-          <div class="field">
-            <label for="storyOwnerName">Your Name *</label>
-
-            <input
-              type="text"
-              id="storyOwnerName"
-              placeholder="Enter your name"
-              required
-            >
-          </div>
-
-
-          <div class="field">
-            <label for="storyPetName">Pet Name *</label>
-
-            <input
-              type="text"
-              id="storyPetName"
-              placeholder="Example: Bruno"
-              required
-            >
-          </div>
-
-
-          <div class="field">
-            <label for="storyCity">City *</label>
-
-            <input
-              type="text"
-              id="storyCity"
-              placeholder="Example: Jaipur"
-              required
-            >
-          </div>
-
-
-          <div class="field">
-            <label for="reunionTime">Reunited In</label>
-
-            <input
-              type="text"
-              id="reunionTime"
-              placeholder="Example: 3 days"
-            >
-          </div>
-
-
-          <div class="field full">
-            <label for="storyMessage">Your Story *</label>
-
-            <textarea
-              id="storyMessage"
-              placeholder="Tell us how your pet was found..."
-              required
-            ></textarea>
-          </div>
-
-
-          <div class="field full">
-            <label for="storyImage">Upload Reunion Photo</label>
-
-            <input
-              type="file"
-              id="storyImage"
-              accept="image/jpeg,image/png,image/webp"
-            >
-          </div>
-
-        </div>
-
-
-        <p
-          id="successStoryMessage"
-          class="form-message"
-        ></p>
-
-
-        <div class="success-submit-actions">
-
-          <button
-            type="submit"
-            class="btn btn-accent"
-          >
-            ❤️ Submit Success Story
-          </button>
-
-        </div>
-
-      </form>
-
-    </section>
 
 
     <!-- CTA -->
@@ -588,29 +439,6 @@
 <script src="../js/supabase.js"></script>
 <script src="../js/navbar.js?v=14"></script>
 <script src="../js/success-stories.js?v=1"></script>
-  <script>
-    const successStoryForm =
-      document.getElementById("successStoryForm");
-
-    const successStoryMessage =
-      document.getElementById("successStoryMessage");
-
-    successStoryForm.addEventListener(
-      "submit",
-      function (event) {
-
-        event.preventDefault();
-
-        successStoryMessage.style.color = "#15803d";
-
-        successStoryMessage.textContent =
-          "Thank you! Your story has been received for review.";
-
-        successStoryForm.reset();
-
-      }
-    );
-  </script>
 <div id="footer-container"></div>
 
 <script src="../js/footer.js"></script>
