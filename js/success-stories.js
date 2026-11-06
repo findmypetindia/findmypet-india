@@ -78,7 +78,7 @@ console.log("ERROR =", error);
         <div class="success-state">
           <h3>No Success Stories Yet</h3>
           <p>
-            Reunited pets yahan automatically dikhengi.
+            When a report is marked as reunited by its submitter, it may appear here. Stories are based on user-submitted updates and are not independently verified.
           </p>
         </div>
       `;
