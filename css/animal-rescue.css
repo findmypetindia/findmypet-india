@@ -18,6 +18,7 @@
 .rescue-float-card span { color:#64748b; font-size:12px; }
 .rescue-need-section,.rescue-what-to-do { max-width:1240px; margin:0 auto; padding:42px 0; }
 .rescue-section-heading { margin-bottom:24px; text-align:center; }
+.rescue-section-heading h1,
 .rescue-section-heading h2 { margin-bottom:8px; color:#0f172a; font-size:clamp(25px,3vw,34px); }
 .rescue-section-heading p { color:#64748b; line-height:1.6; }
 .rescue-need-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:17px; }
