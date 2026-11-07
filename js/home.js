@@ -341,13 +341,9 @@ async function updateHomepageStatistics() {
         foundCount.toLocaleString("en-IN");
     }
 
-    if (statNumbers[2]) {
-      statNumbers[2].textContent = "0";
-    }
-
-    if (statNumbers[3]) {
-      statNumbers[3].textContent = "0";
-    }
+    // Reunion and member totals are not yet backed by verified
+    // database metrics. Use an em dash rather than publishing a
+    // misleading zero until those metrics are implemented.
   } catch (error) {
     console.error("Homepage statistics error:", error);
   }
