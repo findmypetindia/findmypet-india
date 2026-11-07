@@ -297,15 +297,13 @@ const reports = await fetchPetReports(requiredReportType);
 async function fetchPetReports(requiredReportType) {
   const { data, error } = await supabaseClient
     .from("pet_reports")
-    .select("*")
+    .select("id, report_type, pet_name, pet_type, breed, color, city, state, mobile, whatsapp, image_url, created_at")
     .eq("report_type", requiredReportType)
     .or("status.eq.active,status.is.null")
     .not("image_url", "is", null)
     .neq("image_url", "")
     .order("created_at", { ascending: false });
 
-  console.log("SUPABASE DATA:", data);
-  console.log("SUPABASE ERROR:", error);
 
   if (error) {
     throw new Error(`Supabase error: ${error.message}`);
@@ -324,28 +322,6 @@ async function fetchPetReports(requiredReportType) {
       imageURL !== "NULL"
     );
   });
-  return data.filter((report) => {
-    const imageURL = String(report.image_url ?? "").trim();
-
-    console.log(
-      "REPORT:",
-      report.id,
-      "IMAGE URL:",
-      imageURL
-    );
-
-    return (
-      imageURL.length > 0 &&
-      imageURL !== "EMPTY" &&
-      imageURL !== "NULL"
-    );
-  });
-  console.log(
-    "Reports containing valid image URLs:",
-    reportsWithImages
-  );
-
-  return reportsWithImages;
 }
 
 
@@ -599,9 +575,20 @@ function renderMatches(matches, resultsGrid) {
 
     similarityText.textContent =
       matchPercentage +
-      "% Visual Similarity";
+      "% Visual Similarity Score";
 
     similarityRow.appendChild(similarityText);
+
+    const similarityNote =
+      document.createElement("small");
+
+    similarityNote.textContent =
+      "Automated visual comparison only — not proof of identity or ownership.";
+
+    similarityNote.style.display = "block";
+    similarityNote.style.margin = "4px 0 10px";
+    similarityNote.style.color = "#666";
+    similarityNote.style.lineHeight = "1.4";
 
     const track =
       document.createElement("div");
@@ -717,6 +704,7 @@ function renderMatches(matches, resultsGrid) {
     content.append(
       title,
       similarityRow,
+      similarityNote,
       track,
       breed,
       color,
