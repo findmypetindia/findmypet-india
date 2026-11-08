@@ -3701,3 +3701,30 @@ font-size:15px;
     padding-top: 12px !important;
   }
 }
+
+/* MOBILE FIX: tighten the exact gap after Example Pet Profiles */
+@media screen and (max-width: 767px) {
+  section.latest.featured-pets {
+    padding-top: 28px !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  section.latest.featured-pets .pet-grid {
+    margin-bottom: 0 !important;
+  }
+
+  section.latest.community-reports {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  section.latest.featured-pets + section.latest.community-reports {
+    margin-top: 0 !important;
+  }
+
+  section.latest.community-reports > .section-heading {
+    margin-top: 0 !important;
+    margin-bottom: 18px !important;
+  }
+}
