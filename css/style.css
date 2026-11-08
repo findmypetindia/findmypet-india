@@ -3690,3 +3690,14 @@ font-size:15px;
 
   /* The hamburger glyph is supplied by navbar.js text content. */
 }
+
+/* MOBILE FIX: reduce excessive gap between example profiles and community reports */
+@media screen and (max-width: 767px) {
+  .latest.featured-pets {
+    padding-bottom: 12px !important;
+  }
+
+  .latest.community-reports {
+    padding-top: 12px !important;
+  }
+}
