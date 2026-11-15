@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function applySuccessStoriesSeo() {
   document.documentElement.lang = "en-IN";
-  document.title = "Pet Reunion Success Stories in India | FindMyPet India";
+  document.title = "Pet Reunion Stories | FindMyPet India";
 
-  upsertMeta("description", "Read pet reunion success stories from FindMyPet India and see how lost and found pet reports can help families and rescuers reconnect pets with their homes.");
+  upsertMeta("description", "Browse user-submitted pet reunion updates on FindMyPet India. Learn how reunion reports appear, what details are shared and why every possible match should be verified.");
   upsertMeta("robots", "index, follow");
-  upsertProperty("og:title", "Pet Reunion Success Stories | FindMyPet India");
-  upsertProperty("og:description", "Discover reunion stories from the FindMyPet India lost and found pet community.");
+  upsertProperty("og:title", "Pet Reunion Stories | FindMyPet India");
+  upsertProperty("og:description", "Browse user-submitted pet reunion updates and learn how to share a reunion safely.");
   upsertProperty("og:url", "https://findmypetindia.com/pages/success-stories.html");
   upsertProperty("og:type", "website");
 
@@ -59,13 +59,11 @@ async function loadSuccessStories() {
     const { data, error } =
       await supabaseClient
         .from("pet_reports")
-        .select("*")
+        .select("id,report_type,pet_name,pet_type,breed,city,state,image_url,updated_at,created_at")
         .eq("status", "reunited")
         .order("updated_at", {
           ascending: false
         });
-console.log("DATA =", data);
-console.log("ERROR =", error);
     if (error) {
       throw error;
     }
@@ -89,82 +87,62 @@ console.log("ERROR =", error);
     storiesGrid.innerHTML = "";
 
     reports.forEach(function (report) {
-      const card =
-        document.createElement("article");
+      const card = document.createElement("article");
+      card.className = "success-story-card";
 
-      card.className =
-        "success-story-card";
+      const petName = String(report.pet_name || report.pet_type || "Pet");
+      const petDetails = String(report.breed || report.pet_type || "Pet details not provided");
+      const location = [report.city, report.state].filter(Boolean).join(", ");
+      const reportLabel = report.report_type === "found" ? "FOUND & REUNITED" : "LOST & REUNITED";
 
-      const petName =
-        report.pet_name ||
-        report.pet_type ||
-        "Pet";
+      const imageWrap = document.createElement("div");
+      imageWrap.className = "success-story-image";
 
-      const location =
-        [report.city, report.state]
-          .filter(Boolean)
-          .join(", ");
+      const badge = document.createElement("span");
+      badge.className = "success-story-badge";
+      badge.textContent = "❤️ REUNITED";
 
-      const imageUrl =
-        report.image_url ||
-        "https://placehold.co/600x420?text=Pet+Photo";
+      const image = document.createElement("img");
+      const fallbackImage = "https://placehold.co/600x420?text=Pet+Photo";
+      let safeImageUrl = fallbackImage;
+      try {
+        const candidate = new URL(String(report.image_url || ""), window.location.origin);
+        if (candidate.protocol === "https:" || candidate.protocol === "http:") safeImageUrl = candidate.href;
+      } catch (_) {
+        safeImageUrl = fallbackImage;
+      }
+      image.src = safeImageUrl;
+      image.alt = petName + " reunited pet story";
+      image.loading = "lazy";
+      image.addEventListener("error", function () { image.src = fallbackImage; }, { once: true });
+      imageWrap.append(badge, image);
 
-      const reportLabel =
-        report.report_type === "found"
-          ? "FOUND & REUNITED"
-          : "LOST & REUNITED";
+      const content = document.createElement("div");
+      content.className = "success-story-content";
 
-      card.innerHTML = `
-        <div class="success-story-image">
+      const type = document.createElement("span");
+      type.className = "success-story-type";
+      type.textContent = reportLabel;
 
-          <span class="success-story-badge">
-            ❤️ REUNITED
-          </span>
+      const heading = document.createElement("h2");
+      heading.textContent = petName;
 
-          <img
-            src="${imageUrl}"
-            alt="${petName} reunited pet story"
-            onerror="
-              this.onerror=null;
-              this.src='https://placehold.co/600x420?text=Pet+Photo';
-            "
-          >
+      const details = document.createElement("p");
+      details.textContent = petDetails;
 
-        </div>
+      const locationText = document.createElement("small");
+      locationText.textContent = "📍 " + (location || "Location not provided");
 
-        <div class="success-story-content">
+      const dateText = document.createElement("small");
+      dateText.textContent = "📅 " + formatSuccessDate(report.updated_at || report.created_at);
 
-          <span class="success-story-type">
-            ${reportLabel}
-          </span>
+      const storyLink = document.createElement("a");
+      storyLink.className = "btn btn-primary";
+      storyLink.href = "pet.html?id=" + encodeURIComponent(String(report.id || ""));
+      storyLink.textContent = "View Story";
 
-          <h2>${petName}</h2>
-
-          <p>
-            ${report.breed || report.pet_type || "Pet details not provided"}
-          </p>
-
-          <small>
-            📍 ${location || "Location not provided"}
-          </small>
-
-          <small>
-            📅 ${formatSuccessDate(
-              report.updated_at ||
-              report.created_at
-            )}
-          </small>
-
-          <a
-            href="pet.html?id=${report.id}"
-            class="btn btn-primary"
-          >
-            View Story
-          </a>
-
-        </div>
-      `;
-
+      content.append(type, heading, details, locationText, dateText, storyLink);
+      card.append(imageWrap, content);
       storiesGrid.appendChild(card);
     });
 
