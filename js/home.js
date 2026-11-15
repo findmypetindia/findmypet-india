@@ -4,6 +4,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   loadHomepageReports();
+  updateVerifiedMemberCount();
 });
 
 /**
@@ -302,6 +303,28 @@ function formatReportDate(value) {
     month: "short",
     year: "numeric"
   }).format(date);
+}
+
+/**
+ * Verified member total ko secure Supabase RPC se load karta hai.
+ * Sirf email-confirmed, non-deleted aur non-banned accounts count hote hain.
+ */
+async function updateVerifiedMemberCount() {
+  const countElement = document.getElementById("verifiedMemberCount");
+  if (!countElement || typeof supabaseClient === "undefined") return;
+
+  try {
+    const { data, error } = await supabaseClient.rpc("get_verified_member_count");
+    if (error) throw error;
+
+    const count = Number(data);
+    if (!Number.isFinite(count) || count < 0) throw new Error("Invalid member count");
+
+    countElement.textContent = count.toLocaleString("en-IN");
+  } catch (error) {
+    console.error("Verified member count error:", error);
+    countElement.textContent = "—";
+  }
 }
 
 /**
