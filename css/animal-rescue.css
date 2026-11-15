@@ -322,3 +322,36 @@
   .rescue-choice-card,.how:not(.city-discovery):not(.site-resources) .step-card,.how.site-resources .step-card { transition: none; }
   .rescue-choice-card:hover,.how:not(.city-discovery):not(.site-resources) .step-card:hover,.how.site-resources .step-card:hover { transform: none; }
 }
+
+
+/* Final featured-card polish for the Community, Support & Project Information section */
+.how.site-resources .step-card:nth-child(1) { border-top: 4px solid #3979e8; }
+.how.site-resources .step-card:nth-child(2) { border-top: 4px solid #f59e0b; }
+.how.site-resources .step-card:nth-child(3) { border-top: 4px solid #ec6b91; }
+.how.site-resources .step-card:nth-child(1) .step-icon {
+  color: #245fc4;
+  background: linear-gradient(145deg,#eaf2ff,#f5f8ff);
+}
+.how.site-resources .step-card:nth-child(2) .step-icon {
+  color: #b96b08;
+  background: linear-gradient(145deg,#fff1d9,#fff9ef);
+}
+.how.site-resources .step-card:nth-child(3) .step-icon {
+  color: #c04470;
+  background: linear-gradient(145deg,#ffe8f0,#fff5f8);
+}
+.how.site-resources .step-card .btn {
+  width: 100%;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(31,75,145,.12);
+}
+.how.site-resources .step-card:nth-child(2) .btn {
+  background: #c97812;
+}
+.how.site-resources .step-card:nth-child(3) .btn {
+  background: #c34d78;
+}
+@media(max-width:650px) {
+  .how.site-resources .step-card { text-align: center; }
+  .how.site-resources .step-card .btn { max-width: 260px; }
+}
