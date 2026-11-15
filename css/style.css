@@ -3728,3 +3728,18 @@ font-size:15px;
     margin-bottom: 18px !important;
   }
 }
+
+
+/* Homepage accessibility and image loading refinements */
+.hero .hero-buttons .btn-danger,
+.how .step-card .btn-danger,
+.rescue-choice-card .btn-danger {
+  background: #c1121f;
+}
+.hero .hero-buttons .btn-success,
+.how .step-card .btn-success {
+  background: #007a3d;
+}
+.how .step-card:nth-child(2) .step-icon {
+  background: #15803d;
+}
