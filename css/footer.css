@@ -305,6 +305,12 @@ margin-top:15px;
 
   .site-footer .footer-founder {
     box-sizing: border-box;
+    grid-column: auto;
+    display: block;
+    justify-self: stretch;
+    align-self: start;
+    text-align: left;
+    margin: 0;
     padding: clamp(18px, 1.8vw, 24px);
   }
 
@@ -378,6 +384,12 @@ margin-top:15px;
   }
 
   .site-footer .footer-founder {
+    grid-column: 1 / -1;
+    display: block;
+    justify-self: stretch;
+    align-self: start;
+    text-align: left;
+    margin: 0;
     padding: 22px;
   }
 
@@ -395,5 +407,23 @@ margin-top:15px;
     width: 100%;
     max-width: 900px;
     margin: 36px auto 0;
+  }
+}
+
+
+/* Remove legacy founder-card layout rules from the shared footer */
+@media (min-width: 769px) {
+  .site-footer .footer-founder {
+    display: block;
+    margin-top: 0;
+  }
+  .site-footer .footer-founder > * {
+    max-width: 100%;
+  }
+  .site-footer .footer-founder h2,
+  .site-footer .footer-founder .founder-name,
+  .site-footer .footer-founder .founder-role,
+  .site-footer .footer-founder .founder-description {
+    text-align: left;
   }
 }
