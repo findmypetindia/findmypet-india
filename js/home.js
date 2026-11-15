@@ -334,21 +334,28 @@ async function updateHomepageStatistics() {
   try {
     const { data, error } = await supabaseClient
       .from("pet_reports")
-      .select("report_type, status")
-      .or("status.eq.active,status.is.null");
+      .select("report_type, status");
 
     if (error) {
       throw error;
     }
 
     const reports = data || [];
+    const activeReports = reports.filter(
+      (report) => report.status === "active" || report.status == null
+    );
 
-    const lostCount = reports.filter(
+    const lostCount = activeReports.filter(
       (report) => report.report_type === "lost"
     ).length;
 
-    const foundCount = reports.filter(
+    const foundCount = activeReports.filter(
       (report) => report.report_type === "found"
+    ).length;
+
+    // Count report records explicitly marked as reunited.
+    const reunitedCount = reports.filter(
+      (report) => report.status === "reunited"
     ).length;
 
     const statNumbers =
@@ -364,9 +371,12 @@ async function updateHomepageStatistics() {
         foundCount.toLocaleString("en-IN");
     }
 
-    // Reunion and member totals are not yet backed by verified
-    // database metrics. Use an em dash rather than publishing a
-    // misleading zero until those metrics are implemented.
+    if (statNumbers[2]) {
+      statNumbers[2].textContent =
+        reunitedCount.toLocaleString("en-IN");
+    }
+
+    // Verified member total is loaded separately via the secure RPC.
   } catch (error) {
     console.error("Homepage statistics error:", error);
   }
