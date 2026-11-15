@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function setMobileMenuButtonVisibility() {
     if (!mobileMenuButton) return;
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 1050) {
       mobileMenuButton.style.setProperty("display", "inline-flex", "important");
       mobileMenuButton.style.setProperty("visibility", "visible", "important");
       mobileMenuButton.style.setProperty("opacity", "1", "important");
@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   window.addEventListener(
     "resize",
     function () {
-      if (window.innerWidth > 767) {
+      if (window.innerWidth > 1050) {
         closeMobileMenu();
       }
       setMobileMenuButtonVisibility();
