@@ -3743,3 +3743,62 @@ font-size:15px;
 .how .step-card:nth-child(2) .step-icon {
   background: #15803d;
 }
+
+
+/* Verified community member count */
+.community-member-count {
+  padding: 0 6% 34px;
+  background: #ffffff;
+}
+.member-count-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid #e5edff;
+  border-radius: 18px;
+  background: linear-gradient(110deg, #f4f8ff, #fff8fb);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+.member-count-icon {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #e7efff;
+  font-size: 26px;
+}
+.member-count-label {
+  margin: 0 0 4px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.member-count-value {
+  margin: 0;
+  color: #172554;
+  font-size: 20px;
+  font-weight: 700;
+}
+.member-count-value strong {
+  color: #2457f5;
+  font-size: 28px;
+  font-weight: 900;
+}
+.member-count-note {
+  margin: 3px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .community-member-count { padding: 0 14px 24px; }
+  .member-count-inner { padding: 16px; gap: 12px; }
+  .member-count-value { font-size: 17px; }
+  .member-count-value strong { font-size: 25px; }
+}
