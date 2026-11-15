@@ -252,3 +252,76 @@ margin-top:15px;
     text-align:left;
     margin-left:-25px;
 }
+
+/* Desktop footer alignment: keep all four columns inside the footer width */
+@media (min-width: 1101px) {
+  .site-footer {
+    width: 100%;
+    padding: 52px clamp(24px, 4vw, 56px) 24px;
+  }
+
+  .site-footer .footer-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.35fr)
+      minmax(220px, 1.15fr)
+      minmax(155px, 0.8fr)
+      minmax(270px, 1.3fr);
+    column-gap: clamp(22px, 2.5vw, 38px);
+    row-gap: 28px;
+    align-items: start;
+  }
+
+  .site-footer .footer-brand,
+  .site-footer .footer-column,
+  .site-footer .footer-founder {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    margin-left: 0;
+    justify-self: stretch;
+  }
+
+  .site-footer .footer-links-column {
+    justify-self: stretch;
+    text-align: left;
+  }
+
+  .site-footer .footer-links {
+    align-items: flex-start;
+  }
+
+  .site-footer .footer-logo {
+    max-width: 100%;
+    font-size: clamp(23px, 2vw, 30px);
+  }
+
+  .site-footer .footer-tagline {
+    font-size: 16px;
+  }
+
+  .site-footer .footer-founder {
+    box-sizing: border-box;
+    padding: clamp(18px, 1.8vw, 24px);
+  }
+
+  .site-footer .footer-founder h2 {
+    font-size: clamp(25px, 2.2vw, 34px);
+    overflow-wrap: anywhere;
+  }
+
+  .site-footer .footer-email {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+  }
+
+  .site-footer .footer-bottom {
+    width: 100%;
+    max-width: 1440px;
+    margin: 38px auto 0;
+  }
+}
