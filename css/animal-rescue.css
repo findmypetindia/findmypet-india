@@ -355,3 +355,168 @@
   .how.site-resources .step-card { text-align: center; }
   .how.site-resources .step-card .btn { max-width: 260px; }
 }
+
+
+/* Dedicated, isolated featured layout for Community / Support cards.
+   Reset the generic How-it-Works connector treatment so it cannot leak here. */
+.how.site-resources {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 76px clamp(18px, 5vw, 72px) 82px;
+  background:
+    radial-gradient(ellipse at 8% 8%, rgba(72,132,255,.10), transparent 34%),
+    radial-gradient(ellipse at 92% 88%, rgba(238,112,157,.10), transparent 32%),
+    linear-gradient(180deg,#f8fbff 0%,#f2f6fc 100%);
+}
+.how.site-resources > h2 {
+  max-width: 900px;
+  margin: 0 auto 12px;
+  color: #14213d;
+  font-size: clamp(25px,3.1vw,35px);
+  line-height: 1.2;
+  letter-spacing: -.7px;
+  font-weight: 850;
+}
+.how.site-resources > p {
+  max-width: 720px;
+  margin: 0 auto 38px;
+  color: #64728a;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.how.site-resources .steps {
+  width: 100%;
+  max-width: 1160px;
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+.how.site-resources .step-card {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  min-height: 300px;
+  padding: 34px 27px 27px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  overflow: hidden;
+  border: 1px solid #e3eaf5;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(25,48,87,.08);
+  transition: transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.how.site-resources .step-card::after {
+  content: none !important;
+  display: none !important;
+}
+.how.site-resources .step-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--resource-accent);
+}
+.how.site-resources .step-card:nth-child(1) { --resource-accent:#3979e8; }
+.how.site-resources .step-card:nth-child(2) { --resource-accent:#e69a28; }
+.how.site-resources .step-card:nth-child(3) { --resource-accent:#df6f98; }
+.how.site-resources .step-card:hover {
+  transform: translateY(-7px);
+  border-color: #d2dff1;
+  box-shadow: 0 22px 48px rgba(25,48,87,.14);
+}
+.how.site-resources .step-card .step-icon {
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  margin: 0 0 23px;
+  display: grid;
+  place-items: center;
+  border-radius: 21px;
+  background: #edf3ff;
+  color: #245fc4;
+  font-size: 31px;
+}
+.how.site-resources .step-card:nth-child(2) .step-icon {
+  background: #fff4e3;
+  color: #b96b08;
+}
+.how.site-resources .step-card:nth-child(3) .step-icon {
+  background: #ffedf3;
+  color: #c04470;
+}
+.how.site-resources .step-card h3 {
+  margin: 0 0 11px;
+  color: #17243d;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 800;
+}
+.how.site-resources .step-card p {
+  flex: 1 1 auto;
+  margin: 0 0 25px;
+  color: #65728a;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.how.site-resources .step-card .btn {
+  width: 100%;
+  min-height: 48px;
+  margin-top: auto;
+  padding: 13px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 13px;
+  background: #2869d7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
+  box-shadow: 0 7px 17px rgba(40,105,215,.18);
+  transition: transform .18s ease,filter .18s ease,box-shadow .18s ease;
+}
+.how.site-resources .step-card:nth-child(2) .btn {
+  background: #c97812;
+  box-shadow: 0 7px 17px rgba(201,120,18,.18);
+}
+.how.site-resources .step-card:nth-child(3) .btn {
+  background: #c34d78;
+  box-shadow: 0 7px 17px rgba(195,77,120,.18);
+}
+.how.site-resources .step-card .btn:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+@media(max-width:900px) {
+  .how.site-resources .steps { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+  .how.site-resources .step-card { min-height: 285px; }
+}
+@media(max-width:620px) {
+  .how.site-resources { padding: 52px 17px 58px; }
+  .how.site-resources > h2 { font-size: 25px; }
+  .how.site-resources > p { margin-bottom: 25px; font-size: 14px; }
+  .how.site-resources .steps { grid-template-columns: 1fr; gap: 15px; }
+  .how.site-resources .step-card {
+    min-height: 0;
+    padding: 27px 23px 23px;
+    border-radius: 20px;
+  }
+  .how.site-resources .step-card .step-icon { margin-bottom: 18px; }
+  .how.site-resources .step-card h3 { font-size: 19px; }
+  .how.site-resources .step-card p { margin-bottom: 20px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .how.site-resources .step-card,
+  .how.site-resources .step-card .btn { transition: none; }
+  .how.site-resources .step-card:hover,
+  .how.site-resources .step-card .btn:hover { transform: none; }
+}
