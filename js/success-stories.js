@@ -105,11 +105,14 @@ async function loadSuccessStories() {
       const image = document.createElement("img");
       const fallbackImage = "https://placehold.co/600x420?text=Pet+Photo";
       let safeImageUrl = fallbackImage;
-      try {
-        const candidate = new URL(String(report.image_url || ""), window.location.origin);
-        if (candidate.protocol === "https:" || candidate.protocol === "http:") safeImageUrl = candidate.href;
-      } catch (_) {
-        safeImageUrl = fallbackImage;
+      const rawImageUrl = String(report.image_url || "").trim();
+      if (rawImageUrl) {
+        try {
+          const candidate = new URL(rawImageUrl, window.location.origin);
+          if (candidate.protocol === "https:" || candidate.protocol === "http:") safeImageUrl = candidate.href;
+        } catch (_) {
+          safeImageUrl = fallbackImage;
+        }
       }
       image.src = safeImageUrl;
       image.alt = petName + " reunited pet story";
@@ -152,15 +155,17 @@ async function loadSuccessStories() {
       error
     );
 
-    storiesGrid.innerHTML = `
-      <div class="success-state success-error">
-        <h3>Success stories load nahi ho paayi</h3>
+    const errorState = document.createElement("div");
+    errorState.className = "success-state success-error";
 
-        <p>
-          ${error.message || "Please try again."}
-        </p>
-      </div>
-    `;
+    const errorHeading = document.createElement("h3");
+    errorHeading.textContent = "Success stories load nahi ho paayi";
+
+    const errorText = document.createElement("p");
+    errorText.textContent = error.message || "Please try again.";
+
+    errorState.append(errorHeading, errorText);
+    storiesGrid.replaceChildren(errorState);
   }
 }
 
