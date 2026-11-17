@@ -321,9 +321,10 @@ async function updateVerifiedMemberCount() {
     if (!Number.isFinite(count) || count < 0) throw new Error("Invalid member count");
 
     countElement.textContent = count.toLocaleString("en-IN");
+    countElement.closest(".stat-card")?.style.removeProperty("display");
   } catch (error) {
     console.error("Verified member count error:", error);
-    countElement.textContent = "—";
+    countElement.closest(".stat-card")?.style.setProperty("display", "none");
   }
 }
 
@@ -375,6 +376,10 @@ async function updateHomepageStatistics() {
       statNumbers[2].textContent =
         reunitedCount.toLocaleString("en-IN");
     }
+
+    // Show the statistics row only after real report counts have loaded successfully.
+    const statsSection = document.querySelector(".stats");
+    if (statsSection) statsSection.style.display = "grid";
 
     // Verified member total is loaded separately via the secure RPC.
   } catch (error) {
