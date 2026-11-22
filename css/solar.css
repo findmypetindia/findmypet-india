@@ -1,0 +1,40 @@
+/* Solar enquiry section - visually separate from pet services */
+.solar-promo{max-width:1240px;margin:34px auto 42px;padding:0 22px}
+.solar-promo-inner{position:relative;overflow:hidden;display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:center;padding:34px;border:1px solid #f3d69a;border-radius:24px;background:linear-gradient(120deg,#fffaf0,#fff 65%,#f5fbff);box-shadow:0 12px 32px rgba(100,75,20,.08)}
+.solar-promo-copy .solar-eyebrow,.solar-eyebrow{display:inline-flex;padding:7px 12px;border-radius:30px;background:#fff0c2;color:#805400;font-size:11px;font-weight:850;letter-spacing:.06em}
+.solar-promo h2{margin:13px 0 9px;color:#18243b;font-size:clamp(27px,3.5vw,39px);line-height:1.12}
+.solar-promo p{margin:0 0 17px;color:#526078;line-height:1.6}
+.solar-brand-chips{display:flex;gap:10px;flex-wrap:wrap;margin:17px 0 21px}
+.solar-brand-chips span{padding:9px 13px;border:1px solid #e7eaf0;border-radius:12px;background:#fff;color:#26344d;font-weight:800;font-size:13px}
+.solar-promo-art{min-height:210px;border-radius:18px;background:linear-gradient(135deg,#f9c74f,#f7e7b5 48%,#dceeff);display:grid;place-items:center;position:relative;overflow:hidden}
+.solar-promo-art img{width:100%;height:100%;min-height:210px;object-fit:cover;display:block}
+.solar-page{min-height:70vh;background:linear-gradient(180deg,#fffaf0,#f7f9fc 380px);padding:38px 16px 64px}
+.solar-wrap{width:min(880px,100%);margin:0 auto}
+.solar-hero{text-align:center;margin:0 auto 24px;max-width:720px}
+.solar-hero h1{font-size:clamp(30px,5vw,46px);line-height:1.12;color:#17243b;margin:12px 0}
+.solar-hero p{color:#526078;line-height:1.6}
+.solar-form-card{background:#fff;border:1px solid #e5eaf1;border-radius:22px;padding:clamp(18px,4vw,32px);box-shadow:0 15px 40px rgba(20,35,60,.08)}
+.solar-provider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0 22px}
+.solar-provider-option{position:relative}
+.solar-provider-option input{position:absolute;opacity:0;pointer-events:none}
+.solar-provider-option label{min-height:76px;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:13px;border:1px solid #dce3ed;border-radius:14px;background:#fff;color:#26344d;font-weight:800;cursor:pointer}
+.solar-provider-option input:checked+label{border:2px solid #d89a13;background:#fff9e8;color:#795000}
+.solar-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.solar-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.solar-field.full{grid-column:1/-1}
+.solar-field label{font-size:13px;font-weight:750;color:#344054}
+.solar-field input,.solar-field select,.solar-field textarea{width:100%;min-height:48px;padding:12px 13px;border:1px solid #d0d8e4;border-radius:11px;background:#fff;color:#172033;font:inherit;outline:none}
+.solar-field textarea{min-height:92px;resize:vertical}
+.solar-field input:focus,.solar-field select:focus,.solar-field textarea:focus{border-color:#d99b18;box-shadow:0 0 0 3px rgba(217,155,24,.13)}
+.solar-consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0;color:#526078;font-size:13px;line-height:1.5}
+.solar-consent input{margin-top:3px;flex:0 0 auto}
+.solar-submit{width:100%;min-height:52px;border:0;border-radius:13px;background:#172b4d;color:#fff;font-size:15px;font-weight:850;cursor:pointer}
+.solar-submit:disabled{opacity:.6;cursor:wait}
+.solar-note{margin:13px 0 0;color:#667085;font-size:12px;line-height:1.55;text-align:center}
+.solar-message{margin-top:14px;padding:12px;border-radius:10px;background:#effaf3;color:#17643a;font-size:14px;line-height:1.5}
+.solar-message.error{background:#fff1f0;color:#b42318}
+.solar-whatsapp-link{display:inline-block;margin-top:10px;color:#087443;font-weight:800}
+.solar-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.solar-trust div{padding:13px;border:1px solid #e7ebf1;border-radius:13px;background:#fff;color:#526078;font-size:12px;text-align:center}
+.solar-trust strong{display:block;color:#26344d;font-size:13px;margin-bottom:4px}
+@media(max-width:700px){.solar-promo-inner{grid-template-columns:1fr;padding:22px}.solar-promo-art{min-height:155px}.solar-promo-art img{min-height:155px}.solar-provider-grid{grid-template-columns:1fr}.solar-provider-option label{min-height:54px}.solar-fields{grid-template-columns:1fr}.solar-field.full{grid-column:auto}.solar-trust{grid-template-columns:1fr}}
