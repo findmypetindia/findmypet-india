@@ -38,3 +38,19 @@
 .solar-trust div{padding:13px;border:1px solid #e7ebf1;border-radius:13px;background:#fff;color:#526078;font-size:12px;text-align:center}
 .solar-trust strong{display:block;color:#26344d;font-size:13px;margin-bottom:4px}
 @media(max-width:700px){.solar-promo-inner{grid-template-columns:1fr;padding:22px}.solar-promo-art{min-height:155px}.solar-promo-art img{min-height:155px}.solar-provider-grid{grid-template-columns:1fr}.solar-provider-option label{min-height:54px}.solar-fields{grid-template-columns:1fr}.solar-field.full{grid-column:auto}.solar-trust{grid-template-columns:1fr}}
+
+/* Search-focused solar guide content */
+.solar-seo-content{width:min(1040px,calc(100% - 32px));margin:30px auto 0;padding:clamp(20px,4vw,38px);background:#fff;border:1px solid #e7ebf1;border-radius:20px;box-shadow:0 10px 28px rgba(20,35,60,.045)}
+.solar-seo-content h2{margin:25px 0 10px;color:#172b4d;font-size:clamp(21px,3vw,28px);line-height:1.25}
+.solar-seo-content h2:first-child{margin-top:0}
+.solar-seo-content h3{margin:0 0 8px;color:#243653;font-size:17px}
+.solar-seo-content p{color:#526078;font-size:14px;line-height:1.75;margin:0 0 14px}
+.solar-seo-content a{color:#075fe4;font-weight:700;text-underline-offset:3px}
+.solar-seo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:18px 0 26px}
+.solar-seo-grid article{padding:18px;border:1px solid #e7ebf1;border-radius:15px;background:#fffdf8}
+.solar-seo-grid article p{margin:0;font-size:13px}
+.solar-faq{display:grid;gap:9px;margin-top:14px}
+.solar-faq details{padding:14px 16px;border:1px solid #e5eaf1;border-radius:12px;background:#fff}
+.solar-faq summary{color:#243653;font-weight:800;cursor:pointer;line-height:1.45}
+.solar-faq details p{margin:10px 0 0}
+@media(max-width:700px){.solar-seo-content{width:calc(100% - 24px);padding:19px 16px;margin-top:22px}.solar-seo-grid{grid-template-columns:1fr;gap:10px}.solar-seo-content h2{font-size:22px}}
