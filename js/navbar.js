@@ -294,6 +294,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     queueMicrotask(function () {
       lostNavRepairQueued = false;
       ensureLostPetsNavigation();
+      ensureSolarNavigation();
     });
   });
   lostNavObserver.observe(siteHeader, { childList: true, subtree: true });
@@ -437,6 +438,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Refresh account controls in the background after the navbar is visible.
   async function refreshAccountNavigation() {
     ensureLostPetsNavigation();
+    ensureSolarNavigation();
     if (typeof supabaseClient === "undefined") {
       console.error("Supabase client is not available.");
       return;
