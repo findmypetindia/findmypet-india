@@ -412,3 +412,21 @@
     flex-direction: row !important;
   }
 }
+
+
+/* Mobile menu visibility and drawer safeguards */
+@media (max-width: 1050px) {
+  #siteHeader .mobile-menu-button {
+    display: inline-flex !important; visibility: visible !important; opacity: 1 !important;
+    position: relative !important; z-index: 10003 !important;
+    width: 46px !important; height: 46px !important; min-width: 46px !important;
+    align-items: center !important; justify-content: center !important;
+    margin-left: auto !important; padding: 0 !important;
+    color: #172033 !important; background: #fff !important;
+    font-family: Arial, sans-serif !important; font-size: 30px !important;
+    font-weight: 700 !important; line-height: 1 !important;
+  }
+  #siteHeader .navbar-content .nav-links { overflow: visible !important; }
+  #siteHeader #solarEnquiryNavItem { display: list-item !important; visibility: visible !important; opacity: 1 !important; }
+  #siteHeader #solarEnquiryNavItem > a { display: flex !important; visibility: visible !important; opacity: 1 !important; }
+}
