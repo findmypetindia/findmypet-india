@@ -234,7 +234,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+  // Keep Solar Enquiry visible in the shared navigation on every page.
+  function ensureSolarNavigation() {
+    const navLinks = document.querySelector("#navbarContent .nav-links");
+    if (!navLinks) return;
+    let item = document.getElementById("solarEnquiryNavItem");
+    if (!item) {
+      item = document.createElement("li");
+      item.id = "solarEnquiryNavItem";
+      item.innerHTML = `<a href="${pagesLink}solar.html" class="${activeClass("solar.html")}">☀️ Solar Enquiry</a>`;
+      const rescueItem = navLinks.querySelector('a[href$="animal-rescue.html"]')?.parentElement;
+      navLinks.insertBefore(item, rescueItem || null);
+    }
+    item.style.setProperty("display", "list-item", "important");
+    item.style.setProperty("visibility", "visible", "important");
+    item.style.setProperty("opacity", "1", "important");
+    const link = item.querySelector("a");
+    if (link) {
+      link.style.setProperty("display", "flex", "important");
+      link.style.setProperty("visibility", "visible", "important");
+      link.style.setProperty("opacity", "1", "important");
+    }
+  }
+
   ensureLostPetsNavigation();
+  ensureSolarNavigation();
 
   // If another script rebuilds the navbar after login, restore only the Lost Pets item.
   let lostNavRepairQueued = false;
@@ -254,8 +278,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       typeof supabaseClient.auth.onAuthStateChange === "function") {
     supabaseClient.auth.onAuthStateChange(function () {
       ensureLostPetsNavigation();
+      ensureSolarNavigation();
       requestAnimationFrame(ensureLostPetsNavigation);
+      requestAnimationFrame(ensureSolarNavigation);
       setTimeout(ensureLostPetsNavigation, 250);
+      setTimeout(ensureSolarNavigation, 250);
     });
   }
 
@@ -293,6 +320,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       mobileMenuButton.style.setProperty("background", "#ffffff", "important");
       mobileMenuButton.style.setProperty("border", "1px solid #dbe3f0", "important");
       mobileMenuButton.textContent = navbarContent.classList.contains("mobile-menu-open") ? "×" : "☰";
+      mobileMenuButton.style.setProperty("z-index", "10003", "important");
     } else {
       mobileMenuButton.style.removeProperty("display");
       mobileMenuButton.textContent = "";
@@ -316,6 +344,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     mobileMenuButton.classList.remove("menu-button-active");
     mobileMenuButton.setAttribute("aria-expanded", "false");
     mobileMenuButton.textContent = "☰";
+    mobileMenuButton.style.setProperty("display", "inline-flex", "important");
+    mobileMenuButton.style.setProperty("visibility", "visible", "important");
+    mobileMenuButton.style.setProperty("z-index", "10003", "important");
     document.body.classList.remove("mobile-menu-body-lock");
   }
 
