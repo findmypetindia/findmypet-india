@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             </a>
           </li>
 
-          <li>
+          <li id="solarEnquiryNavItem">
             <a
               href="${pagesLink}solar.html"
               class="${activeClass("solar.html")}"
