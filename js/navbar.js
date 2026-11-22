@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               href="${pagesLink}solar.html"
               class="${activeClass("solar.html")}"
             >
-              ☀️ Solar Enquiry
+              🌞 Solar Enquiry
             </a>
           </li>
 
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (!item) {
       item = document.createElement("li");
       item.id = "solarEnquiryNavItem";
-      item.innerHTML = `<a href="${pagesLink}solar.html" class="${activeClass("solar.html")}">☀️ Solar Enquiry</a>`;
+      item.innerHTML = `<a href="${pagesLink}solar.html" class="${activeClass("solar.html")}">🌞 Solar Enquiry</a>`;
       const rescueItem = navLinks.querySelector('a[href$="animal-rescue.html"]')?.parentElement;
       navLinks.insertBefore(item, rescueItem || null);
     }
