@@ -2,7 +2,7 @@
 if (!document.querySelector('link[data-navbar-styles]')) {
   const navbarStyles = document.createElement("link");
   navbarStyles.rel = "stylesheet";
-  navbarStyles.href = "/css/navbar.css?v=6";
+  navbarStyles.href = "/css/navbar.css?v=8";
   navbarStyles.dataset.navbarStyles = "true";
   document.head.appendChild(navbarStyles);
 }
