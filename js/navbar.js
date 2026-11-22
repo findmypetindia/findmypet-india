@@ -234,18 +234,44 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  // Keep Solar Enquiry visible in the shared navigation on every page.
+  // Keep exactly one Solar Enquiry link in the shared navigation.
   function ensureSolarNavigation() {
     const navLinks = document.querySelector("#navbarContent .nav-links");
     if (!navLinks) return;
+
+    const solarLinks = Array.from(navLinks.querySelectorAll("a")).filter(function (link) {
+      const href = link.getAttribute("href") || "";
+      return href.split("?")[0].split("#")[0].toLowerCase().endsWith("solar.html");
+    });
+
     let item = document.getElementById("solarEnquiryNavItem");
+    if (!item && solarLinks.length) {
+      item = solarLinks[0].parentElement;
+    }
+
+    // Remove any additional Solar Enquiry entries, including entries added by older scripts.
+    const keepLink = item ? item.querySelector("a") : null;
+    solarLinks.forEach(function (link) {
+      if (link !== keepLink) {
+        const duplicateItem = link.closest("li");
+        if (duplicateItem && duplicateItem.parentElement === navLinks) {
+          duplicateItem.remove();
+        } else {
+          link.remove();
+        }
+      }
+    });
+
     if (!item) {
       item = document.createElement("li");
       item.id = "solarEnquiryNavItem";
       item.innerHTML = `<a href="${pagesLink}solar.html" class="${activeClass("solar.html")}">🌞 Solar Enquiry</a>`;
       const rescueItem = navLinks.querySelector('a[href$="animal-rescue.html"]')?.parentElement;
       navLinks.insertBefore(item, rescueItem || null);
+    } else {
+      item.id = "solarEnquiryNavItem";
     }
+
     item.style.setProperty("display", "list-item", "important");
     item.style.setProperty("visibility", "visible", "important");
     item.style.setProperty("opacity", "1", "important");
